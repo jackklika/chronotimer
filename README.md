@@ -1,4 +1,4 @@
-# cs361-chromotimer
+# chronotimer
 ## This repository
 /docs: UML diagrams, documentation, or non-code documents that contribute value or structure to the project
 
