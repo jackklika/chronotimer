@@ -4,7 +4,7 @@ public class Main {
 
 	// Ideally these constants could be set by command line arguments. TODO!
 	
-	final static int MAX_VERBOSITY = 3; /* 
+	final static int MAX_VERBOSITY = 2; /* 
 	 * Sets the verbosity of the debug message outputter.
 	 * 0 = No messages
 	 * 1 = General messages
@@ -13,7 +13,7 @@ public class Main {
 	 */ 
 	 
 	 
-	final static int GRANULAITY = 10; /*
+	final static int GRANULAITY = 1000; /*
 	 * Simply how often the event loop runs, in milliseconds. 1000ms = 1s
 	 * Default should be 1000 (Maybe?)
 	 */ 
@@ -43,8 +43,9 @@ public class Main {
 		
 		for (int i = 1; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		
-		ChronoTimer ct = new ChronoTimer();
-		ct.run();
+		Simulator sim = new Simulator(new ChronoTimer());
+		
+		sim.run();
 		
 
 	}
