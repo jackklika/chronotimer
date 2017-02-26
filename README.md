@@ -6,14 +6,13 @@ Options are currently set in the first bit of Main.java.
 - MAX_VERBOSITY: The level of verbosity of the debug commands emitted from the Main's Debugger object.
 - GRANULARITY: Simply how long Chronotimier's event loop waits before looping again.
 
-When running this application, the methods are all called from Main.java. Main will create a Chronotimer thread and call its run() method. This run method contains the EVENT LOOP.
+Main creates a Simulator which takes a new ChronoTimer as an argument. This creates a thread for the Simulator, which creates a thread for a shell (a way to input commnads
 
 ### Event Loop
 
-Each ChronoTimer has an **event loop**. This is a "while(true)" loop that runs until the EXIT command is given. (This might be a problem with the simulator -- chronotimer distinction so we need to figure that out)
-The event loop does the following:
-- Goes through a Queue<Command> until it is empty
-- Wait GRANULARITY ms. 
+Each Simulator has an **event loop**. This is a loop that runs in the Simulator until the EXIT command is given. 
+
+The event loop checks to see what commands need to be performed. When commands are created, their constructors add them to a queue (cmdQueue). The event loop checks the cmdQueue every cycle, and executes all the commmands until there are no more left.
 
 
 ## This repository

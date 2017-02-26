@@ -76,21 +76,19 @@ public class Simulator implements Runnable {
 
 		while (true){
 			
-			
 			while (cmdQueue.isEmpty() == false) {
 				System.out.println(2);
 
 				// Simulator runs the command
 				cmdQueue.poll().execute();
 				
+				try { Thread.sleep(100); }
+				catch (InterruptedException e) { e.printStackTrace(); }
 				
 			}
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			try { Thread.sleep(1000); }
+			catch (InterruptedException e) { e.printStackTrace(); }
+
 		}
 		
 	}
@@ -114,8 +112,7 @@ public class Simulator implements Runnable {
 	 * args[1] and args[2] are the arguments.
 	 */ public class Command {
 
-		String command; // EXPORT, NEWRUN, etc.
-		String arg1, arg2;
+		String command = "", arg1 = "", arg2 = "";
 
 		public Command(String[] args) {
 			command = args[0];
@@ -132,13 +129,15 @@ public class Simulator implements Runnable {
 			
 			// TODO: Sanitzie / check input here
 
-			Main.dbg.printDebug(2, "Command Constructor in: " + cmd);
+			Main.dbg.printDebug(3, "Command Constructor in: " + cmd);
 			String[] args = cmd.split(" ");
+			command = args[0];
 			if (args.length > 1)
 				arg1 = args[1];
 			if (args.length > 2)
 				arg2 = args[2];
-			Main.dbg.printDebug(2, "Command Constructor stored: " + Arrays.toString(cmd.split(" ")));
+			Main.dbg.printDebug(3, "Command Constructor stored: " + Arrays.toString(cmd.split(" ")));
+			Main.dbg.printDebug(2, this.command);
 
 			cmdQueue.add(this);
 		}
@@ -149,9 +148,9 @@ public class Simulator implements Runnable {
 			 * Run the command on the Simulator's ChronoTimer
 			 */
 			
-			Main.dbg.printDebug(2, "EXECUTING");
+			Main.dbg.printDebug(2, "EXECUTING " + command + " " + arg1 + " " + arg2);
 
-			switch (this.command.toUpperCase()) {
+			switch (command.toUpperCase()) {
 			case "POWER":
 
 				// Should toggle the power.
@@ -165,6 +164,8 @@ public class Simulator implements Runnable {
 
 			case "RESET":
 
+				timer.powerOn = false;
+				timer.powerOn = true;
 				break;
 
 			case "TIME":
