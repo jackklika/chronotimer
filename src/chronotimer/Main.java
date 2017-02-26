@@ -2,9 +2,9 @@ package chronotimer;
 
 public class Main {
 
-	// Ideally these constants could be set by command line arguments. TODO!
+	// The following are settings for the entire project.
 	
-	final static int MAX_VERBOSITY = 2; /* 
+	static int MAX_VERBOSITY = 2; /* 
 	 * Sets the verbosity of the debug message outputter.
 	 * 0 = No messages
 	 * 1 = General messages
@@ -13,7 +13,7 @@ public class Main {
 	 */ 
 	 
 	 
-	final static int GRANULAITY = 1000; /*
+	static int GRANULAITY = 1000; /*
 	 * Simply how often the event loop runs, in milliseconds. 1000ms = 1s
 	 * Default should be 1000 (Maybe?)
 	 */ 
@@ -22,13 +22,17 @@ public class Main {
 	 * This object should be the only thing printing to stdout (besides simulator)
 	 * Call this in other classes for debugging messages
 	 * EXAMPLE: Main.dbg.printDebug(num, msg)
-	 */
-	static class Debugger{
+	 * 0 -- Commands the user of the shell should see and are useful for both user and debugger.
+	 * 1 -- Commands the developer should see, very helpful for troubleshooting. Stuff like Chronotimer power, 
+	 * 		thread state changes, and non-fatal errors.
+	 * 2 -- Commands good for troubleshooting, but not as important as 1.
+	 * 3 -- Really finite stuff.
+	 */ static class Debugger{
 		
 		public Debugger(){}
 		
 		public void printDebug(int messageVerbosity, String message){
-			if (messageVerbosity <= MAX_VERBOSITY) System.out.printf("DEBUG [%d]\t%s\n", messageVerbosity, message);
+			if (messageVerbosity <= MAX_VERBOSITY) System.out.printf("DEBUG [%d]\t-%s\n", messageVerbosity, message);
 		}
 		
 	}
@@ -41,7 +45,7 @@ public class Main {
 	public static void main(String[] args) {	
 		
 		
-		for (int i = 1; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
+		for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		
 		Simulator sim = new Simulator(new ChronoTimer());
 		

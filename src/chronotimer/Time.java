@@ -1,5 +1,7 @@
 package chronotimer;
 
-public class Time {
+import java.time.*;
 
+public class Time {	
+	
 }
