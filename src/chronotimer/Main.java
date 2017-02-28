@@ -4,7 +4,7 @@ public class Main {
 
 	// The following are settings for the entire project.
 	
-	static int MAX_VERBOSITY = 2; /* 
+	static int MAX_VERBOSITY = 3; /* 
 	 * Sets the verbosity of the debug message outputter.
 	 * 0 = No messages
 	 * 1 = General messages

@@ -23,16 +23,13 @@ public class Simulator implements Runnable {
 				input = in.nextLine();
 				// Check if input is valid command. If it is, add to queue
 				
-				//TODO: check
+				//The command constructor adds the command to the queuet
 				new Command(input);
 				
 				//cmdQueue.add(toCommand(input));
 				
-				try {
-					Thread.sleep(300);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
+				try { Thread.sleep(300); } 
+				catch (InterruptedException e) { e.printStackTrace(); }
 			}
 			
 		}
@@ -75,24 +72,20 @@ public class Simulator implements Runnable {
 	/*
 	 * This is the stack of commands. Every time the event loop runs, the queue
 	 * is processed.
-	 */ public Queue<Command> cmdQueue = new LinkedList<Command>();
-
-	 
-	 /* Takes a string and converts it to a command object
-	  * Example: CONN EYE 1 --> new Command(new String[]{"CONN", "EYE", "1"})
-	  * 
-	  */ public Command toCommand(String str){	
-		  return new Command(str.split(" "));
-	 	}
-	  
+	 */ public Queue<Command> cmdQueue = new LinkedList<Command>();	  
 	  
 	/*
 	 * A "command" object. args[0] is the command itself (PRINT, NEWRUN, etc) while
 	 * args[1] and args[2] are the arguments.
+	 * There are two constructors. Both are functionally identical.
+	 * 	- One takes a String array of arguments, like classic command parsers.
+	 * 	- The other takes a single string, which parses according to the format "COMMAND ARG1 ARG2"
+	 * When a Command is constructed, the Command adds itself to the command queue.
 	 */ public class Command {
 
 		String command = "", arg1 = "", arg2 = "";
 
+		// Takes String Array
 		public Command(String[] args) {
 			command = args[0];
 			if (args.length > 1)
@@ -104,9 +97,10 @@ public class Simulator implements Runnable {
 
 		}
 		
+		// Takes string of format "COMMAND ARG1 ARG2"
 		public Command(String cmd){
 			
-			// TODO: Sanitzie / check input here
+			// TODO: Sanitize / check input here
 
 			Main.dbg.printDebug(3, "Command Constructor in: " + cmd);
 			String[] args = cmd.split(" ");
@@ -120,12 +114,11 @@ public class Simulator implements Runnable {
 
 			cmdQueue.add(this);
 		}
-		
-		public boolean execute() {
 
-			/*
-			 * Run the command on the Simulator's ChronoTimer
-			 */
+		
+		/* Run the command on the Simulator's ChronoTimer
+		 * This is where a lot of logic is. The ChronoTimer will probably have a lot of handlers for it.
+		 */ public boolean execute() {
 			
 			Main.dbg.printDebug(2, "EXECUTING " + command + " " + arg1 + " " + arg2);
 
@@ -143,12 +136,40 @@ public class Simulator implements Runnable {
 
 			case "RESET":
 
+				// This doesn't work. 
 				timer.powerOn = false;
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				timer.powerOn = true;
 				break;
 
 			case "TIME":
+				
+				Main.dbg.printDebug(3, "INPUT TO TIME COMMAND: " + arg1);
+				int hour, min, sec;
+				String[] input = arg1.split(":");
+				
+				// POSSIBLE BUG: check here to make sure there are no exceptions for misformatted strings				
+				
+				if (input.length == 2){
+					min		= Integer.valueOf(input[0]);
+					sec		= Integer.valueOf(input[1]);
+					Main.dbg.printDebug(3, "MIN: " + min + "  SEC: " + sec);
+					
+				}else if (input.length == 3){
+					hour	= Integer.valueOf(input[0]);
+					min		= Integer.valueOf(input[1]);
+					sec		= Integer.valueOf(input[2]);
+					Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
+				} else {
+					System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00");
+				}
 
+				
 				break;
 
 			case "TOG":
