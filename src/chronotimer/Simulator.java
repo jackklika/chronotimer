@@ -105,10 +105,9 @@ public class Simulator implements Runnable {
 			Main.dbg.printDebug(3, "Command Constructor in: " + cmd);
 			String[] args = cmd.split(" ");
 			command = args[0];
-			if (args.length > 1)
-				arg1 = args[1];
-			if (args.length > 2)
-				arg2 = args[2];
+			if (args.length > 1) arg1 = args[1];
+			if (args.length > 2) arg2 = args[2];
+			 
 			Main.dbg.printDebug(3, "Command Constructor stored: " + Arrays.toString(cmd.split(" ")));
 			Main.dbg.printDebug(2, this.command);
 
@@ -136,10 +135,9 @@ public class Simulator implements Runnable {
 
 			case "RESET":
 
-				// This doesn't work. 
 				timer.powerOn = false;
 				try {
-					Thread.sleep(500);
+					Thread.sleep(1100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -168,7 +166,7 @@ public class Simulator implements Runnable {
 				} else {
 					System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00");
 				}
-
+				
 				
 				break;
 
