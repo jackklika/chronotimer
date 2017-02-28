@@ -1,5 +1,5 @@
 package chronotimer;
 
-public class Sensor {
+public abstract class Sensor {
 
 }
