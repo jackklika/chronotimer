@@ -221,7 +221,8 @@ public class Simulator implements Runnable {
 				break;
 
 			case "TRIG":
-
+				// Find the sensor object associated with arg1
+				// Send a trigger command to it
 				break;
 
 			case "START":

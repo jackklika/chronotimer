@@ -1,9 +1,5 @@
 package chronotimer;
 
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.*;
-
 enum RaceType {
 	IND, PARIND, GRP, PARGRP
 }
@@ -35,7 +31,7 @@ public class ChronoTimer implements Runnable {
 			
 			if (powerOn) Main.dbg.printDebug(2, this + " switched on!");
 			while (powerOn){
-				//Main.dbg.printDebug(3, "ðŸ•�  " + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
+				//Main.dbg.printDebug(3, "[CLOCK EMOJI]" + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 
 				// Goes through all pending commands until the queue is empty.
 							

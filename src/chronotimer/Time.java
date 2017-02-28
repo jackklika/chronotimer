@@ -8,7 +8,6 @@ import java.time.*;
  * 2: Start the timer -- "timer.startTime()"
  * 3: Stop the timer -- "Timer.stopTime()" (This also returns the stop - start time!)
  * 4: Get the difference between start and stop times -- "long time = timer.runTime)
- * 
  */ public class Time {
 	
 	public long start;
