@@ -11,6 +11,7 @@ enum RaceType {
 
 public class ChronoTimer implements Runnable {
 	
+	public Channel[] channels;
 	public boolean powerOn = true;
 	
 	// Provides an entry point for the ChronoTimer thread.
