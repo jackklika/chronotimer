@@ -2,7 +2,14 @@ package chronotimer;
 
 import java.time.*;
 
-public class Time {
+
+/* USAGE:
+ * 1: Create a time object -- "Time timer = new Time()"
+ * 2: Start the timer -- "timer.startTime()"
+ * 3: Stop the timer -- "Timer.stopTime()" (This also returns the stop - start time!)
+ * 4: Get the difference between start and stop times -- "long time = timer.runTime)
+ * 
+ */ public class Time {
 	
 	public long start;
 	public long stop;
@@ -14,8 +21,14 @@ public class Time {
 		start = Instant.now().toEpochMilli();
 	}
 	
-	public void stopTime(){
-		stop = Instant.now().toEpochMilli();
+	public long stopTime(){
+		if (start == 0){ // Default values
+			Main.dbg.printDebug(0, "[ERR]: Time.stopTime() called before Time.starTime was called.");
+			return 0;
+		} else {
+			stop = Instant.now().toEpochMilli();
+			return (stop - start);
+		}
 	}
 	
 	// Difference between start and stop time in MS
@@ -25,8 +38,7 @@ public class Time {
 			return 0;
 		} else {
 			return (stop - start);
-		}
-		
+		}	
 		
 	}
 }
