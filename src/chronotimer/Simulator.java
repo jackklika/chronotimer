@@ -171,7 +171,9 @@ public class Simulator implements Runnable {
 				break;
 
 			case "TOG":
-
+				// command arg1 arg2
+				int c = Integer.parseInt(arg1);
+				timer.channels[c].toggle();
 				break;
 
 			case "CONN":
