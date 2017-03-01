@@ -11,7 +11,7 @@ public abstract class Sensor {
 	private Channel myChannel;
 
 	public Sensor(Channel c) {
-		isArmed = false;
+		isArmed = true;
 		isBlocked = false;
 		myChannel = c;
 	}

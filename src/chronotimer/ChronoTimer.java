@@ -7,7 +7,8 @@ enum RaceType {
 
 public class ChronoTimer implements Runnable {
 	
-	public Channel[] channels = new Channel[8];
+	//update by Kaitlyn, made static so that channel class can see which channel # it is
+	public static Channel[] channels = new Channel[8];
 	public boolean powerOn = true;
 	
 	//made by John 
