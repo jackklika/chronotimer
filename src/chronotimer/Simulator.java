@@ -136,12 +136,8 @@ public class Simulator implements Runnable {
 			case "RESET":
 
 				timer.powerOn = false;
-				try {
-					Thread.sleep(1100);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				try { Thread.sleep(1100); } // Stops just long enough for Chronotimer to loop
+				catch (InterruptedException e) { e.printStackTrace(); }
 				timer.powerOn = true;
 				break;
 

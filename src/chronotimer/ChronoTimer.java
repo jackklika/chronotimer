@@ -7,16 +7,17 @@ enum RaceType {
 
 public class ChronoTimer implements Runnable {
 	
-	public Channel channels = new Channel();
+	public Channel[] channels = new Channel[8];
 	public boolean powerOn = true;
 	
 	//made by John 
 	// it makes sure that the channel is disarmed once the power is on 
-	public void disarmedcheck(Channel s){
-		if(powerOn == true){
-		channels.disarm();
-		}
-	}
+//	public void disarmedcheck(Channel s){
+//		if(powerOn == true){
+//		channels.disarm();
+//		}
+//	}
+//	
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
 	public void run() {
