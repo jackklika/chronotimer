@@ -3,6 +3,7 @@ package chronotimer;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -15,7 +16,8 @@ public class ChronoTimer implements Runnable {
 	
 	public Channel[] channels;
 	public boolean powerOn = true;
-	public Queue<Racer> racers;
+	public Deque<Racer> toRace;
+	public Deque<Racer> racers;
 	public ArrayList<Racer> finished;
 	public Queue<Command> cmdQueue = new LinkedList<Command>();
 
@@ -83,12 +85,17 @@ public class ChronoTimer implements Runnable {
 	
 	public void score(ActionEvent e){
 		if (e.getSource().equals(channels[0])){ // if start is tripped
-			racers.peek().t.startTime();
-		}
-		else if (e.getSource().equals(channels[1])){ // if finish is tripped
-			Racer r = racers.remove();
-			r.t.stopTime();
-			finished.add(r);
+			
+			Racer popped = toRace.poll();
+			popped.t.startTime();
+			racers.add(popped);
+			
+		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
+			
+			Racer popped = racers.poll();
+			popped.t.stopTime();
+			finished.add(popped);
+			
 		}
 	}
 
@@ -144,7 +151,6 @@ public class ChronoTimer implements Runnable {
 
 	
 	/* Run the command on the Simulator's ChronoTimer
-	 * This is where a lot of logic is. The ChronoTimer will probably have a lot of handlers for it.
 	 */ public boolean execute() {
 		
 		Main.dbg.printDebug(2, "EXECUTING " + command + " " + arg1 + " " + arg2);

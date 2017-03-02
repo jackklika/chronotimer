@@ -31,7 +31,6 @@ public class Channel {
 	}
 	
 	public void trigger(){
-		ActionEvent a = new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null);
-		ct.score(a);
+		ct.score(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
 	}
 }
