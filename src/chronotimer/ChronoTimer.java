@@ -1,6 +1,7 @@
 package chronotimer;
 
 import java.awt.event.ActionEvent;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -17,8 +18,8 @@ public class ChronoTimer implements Runnable {
 	
 	public Channel[] channels;
 	public boolean powerOn = true;
-	public Deque<Racer> toRace = null;
-	public Deque<Racer> racers = null;
+	public Deque<Racer> toRace;
+	public Deque<Racer> racers;
 	public ArrayList<Racer> finished;
 	public Queue<Command> cmdQueue;
 
@@ -27,6 +28,8 @@ public class ChronoTimer implements Runnable {
 		channels = new Channel[8];
 		finished = new ArrayList<Racer>();
 		cmdQueue = new LinkedList<Command>();
+		toRace = new ArrayDeque<Racer>();
+		racers = new ArrayDeque<Racer>();
 	}
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
@@ -233,7 +236,9 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "PRINT":
-
+			for (Racer r : finished){
+				System.out.println(r.bib + "/t" + r.runTime);
+			}
 			break;
 
 		case "EXPORT":
@@ -251,7 +256,7 @@ public class ChronoTimer implements Runnable {
 		case "SWAP":
 			ArrayList<Racer> list = new ArrayList<Racer>(racers);
 			Collections.swap(list, 0, 1);
-			Deque<Racer> newQ = null;
+			Deque<Racer> newQ = new ArrayDeque<Racer>();
 			for (Racer r : list) newQ.push(r);
 			racers = newQ;
 			break;
