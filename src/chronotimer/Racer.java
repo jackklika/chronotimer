@@ -1,5 +1,10 @@
 package chronotimer;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
+
+
 public class Racer {
 	public Time t = new Time();
 	public int bib;
@@ -11,5 +16,12 @@ public class Racer {
 
 	public void getRunTime() {
 		runTime = t.runTime();
+	}
+	
+public void swap(){
+		
+		ArrayList list = new ArrayList(racers);
+		Collections.swap(list, 0, 1);
+	
 	}
 }
