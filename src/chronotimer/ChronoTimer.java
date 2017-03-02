@@ -1,5 +1,9 @@
 package chronotimer;
 
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Queue;
+
 enum RaceType {
 	IND, PARIND, GRP, PARGRP
 }
@@ -7,9 +11,10 @@ enum RaceType {
 
 public class ChronoTimer implements Runnable {
 	
-	//update by Kaitlyn, made static so that channel class can see which channel # it is
-	public static Channel[] channels = new Channel[8];
+	public Channel[] channels;
 	public boolean powerOn = true;
+	public Queue<Racer> racers;
+	public ArrayList<Racer> finished;
 	
 	//made by John 
 	// it makes sure that the channel is disarmed once the power is on 
@@ -22,6 +27,9 @@ public class ChronoTimer implements Runnable {
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
 	public void run() {
+		
+		channels[0] = new Channel(this);
+		channels[1] = new Channel(this);
 		
 		Main.dbg.printDebug(2, this + " starting up, but idle.");
 		
@@ -51,7 +59,18 @@ public class ChronoTimer implements Runnable {
 			catch (InterruptedException e) { e.printStackTrace(); } 
 		}
 		
-		
 
+
+	}
+	
+	public void score(ActionEvent e){
+		if (e.getSource().equals(channels[0])){ // if start is tripped
+			racers.peek().t.startTime();
+		}
+		else if (e.getSource().equals(channels[1])){ // if finish is tripped
+			Racer r = racers.remove();
+			r.t.stopTime();
+			finished.add(r);
+		}
 	}
 }

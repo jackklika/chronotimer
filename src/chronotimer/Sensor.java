@@ -1,5 +1,7 @@
 package chronotimer;
 
+import java.awt.event.ActionEvent;
+
 public abstract class Sensor {
 	// Generates a single "trigger" event indicating a sensor has been activated
 	// Sensors can be armed or disarmed
@@ -15,11 +17,10 @@ public abstract class Sensor {
 		isBlocked = false;
 		myChannel = c;
 	}
-
 	public void trigger() {
 		if (isArmed && !isBlocked && myChannel != null) {
 			// trigger channel associated with this sensor
-			 myChannel.trigger();
+			 myChannel.trigger(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
 		}
 		else {
 			System.out.println("Unable to trigger this sensor, make sure sensor is armed, not blocked, and connected to a channel");
