@@ -3,6 +3,7 @@ package chronotimer;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -16,12 +17,17 @@ public class ChronoTimer implements Runnable {
 	
 	public Channel[] channels;
 	public boolean powerOn = true;
-	public Deque<Racer> toRace;
-	public Deque<Racer> racers;
+	public Deque<Racer> toRace = null;
+	public Deque<Racer> racers = null;
 	public ArrayList<Racer> finished;
-	public Queue<Command> cmdQueue = new LinkedList<Command>();
+	public Queue<Command> cmdQueue;
 
-	
+	public ChronoTimer(){
+		//powerOn = true;
+		channels = new Channel[8];
+		finished = new ArrayList<Racer>();
+		cmdQueue = new LinkedList<Command>();
+	}
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
 	public void run() {
@@ -86,13 +92,13 @@ public class ChronoTimer implements Runnable {
 	public void score(ActionEvent e){
 		if (e.getSource().equals(channels[0])){ // if start is tripped
 			
-			Racer popped = toRace.poll();
+			Racer popped = toRace.pop();
 			popped.t.startTime();
-			racers.add(popped);
+			racers.push(popped);
 			
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
 			
-			Racer popped = racers.poll();
+			Racer popped = racers.pop();
 			popped.t.stopTime();
 			finished.add(popped);
 			
@@ -235,7 +241,7 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
-
+			toRace.add(new Racer(Integer.parseInt(arg1)));
 			break;
 
 		case "CLR":
@@ -243,15 +249,21 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "SWAP":
-
+			ArrayList<Racer> list = new ArrayList<Racer>(racers);
+			Collections.swap(list, 0, 1);
+			Deque<Racer> newQ = null;
+			for (Racer r : list) newQ.push(r);
+			racers = newQ;
 			break;
 
 		case "DNF":
 			// TODO for Sprint 1
+			finished.add(racers.pop());
 			break;
 			
 		case "CANCEL":
 			// TODO for Sprint 1
+			toRace.push(racers.pop());
 			break;
 
 		case "TRIG":

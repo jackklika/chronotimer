@@ -17,11 +17,12 @@ public class Racer {
 	public void getRunTime() {
 		runTime = t.runTime();
 	}
-	
+
+/*
 public void swap(){
 		
 		ArrayList list = new ArrayList(racers);
 		Collections.swap(list, 0, 1);
 	
-	}
+	} */
 }
