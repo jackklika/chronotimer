@@ -23,10 +23,10 @@ public class Simulator implements Runnable {
 				input = in.nextLine();
 				// Check if input is valid command. If it is, add to queue
 				
-				//The command constructor adds the command to the queuet
+				//The command constructor adds the command to the queue
 				new Command(input);
 				
-				//cmdQueue.add(toCommand(input));
+				//cmdQueue.add(toCommand(input)); // change to CT.cmdQueue...
 				
 				try { Thread.sleep(300); } 
 				catch (InterruptedException e) { e.printStackTrace(); }
@@ -44,9 +44,9 @@ public class Simulator implements Runnable {
 		this.timer = timer;
 	}
 
-	public void run() {
+	public void run() { // move to CT?
 		Thread shell = new Thread(sh);
-		Thread time = new Thread(timer);
+		Thread time = new Thread(timer); 
 		shell.start();
 		time.start(); // starts the timer
 
@@ -72,7 +72,9 @@ public class Simulator implements Runnable {
 	/*
 	 * This is the stack of commands. Every time the event loop runs, the queue
 	 * is processed.
-	 */ public Queue<Command> cmdQueue = new LinkedList<Command>();	  
+	 */ 
+	// move to CT?
+	public Queue<Command> cmdQueue = new LinkedList<Command>();
 	  
 	/*
 	 * A "command" object. args[0] is the command itself (PRINT, NEWRUN, etc) while
@@ -81,7 +83,9 @@ public class Simulator implements Runnable {
 	 * 	- One takes a String array of arguments, like classic command parsers.
 	 * 	- The other takes a single string, which parses according to the format "COMMAND ARG1 ARG2"
 	 * When a Command is constructed, the Command adds itself to the command queue.
-	 */ public class Command {
+	 */ 
+	 // move to CT?
+	 public class Command {
 
 		String command = "", arg1 = "", arg2 = "";
 
@@ -111,7 +115,7 @@ public class Simulator implements Runnable {
 			Main.dbg.printDebug(3, "Command Constructor stored: " + Arrays.toString(cmd.split(" ")));
 			Main.dbg.printDebug(2, this.command);
 
-			cmdQueue.add(this);
+			cmdQueue.add(this); 
 		}
 
 		
@@ -213,20 +217,25 @@ public class Simulator implements Runnable {
 				break;
 
 			case "DNF":
-
+				// TODO for Sprint 1
+				break;
+				
+			case "CANCEL":
+				// TODO for Sprint 1
 				break;
 
 			case "TRIG":
+				// TODO for Sprint 1
 				// Find the sensor object associated with arg1
 				// Send a trigger command to it
 				break;
 
 			case "START":
-
+				// TODO for Sprint 1
 				break;
 
 			case "FINISH":
-
+				// TODO for Sprint 1
 				break;
 			
 			case "DEBUG":
