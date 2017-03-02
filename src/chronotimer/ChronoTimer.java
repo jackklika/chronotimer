@@ -61,6 +61,16 @@ public class ChronoTimer implements Runnable {
 			// This is going to repeat until it's switched on.
 			Main.dbg.printDebug(2, this + " switched off!");
 			
+			while (cmdQueue.isEmpty() == false) {
+				System.out.println(2);
+
+				// Simulator runs the command
+				cmdQueue.poll().execute();
+				
+				try { Thread.sleep(100); }
+				catch (InterruptedException e) { e.printStackTrace(); }
+				
+			}
 			
 			
 			try { Thread.sleep(1000);} 
