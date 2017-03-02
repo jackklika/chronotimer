@@ -242,14 +242,16 @@ public class ChronoTimer implements Runnable {
 			// TODO for Sprint 1
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
+			int chan = Integer.parseInt(arg1);
+			channels[chan].trigger();
 			break;
 
 		case "START":
-			// TODO for Sprint 1
+			channels[0].trigger();
 			break;
 
 		case "FINISH":
-			// TODO for Sprint 1
+			channels[1].trigger();
 			break;
 		
 		case "DEBUG":

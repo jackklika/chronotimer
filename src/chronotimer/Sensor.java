@@ -20,7 +20,7 @@ public abstract class Sensor {
 	public void trigger() {
 		if (isArmed && !isBlocked && myChannel != null) {
 			// trigger channel associated with this sensor
-			 myChannel.trigger(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, null));
+			 myChannel.trigger();
 		}
 		else {
 			System.out.println("Unable to trigger this sensor, make sure sensor is armed, not blocked, and connected to a channel");
