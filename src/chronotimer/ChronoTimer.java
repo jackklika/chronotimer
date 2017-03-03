@@ -271,7 +271,8 @@ public class ChronoTimer implements Runnable {
 		case "CLR":
 
 			break;
-
+			
+			// Not required for Sprint 1
 		case "SWAP":
 			ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
 			Collections.swap(list, 0, 1);
@@ -312,6 +313,11 @@ public class ChronoTimer implements Runnable {
 			for (int i = 0; i <= 3; i++) Main.dbg.printDebug(i, "MAX_VERBOSITY CHANGED -- Debug level ["+ i + "] messages active");
 			break;
 			
+		case "LIST":
+			Main.dbg.printDebug(0, currentRace.toString());
+			break;
+			
+			
 		case "HELP":
 			System.out.println(
 				">>> COMMANDS:\n" + 
@@ -334,7 +340,8 @@ public class ChronoTimer implements Runnable {
 				"TRIG	Trigger channel <num>						FORMAT: <num>\n" +
 				"START	Start trigger channel 1 -- macro for TRIG 1\n" +
 				"FINISH	Finish trigger channel 2 -- macro for TRIG 2\n" + 
-				"DEBUG	Change the debug output's verbosity.				FORMAT: <1...3>\n"
+				"DEBUG	Change the debug output's verbosity.				FORMAT: <1...3>\n" +
+				"LIST	Show the current race, their queues, and racers.\n"
 			);
 			break;
 			

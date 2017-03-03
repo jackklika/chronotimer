@@ -1,9 +1,11 @@
 package chronotimer;
 
+import java.time.Instant;
 import java.util.*;
 
 public class Race {
-	
+
+	public long startTime;
 	public Deque<Racer> toRace;			// Haven't started yet, in line
 	public Deque<Racer> inRace;			// In the race
 	public ArrayList<Racer> finishRace;	// Finished the race.
@@ -12,8 +14,24 @@ public class Race {
 		toRace = new LinkedList<Racer>();
 		inRace = new LinkedList<Racer>();
 		finishRace = new ArrayList<Racer>();
+		startTime = Instant.now().toEpochMilli(); // When this object is created, it gets this time 
 	}
 	
+	public String toString(){
+		
+		String out = "";
+		
+		out += "toRace: ";
+		for (Racer r : toRace) out += r.bib + ", ";
+		out += "\nInRace: ";
+		
+		for (Racer r : inRace) out += r.bib + ", ";
+		out += "\nfinishRace: ";
+		
+		for (Racer r : finishRace) out += r.bib + ", ";
+		
+		return out;
+	}
 	
 	
 }

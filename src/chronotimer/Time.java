@@ -10,8 +10,8 @@ import java.time.*;
  * 4: Get the difference between start and stop times -- "long time = timer.runTime)
  */ public class Time {
 	
-	public long start;
-	public long stop;
+	 public long start;
+	 public long stop;
 	
 	public Time(){}
 	
