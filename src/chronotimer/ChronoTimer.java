@@ -12,18 +12,16 @@ public class ChronoTimer implements Runnable {
 	
 	public Channel[] channels;
 	public boolean powerOn = true;
-	public Deque<Racer> toRace;
-	public Deque<Racer> racers;
-	public ArrayList<Racer> finished;
+	
+	Race currentRace;
+	RaceType raceType;
+	
 	public Queue<Command> cmdQueue;
 
 	public ChronoTimer(){
 		//powerOn = true;
 		channels = new Channel[8];
-		finished = new ArrayList<Racer>();
 		cmdQueue = new LinkedList<Command>();
-		toRace = new ArrayDeque<Racer>();
-		racers = new ArrayDeque<Racer>();
 	}
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
@@ -86,12 +84,13 @@ public class ChronoTimer implements Runnable {
 
 	}
 	
+	// Could be put in Race class?
 	public void score(ActionEvent e){
 		if (e.getSource().equals(channels[0])){ // if start is tripped
 			try{
-				Racer popped = toRace.pop();
+				Racer popped = currentRace.toRace.pop();
 				popped.t.startTime();
-				racers.push(popped);
+				currentRace.inRace.push(popped);
 			}
 			catch (NoSuchElementException err){
 				Main.dbg.printDebug(0, "No racers are ready to start!");
@@ -100,9 +99,9 @@ public class ChronoTimer implements Runnable {
 			
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
 			
-			Racer popped = racers.pop();
+			Racer popped = currentRace.inRace.pop();
 			popped.t.stopTime();
-			finished.add(popped);
+			currentRace.finishRace.add(popped);
 			
 		}
 	}
@@ -186,20 +185,21 @@ public class ChronoTimer implements Runnable {
 		case "TIME":
 			
 			Main.dbg.printDebug(3, "INPUT TO TIME COMMAND: " + arg1);
-			int hour, min, sec;
+			int hour, min; 
+			double sec;
 			String[] input = arg1.split(":");
 			
 			// POSSIBLE BUG: check here to make sure there are no exceptions for misformatted strings				
 			
 			if (input.length == 2){
 				min		= Integer.valueOf(input[0]);
-				sec		= Integer.valueOf(input[1]);
+				sec		= Double.valueOf(input[1]);
 				Main.dbg.printDebug(3, "MIN: " + min + "  SEC: " + sec);
 				
 			}else if (input.length == 3){
 				hour	= Integer.valueOf(input[0]);
 				min		= Integer.valueOf(input[1]);
-				sec		= Integer.valueOf(input[2]);
+				sec		= Double.valueOf(input[2]);
 				Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
 			} else {
 				System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00");
@@ -211,7 +211,9 @@ public class ChronoTimer implements Runnable {
 		case "TOG":
 			// command arg1 arg2
 			int c = Integer.parseInt(arg1);
-			channels[c].toggle();
+			
+			// Handles channels as starting at 1 vs. arrays starting at 0.
+			channels[c-1].toggle();
 			break;
 
 		case "CONN":
@@ -223,10 +225,22 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "EVENT":
+			
+			if (arg1.equals("IND")){
+				raceType = RaceType.IND;
+				Main.dbg.printDebug(0, "Event set to IND");
+			}
 
 			break;
 
 		case "NEWRUN":
+			
+			// This can be simplified when we are using more race types.
+			if (raceType == RaceType.IND){
+				currentRace = new Race(RaceType.IND);
+				Main.dbg.printDebug(1, "New IND race created");
+			}
+			
 
 			break;
 
@@ -235,7 +249,7 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "PRINT":
-			for (Racer r : finished){
+			for (Racer r : currentRace.finishRace){
 				long time = r.t.runTime();
 				if (time == Long.MAX_VALUE){
 					System.out.println("Racer " + r.bib + " DNF");
@@ -251,7 +265,7 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
-			toRace.add(new Racer(Integer.parseInt(arg1)));
+			currentRace.toRace.add(new Racer(Integer.parseInt(arg1)));
 			break;
 
 		case "CLR":
@@ -259,21 +273,22 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "SWAP":
-			ArrayList<Racer> list = new ArrayList<Racer>(racers);
+			ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
 			Collections.swap(list, 0, 1);
 			Deque<Racer> newQ = new ArrayDeque<Racer>();
 			for (Racer r : list) newQ.push(r);
-			racers = newQ;
+			currentRace.inRace = newQ;
 			break;
 
 		case "DNF":
 			// TODO test/fix
-			finished.add(racers.pop());
+			currentRace.finishRace.add(currentRace.inRace.pop());
+			
 			break;
 			
 		case "CANCEL":
 			// TODO test/fix
-			toRace.push(racers.pop());
+			currentRace.toRace.push(currentRace.inRace.pop());
 			break;
 
 		case "TRIG":
