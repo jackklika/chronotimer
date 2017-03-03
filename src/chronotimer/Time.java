@@ -32,10 +32,14 @@ import java.time.*;
 	
 	// Difference between start and stop time in MS
 	public long runTime(){
-		if (start == 0 || stop == 0){ // Default values
+		if (start == 0 && stop == 0){ // errors if racers haven't gone
 			Main.dbg.printDebug(0, "[ERR]: Time.runTime() called before both Time.startTime() and Time.stopTime() were called.");
 			return 0;
-		} else {
+		}
+		else if (start != 0 && stop == 0){
+			return Long.MAX_VALUE;
+		}
+		else {
 			return (stop - start);
 		}	
 		

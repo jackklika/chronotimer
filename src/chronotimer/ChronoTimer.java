@@ -1,13 +1,7 @@
 package chronotimer;
 
 import java.awt.event.ActionEvent;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 enum RaceType {
 	IND, PARIND, GRP, PARGRP
@@ -94,10 +88,15 @@ public class ChronoTimer implements Runnable {
 	
 	public void score(ActionEvent e){
 		if (e.getSource().equals(channels[0])){ // if start is tripped
+			try{
+				Racer popped = toRace.pop();
+				popped.t.startTime();
+				racers.push(popped);
+			}
+			catch (NoSuchElementException err){
+				Main.dbg.printDebug(0, "No racers are ready to start!");
+			}
 			
-			Racer popped = toRace.pop();
-			popped.t.startTime();
-			racers.push(popped);
 			
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
 			
@@ -237,7 +236,13 @@ public class ChronoTimer implements Runnable {
 
 		case "PRINT":
 			for (Racer r : finished){
-				System.out.println(r.bib + "/t" + r.runTime);
+				long time = r.t.runTime();
+				if (time == Long.MAX_VALUE){
+					System.out.println("Racer " + r.bib + " DNF");
+				}
+				else {
+					System.out.println("Racer " + r.bib + " " + r.t.runTime() + " ms");
+				}
 			}
 			break;
 
@@ -262,17 +267,17 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "DNF":
-			// TODO for Sprint 1
+			// TODO test/fix
 			finished.add(racers.pop());
 			break;
 			
 		case "CANCEL":
-			// TODO for Sprint 1
+			// TODO test/fix
 			toRace.push(racers.pop());
 			break;
 
 		case "TRIG":
-			// TODO for Sprint 1
+			// TODO test/fix
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
 			int chan = Integer.parseInt(arg1);

@@ -6,14 +6,14 @@ public class Main {
 	
 	static int MAX_VERBOSITY = 3; /* 
 	 * Sets the verbosity of the debug message outputter.
-	 * 0 = No messages
+	 * 0 = IMPORTANT MESSAGES ONLY
 	 * 1 = General messages
 	 * 2 = Specific messages
 	 * 3 = MAXIMUM DEBUGGERING.
 	 */ 
 	 
 	 
-	static int GRANULAITY = 1000; /*
+	static int GRANULAITY = 100; /*
 	 * Simply how often the event loop runs, in milliseconds. 1000ms = 1s
 	 * Default should be 1000 (Maybe?)
 	 */ 
