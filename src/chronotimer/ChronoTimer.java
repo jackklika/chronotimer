@@ -98,10 +98,14 @@ public class ChronoTimer implements Runnable {
 			
 			
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
-			
+		
+			try {
 			Racer popped = currentRace.inRace.pop();
 			popped.t.stopTime();
 			currentRace.finishRace.add(popped);
+			} catch (NoSuchElementException err){
+				Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+			}
 			
 		}
 	}
@@ -283,7 +287,7 @@ public class ChronoTimer implements Runnable {
 
 		case "DNF":
 			// TODO test/fix
-			currentRace.finishRace.add(currentRace.inRace.pop());
+			currentRace.finishRace.add(currentRace.inRace.pollLast());
 			
 			break;
 			
