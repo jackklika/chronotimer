@@ -88,19 +88,21 @@ public class ChronoTimer implements Runnable {
 	public void score(ActionEvent e){
 		if (e.getSource().equals(channels[0])){ // if start is tripped
 			try{
-				Racer popped = currentRace.toRace.pop();
+				Racer popped = currentRace.toRace.pollFirst();
 				popped.t.startTime();
-				currentRace.inRace.push(popped);
+				currentRace.inRace.addLast(popped);
 			}
 			catch (NoSuchElementException err){
-				Main.dbg.printDebug(0, "No racers are ready to start!");
+				Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+			} catch (NullPointerException ex){
+				Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
 			}
 			
 			
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
 		
 			try {
-			Racer popped = currentRace.inRace.pop();
+			Racer popped = currentRace.inRace.pollFirst();
 			popped.t.stopTime();
 			currentRace.finishRace.add(popped);
 			} catch (NoSuchElementException err){
@@ -119,8 +121,6 @@ public class ChronoTimer implements Runnable {
  * 	- The other takes a single string, which parses according to the format "COMMAND ARG1 ARG2"
  * When a Command is constructed, the Command adds itself to the command queue.
  */ 
- // move to CT?
-	
 	
 	public boolean toCommand(String cmd){
 		new Command(cmd);
@@ -179,7 +179,6 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "RESET":
-
 			powerOn = false;
 			try { Thread.sleep(1100); } // Stops just long enough for Chronotimer to loop
 			catch (InterruptedException e) { e.printStackTrace(); }
@@ -206,7 +205,7 @@ public class ChronoTimer implements Runnable {
 				sec		= Double.valueOf(input[2]);
 				Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
 			} else {
-				System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00");
+				System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00.1");
 			}
 			
 			
@@ -253,14 +252,18 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "PRINT":
-			for (Racer r : currentRace.finishRace){
-				long time = r.t.runTime();
-				if (time == Long.MAX_VALUE){
-					System.out.println("Racer " + r.bib + " DNF");
+			try {
+				for (Racer r : currentRace.finishRace){
+					long time = r.t.runTime();
+					if (time == Long.MAX_VALUE){
+						System.out.println("Racer " + r.bib + " DNF");
+					}
+					else {
+						System.out.println("Racer " + r.bib + " " + r.t.runTime() + " ms");
+					}
 				}
-				else {
-					System.out.println("Racer " + r.bib + " " + r.t.runTime() + " ms");
-				}
+			} catch (NullPointerException ex){
+				Main.dbg.printDebug(0, "[ERR] NPE at Print function. Did you initialize the racers?");
 			}
 			break;
 
@@ -269,7 +272,11 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
+			try {
 			currentRace.toRace.add(new Racer(Integer.parseInt(arg1)));
+			} catch (Exception ex) {
+				Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
+			}
 			break;
 
 		case "CLR":
@@ -287,13 +294,13 @@ public class ChronoTimer implements Runnable {
 
 		case "DNF":
 			// TODO test/fix
-			currentRace.finishRace.add(currentRace.inRace.pollLast());
+			currentRace.finishRace.add(currentRace.inRace.pollFirst());
 			
 			break;
 			
 		case "CANCEL":
 			// TODO test/fix
-			currentRace.toRace.push(currentRace.inRace.pop());
+			currentRace.toRace.push(currentRace.inRace.pollLast());
 			break;
 
 		case "TRIG":
@@ -301,7 +308,7 @@ public class ChronoTimer implements Runnable {
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
 			int chan = Integer.parseInt(arg1);
-			channels[chan].trigger();
+			channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
 			break;
 
 		case "START":
