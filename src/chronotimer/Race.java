@@ -8,6 +8,7 @@ public class Race {
 	public Deque<Racer> toRace;			// Haven't started yet, in line
 	public Deque<Racer> inRace;			// In the race
 	public ArrayList<Racer> finishRace;	// Finished the race.
+	public RaceType currentRaceType;
 	
 	public Race (RaceType raceType){
 		toRace = new LinkedList<Racer>();

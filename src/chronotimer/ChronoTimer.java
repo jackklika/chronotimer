@@ -11,7 +11,7 @@ enum RaceType {
 public class ChronoTimer implements Runnable {
 	
 	public Channel[] channels;
-	public boolean powerOn = true;
+	public boolean powerOn = false;
 	
 	Race currentRace;
 	RaceType raceType;
@@ -231,9 +231,12 @@ public class ChronoTimer implements Runnable {
 			
 			if (arg1.equals("IND")){
 				raceType = RaceType.IND;
-				Main.dbg.printDebug(0, "Event set to IND");
+				Main.dbg.printDebug(1, "Event set to IND");
+			
+				if (currentRace != null){
+					currentRace.currentRaceType = (RaceType.IND);
+				}
 			}
-
 			break;
 
 		case "NEWRUN":
@@ -248,7 +251,10 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "ENDRUN":
-
+				
+			
+			currentRace = null;
+			Main.dbg.printDebug(1, "currentRace was deleted.");
 			break;
 
 		case "PRINT":
@@ -256,10 +262,10 @@ public class ChronoTimer implements Runnable {
 				for (Racer r : currentRace.finishRace){
 					long time = r.t.runTime();
 					if (time == Long.MAX_VALUE){
-						System.out.println("Racer " + r.bib + " DNF");
+						Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
 					}
 					else {
-						System.out.println("Racer " + r.bib + " " + r.t.runTime() + " ms");
+						Main.dbg.printDebug(0, "Racer " + r.bib + " " + r.t.runTime() + " ms");
 					}
 				}
 			} catch (NullPointerException ex){
@@ -283,8 +289,7 @@ public class ChronoTimer implements Runnable {
 
 			break;
 			
-			// Not required for Sprint 1
-		case "SWAP":
+		case "SWAP": // Not required for sprint 1
 			ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
 			Collections.swap(list, 0, 1);
 			Deque<Racer> newQ = new ArrayDeque<Racer>();
@@ -307,8 +312,12 @@ public class ChronoTimer implements Runnable {
 			// TODO test/fix
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
-			int chan = Integer.parseInt(arg1);
-			channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
+			try {
+				int chan = Integer.parseInt(arg1);
+				channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
+			} catch (Exception ex) {
+				Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
+			}
 			break;
 
 		case "START":
