@@ -1,5 +1,7 @@
 package chronotimer;
 
+import java.io.*;
+import java.nio.file.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.LinkedList;
@@ -13,27 +15,43 @@ import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 public class Simulator implements Runnable {
 	ChronoTimer timer;
 	Shell sh;
+	String filename;
 	
 	class Shell implements Runnable {
 		String input = "";
 		public void run() {
-			Scanner in = new Scanner(System.in);
-			while (true){
-				System.out.print(">");
-				input = in.nextLine();
-				// Check if input is valid command. If it is, add to queue
-				
-				//The command constructor adds the command to the queue
-				//new Command(input);
-				
-				timer.toCommand(input);
-				
-				//cmdQueue.add(toCommand(input)); // change to CT.cmdQueue...
-				
-				try { Thread.sleep(300); } 
-				catch (InterruptedException e) { e.printStackTrace(); }
+			if (filename != null) {
+				try {
+					Path path = Paths.get(filename);
+					Files.lines(path).forEach(l ->{
+						input = l;
+						timer.toCommand(input);
+						try { Thread.sleep(2000); } // run commands every 2 seconds
+						catch (InterruptedException e) { e.printStackTrace(); }
+					});
+				}
+				catch (IOException e){
+					System.out.println("Error encountered opening file: " + e);
+				}
 			}
-			
+			else {
+				Scanner in = new Scanner(System.in);
+				while (true){
+					System.out.print(">");
+					input = in.nextLine();
+					// Check if input is valid command. If it is, add to queue
+					
+					//The command constructor adds the command to the queue
+					//new Command(input);
+					
+					timer.toCommand(input);
+					
+					//cmdQueue.add(toCommand(input)); // change to CT.cmdQueue...
+					
+					try { Thread.sleep(300); } 
+					catch (InterruptedException e) { e.printStackTrace(); }
+				}
+			}
 		}
 		
 	}

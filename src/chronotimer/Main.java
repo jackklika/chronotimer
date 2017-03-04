@@ -48,7 +48,7 @@ public class Main {
 		for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		
 		Simulator sim = new Simulator(new ChronoTimer());
-		
+		if (!(args == null || args.length == 0)) sim.filename = args[0];
 		sim.run();
 		
 
