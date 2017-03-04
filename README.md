@@ -16,6 +16,12 @@ Each Simulator has a shell that allows you to type in commands. These commands a
 
 The event loop checks to see what commands need to be performed. When commands are created, their constructors add them to a queue (cmdQueue). The event loop checks the cmdQueue every cycle, and executes all the commmands until there are no more left.
 
+### Commands
+
+Check out all the commands by typing "HELP" into the shell. Some notable ones that are helpful for debugging are:
+
+- LIST: Lists all the racers, their times, and which queue they are in.
+- DEBUG <num>: Change the debug output level (aka the MAX_VERBOSITY variable) to a number between 0 and 3.
 
 ## This repository
 /docs: UML diagrams, documentation, or non-code documents that contribute value or structure to the project
