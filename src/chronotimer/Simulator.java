@@ -21,6 +21,8 @@ public class Simulator implements Runnable {
 		String input = "";
 		public void run() {
 			if (filename != null) {
+				try { Thread.sleep(2000); } // run commands every 2 seconds
+				catch (InterruptedException e) { e.printStackTrace(); }
 				try {
 					Path path = Paths.get(filename);
 					Files.lines(path).forEach(l ->{

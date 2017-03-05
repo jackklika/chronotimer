@@ -4,7 +4,7 @@ public class Main {
 
 	// The following are settings for the entire project.
 	
-	static int MAX_VERBOSITY = 0; /* 
+	static int MAX_VERBOSITY = 1; /* 
 	 * Sets the verbosity of the debug message outputter.
 	 * 0 = IMPORTANT MESSAGES ONLY
 	 * 1 = General messages
@@ -32,7 +32,7 @@ public class Main {
 		public Debugger(){}
 		
 		public void printDebug(int messageVerbosity, String message){
-			if (messageVerbosity <= MAX_VERBOSITY) System.out.printf("DEBUG [%d]\t-%s\n", messageVerbosity, message);
+			if (messageVerbosity <= MAX_VERBOSITY) System.out.printf(/*"DEBUG [%d]\t */"%s\n", /*messageVerbosity,*/ message);
 		}
 		
 	}
@@ -45,7 +45,7 @@ public class Main {
 	public static void main(String[] args) {	
 		
 		
-		for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
+		//for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		dbg.printDebug(1, "Current time is: " + Time.printTime());
 		
 		Simulator sim = new Simulator(new ChronoTimer());

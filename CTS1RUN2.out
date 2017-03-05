@@ -1,5 +1,63 @@
-DEBUG [0]	-Debug level [0] messages active
-DEBUG [0]	-Racer 234 4.005 minutes
-DEBUG [0]	-Racer 167 4.006 minutes
-DEBUG [0]	-Racer 166 4.007 minutes
-
+Current time is: 13:20:15
+ChronoTimer starting up, but idle.
+13:20:17	POWER  
+ChronoTimer switched on!
+13:20:19	POWER  
+ChronoTimer switched off!
+13:20:21	POWER  
+ChronoTimer switched on!
+13:20:23	EVENT IND 
+Event set to IND
+13:20:25	NEWRUN  
+New IND race created
+13:20:27	TOG 1 
+Channel 0 is now toggled on
+13:20:29	TOG 2 
+Channel 1 is now toggled on
+13:20:31	NUM 234 
+Racer 234 added
+13:20:33	NUM 315 
+Racer 315 added
+13:20:35	TRIG 1 
+Channel 0 tripped!
+13:20:37	TRIG 3 
+13:20:39	TRIG 2 
+Channel 1 tripped!
+13:20:41	TRIG 4 
+13:20:43	PRINT  
+Racer 234 4.019 minutes
+13:20:45	ENDRUN  
+currentRace was deleted.
+13:20:47	NEWRUN  
+New IND race created
+13:20:49	EVENT IND 
+Event set to IND
+13:20:51	NUM 167 
+Racer 167 added
+13:20:53	NUM 166 
+Racer 166 added
+13:20:55	NUM 200 
+Racer 200 added
+13:20:57	NUM 201 
+Racer 201 added
+13:20:59	TRIG 1 
+Channel 0 tripped!
+13:21:01	TRIG 1 
+Channel 0 tripped!
+13:21:03	TRIG 2 
+Channel 1 tripped!
+13:21:05	TRIG 2 
+Channel 1 tripped!
+13:21:07	TRIG 4 
+13:21:09	PRINT  
+Racer 167 4.014 minutes
+Racer 166 4.018 minutes
+13:21:11	POWER  
+ChronoTimer switched off!
+13:21:13	POWER  
+ChronoTimer switched on!
+13:21:15	NEWRUN  
+New IND race created
+13:21:17	POWER  
+ChronoTimer switched off!
+13:21:19	EXIT  

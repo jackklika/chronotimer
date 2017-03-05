@@ -10,7 +10,6 @@ public class Channel {
 	
 	public void toggle(){
 		state = state ? false: true;
-		Main.dbg.printDebug(1, this + "is now toggled " + state);
 	}
 	
 	public boolean getState(){

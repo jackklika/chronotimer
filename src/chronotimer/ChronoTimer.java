@@ -29,9 +29,9 @@ public class ChronoTimer implements Runnable {
 		
 		channels[0] = new Channel(this);
 		channels[1] = new Channel(this);
-		channels[2] = new Channel(this);
-		channels[3] = new Channel(this);
-		Main.dbg.printDebug(2, this + " starting up, but idle.");
+		//channels[2] = new Channel(this);
+		//channels[3] = new Channel(this);
+		Main.dbg.printDebug(1, "ChronoTimer starting up, but idle.");
 		
 
 		
@@ -39,8 +39,7 @@ public class ChronoTimer implements Runnable {
 		 * When the application starts, we start at Main which creates and runs a Simulator thread, which creates a Chronotimer thread.
 		 * The chronotimer thread will go execute this while loop every GRANULARITY miliseconds.
 		 */ while (true){
-			
-			if (powerOn) Main.dbg.printDebug(2, this + " switched on!");
+			//else Main.dbg.printDebug(1, this + " switched off!");
 			while (powerOn){
 				//Main.dbg.printDebug(3, "[CLOCK EMOJI]" + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
 
@@ -153,7 +152,7 @@ public class ChronoTimer implements Runnable {
 		if (args.length > 2) arg2 = args[2];
 		 
 		Main.dbg.printDebug(3, "Command Constructor stored: " + Arrays.toString(cmd.split(" ")));
-		Main.dbg.printDebug(2, this.command);
+		Main.dbg.printDebug(0, Time.printTime() + "\t" + this.command + " " + arg1 + " " + arg2);
 
 		cmdQueue.add(this); 
 	}
@@ -162,13 +161,15 @@ public class ChronoTimer implements Runnable {
 	/* Run the command on the Simulator's ChronoTimer
 	 */ public boolean execute() {
 		
-		Main.dbg.printDebug(2, "EXECUTING " + command + " " + arg1 + " " + arg2);
+		Main.dbg.printDebug(3, "EXECUTING " + command + " " + arg1 + " " + arg2);
 
 		switch (command.toUpperCase()) {
 		case "POWER":
 
 			// Should toggle the power.
 			powerOn = powerOn ? false : true;
+			if (powerOn) Main.dbg.printDebug(1,"ChronoTimer switched on!");
+			else Main.dbg.printDebug(1, "ChronoTimer switched off!");
 			break;
 
 		case "EXIT":
@@ -215,6 +216,8 @@ public class ChronoTimer implements Runnable {
 			
 			// Handles channels as starting at 1 vs. arrays starting at 0.
 			channels[c-1].toggle();
+			String state = channels[c-1].getState() ? "on" : "off";
+			Main.dbg.printDebug(1, "Channel " + Integer.toString(c-1) + " is now toggled " + state);
 			break;
 
 		case "CONN":
@@ -276,8 +279,10 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
+			int bib = Integer.parseInt(arg1);
 			try {
-			currentRace.toRace.add(new Racer(Integer.parseInt(arg1)));
+				currentRace.toRace.add(new Racer(bib));
+				Main.dbg.printDebug(1, "Racer " + bib + " added");
 			} catch (Exception ex) {
 				Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
 			}
@@ -310,11 +315,14 @@ public class ChronoTimer implements Runnable {
 			// TODO test/fix
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
-			try {
-				int chan = Integer.parseInt(arg1);
-				channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
-			} catch (Exception ex) {
-				Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
+			int chan = Integer.parseInt(arg1);
+			if (chan == 1 || chan == 2){
+				try {
+					channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
+					Main.dbg.printDebug(1, "Channel " + (chan-1) + " tripped!");
+				} catch (Exception ex) {
+					Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
+				}
 			}
 			break;
 
