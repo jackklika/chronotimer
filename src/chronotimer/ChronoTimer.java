@@ -29,7 +29,8 @@ public class ChronoTimer implements Runnable {
 		
 		channels[0] = new Channel(this);
 		channels[1] = new Channel(this);
-		
+		channels[2] = new Channel(this);
+		channels[3] = new Channel(this);
 		Main.dbg.printDebug(2, this + " starting up, but idle.");
 		
 
@@ -45,7 +46,6 @@ public class ChronoTimer implements Runnable {
 
 				// Goes through all pending commands until the queue is empty.
 				while (cmdQueue.isEmpty() == false) {
-					System.out.println(2);
 
 					// Simulator runs the command
 					cmdQueue.poll().execute();
@@ -64,7 +64,6 @@ public class ChronoTimer implements Runnable {
 			// This is going to repeat until it's switched on.
 			
 			while (cmdQueue.isEmpty() == false) {
-				System.out.println(2);
 
 				// Simulator runs the command
 				cmdQueue.poll().execute();
@@ -191,8 +190,6 @@ public class ChronoTimer implements Runnable {
 			double sec;
 			String[] input = arg1.split(":");
 			
-			// POSSIBLE BUG: check here to make sure there are no exceptions for misformatted strings				
-			
 			if (input.length == 2){
 				min		= Integer.valueOf(input[0]);
 				sec		= Double.valueOf(input[1]);
@@ -266,7 +263,7 @@ public class ChronoTimer implements Runnable {
 						Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
 					}
 					else {
-						Main.dbg.printDebug(0, "Racer " + r.bib + " " + r.t.runTime() + " ms");
+						Main.dbg.printDebug(0, "Racer " + r.bib + " " + ((double)r.t.runTime())/1000.0 + " minutes");
 					}
 				}
 			} catch (NullPointerException ex){
