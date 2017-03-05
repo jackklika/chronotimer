@@ -99,10 +99,13 @@ public class ChronoTimer implements Runnable {
 		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
 		
 			try {
-			Racer popped = currentRace.inRace.pollFirst();
-			popped.t.stopTime();
-			currentRace.finishRace.add(popped);
+				Racer popped = currentRace.inRace.pollFirst();
+				popped.t.stopTime();
+				currentRace.finishRace.add(popped);
 			} catch (NoSuchElementException err){
+				Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+			}
+			catch (NullPointerException err){
 				Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
 			}
 			
@@ -266,7 +269,7 @@ public class ChronoTimer implements Runnable {
 						Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
 					}
 					else {
-						Main.dbg.printDebug(0, "Racer " + r.bib + " " + ((double)r.t.runTime())/1000.0 + " minutes");
+						Main.dbg.printDebug(0, "Racer " + r.bib + " " + ((double)r.t.runTime())/1000.0 + " seconds");
 					}
 				}
 			} catch (NullPointerException ex){
@@ -318,7 +321,7 @@ public class ChronoTimer implements Runnable {
 			int chan = Integer.parseInt(arg1);
 			if (chan == 1 || chan == 2){
 				try {
-					channels[chan-1].trigger(); // Converting between array (0..) to natural integers (1..)
+					channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
 					Main.dbg.printDebug(1, "Channel " + (chan-1) + " tripped!");
 				} catch (Exception ex) {
 					Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
