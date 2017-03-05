@@ -25,20 +25,20 @@ public class Time {
 	public Time() {
 	}
 	
-	public static long setTime(int hours, int minutes, double seconds){
+	public static void setTime(int hours, int minutes, double seconds){
 		// x = midnight until the time set in milli. 0:00:05.0000 would be 5000.
-		long x = (hours*(3600000) + minutes*60000 + (int)seconds*1000 + ((int)seconds%1000)*1000) + milliDate;
+		long x = (hours*(3600000) + minutes*60000 + (int)(seconds*1000)) + milliDate;
 		
+		x-= milliDate;
 		// Difference between now and desired time today.
-		currentMs = x - Instant.now().getEpochSecond();
+		currentMs = x - System.currentTimeMillis();
 		
 		Main.dbg.printDebug(1, "Time is now: " + printTime());
 		
-		return System.currentTimeMillis() + currentMs;
 		
 	}
 	
-	// Also updates the time.
+	// Returns the time as a string.
 	public static String printTime(){
 		
 		long mili = System.currentTimeMillis() + currentMs;
