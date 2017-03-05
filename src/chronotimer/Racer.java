@@ -17,6 +17,7 @@ public class Racer {
 
 	public Racer(int bib) {
 		this.bib = bib;
+		Main.dbg.printDebug(3, this + "Created at " + Time.printTime());
 	}
 
 	public void getRunTime() {
@@ -24,8 +25,7 @@ public class Racer {
 	}
 	
 	public long finish(){
-		endTime = Instant.now().toEpochMilli();
-		return endTime;
+		return endTime = t.stopTime();
 	}
 
 }

@@ -62,7 +62,6 @@ public class ChronoTimer implements Runnable {
 			}
 			
 			// This is going to repeat until it's switched on.
-			Main.dbg.printDebug(2, this + " switched off!");
 			
 			while (cmdQueue.isEmpty() == false) {
 				System.out.println(2);
@@ -197,6 +196,7 @@ public class ChronoTimer implements Runnable {
 			if (input.length == 2){
 				min		= Integer.valueOf(input[0]);
 				sec		= Double.valueOf(input[1]);
+				Time.setTime(0, min, sec);
 				Main.dbg.printDebug(3, "MIN: " + min + "  SEC: " + sec);
 				
 			}else if (input.length == 3){
@@ -204,6 +204,7 @@ public class ChronoTimer implements Runnable {
 				min		= Integer.valueOf(input[1]);
 				sec		= Double.valueOf(input[2]);
 				Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
+				Time.setTime(hour, min, sec);
 			} else {
 				System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00.1");
 			}
