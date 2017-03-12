@@ -27,8 +27,8 @@ public class ChronoTimer implements Runnable {
 	// Please read about "Java Threads"
 	public void run() {
 		
-		channels[0] = new Channel(this);
-		channels[1] = new Channel(this);
+		//channels[0] = new Channel(this);
+		//channels[1] = new Channel(this);
 		//channels[2] = new Channel(this);
 		//channels[3] = new Channel(this);
 		Main.dbg.printDebug(1, "ChronoTimer starting up, but idle.");
@@ -236,9 +236,21 @@ public class ChronoTimer implements Runnable {
 			if (arg1.equals("IND")){
 				raceType = RaceType.IND;
 				Main.dbg.printDebug(1, "Event set to IND");
-			
+				channels[0] = new Channel(ChronoTimer.this);
+				channels[1] = new Channel(ChronoTimer.this);
 				if (currentRace != null){
 					currentRace.currentRaceType = (RaceType.IND);
+				}
+			}
+			else if (arg1.equals("PARIND")) {
+				raceType = RaceType.PARIND;
+				Main.dbg.printDebug(1, "Event set to PARIND");
+				channels[0] = new Channel(ChronoTimer.this);
+				channels[1] = new Channel(ChronoTimer.this);
+				channels[2] = new Channel(ChronoTimer.this);
+				channels[3] = new Channel(ChronoTimer.this);
+				if (currentRace != null){
+					currentRace.currentRaceType = (RaceType.PARIND);
 				}
 			}
 			break;
