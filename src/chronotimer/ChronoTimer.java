@@ -259,10 +259,13 @@ public class ChronoTimer implements Runnable {
 			
 			// This can be simplified when we are using more race types.
 			if (raceType == RaceType.IND){
-				currentRace = new Race(RaceType.IND);
+				currentRace = new Race(raceType);
 				Main.dbg.printDebug(1, "New IND race created");
 			}
-			
+			else if (raceType == RaceType.PARIND){
+				currentRace = new Race(raceType);
+				Main.dbg.printDebug(1,  "New PARIND race created");
+			}
 
 			break;
 
