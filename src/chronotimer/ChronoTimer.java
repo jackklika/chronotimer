@@ -13,6 +13,7 @@ public class ChronoTimer implements Runnable {
 	public Channel[] channels;
 	public boolean powerOn = false;
 	
+	ArrayList<Race> raceList = new ArrayList<Race>();
 	Race currentRace;
 	RaceType raceType;
 	
@@ -256,11 +257,17 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NEWRUN":
-			
+	
+			if (currentRace != null && currentRace.raceEnded == false){
+				Main.dbg.printDebug(0, "Race is not ended. Use ENDRUN to end the race.");
+				break;
+			}
+			if (currentRace != null) raceList.add(currentRace); // Saves the current race into an array.
 			// This can be simplified when we are using more race types.
 			if (raceType == RaceType.IND){
 				currentRace = new Race(raceType);
-				Main.dbg.printDebug(1, "New IND race created");
+				Main.dbg.printDebug(1, "New IND race created: " + currentRace.hashCode() + ", race #" + currentRace.raceNum);
+				
 			}
 			else if (raceType == RaceType.PARIND){
 				currentRace = new Race(raceType);
@@ -271,9 +278,8 @@ public class ChronoTimer implements Runnable {
 
 		case "ENDRUN":
 				
-			
-			currentRace = null;
-			Main.dbg.printDebug(1, "currentRace was deleted.");
+			currentRace.raceEnded = true;
+			Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 			break;
 
 		case "PRINT":
