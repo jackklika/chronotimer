@@ -83,7 +83,7 @@ public class ChronoTimer implements Runnable {
 	
 	// Could be put in Race class?
 	public void score(ActionEvent e){
-		if (e.getSource().equals(channels[0])){ // if start is tripped
+		if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])){ // if start is tripped
 			try{
 				Racer popped = currentRace.toRace.pollFirst();
 				popped.t.startTime();
@@ -96,7 +96,7 @@ public class ChronoTimer implements Runnable {
 			}
 			
 			
-		} else if (e.getSource().equals(channels[1])){ // if finish is tripped
+		} else if (e.getSource().equals(channels[1]) || e.getSource().equals(channels[3])){ // if finish is tripped
 		
 			try {
 				Racer popped = currentRace.inRace.pollFirst();
@@ -342,11 +342,13 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "START":
-			channels[0].trigger();
+			if (channels[0] != null && channels[0].getState()) channels[0].trigger();
+			if (channels[2] != null && channels[2].getState()) channels[2].trigger();
 			break;
 
 		case "FINISH":
-			channels[1].trigger();
+			if (channels[1] != null && channels[1].getState()) channels[1].trigger();
+			if (channels[3] != null && channels[3].getState()) channels[3].trigger();
 			break;
 		
 		case "DEBUG":
