@@ -221,7 +221,7 @@ public class ChronoTimer implements Runnable {
 			// Handles channels as starting at 1 vs. arrays starting at 0.
 			channels[c-1].toggle();
 			String state = channels[c-1].getState() ? "on" : "off";
-			Main.dbg.printDebug(1, "Channel " + Integer.toString(c-1) + " is now toggled " + state);
+			Main.dbg.printDebug(1, "Channel " + Integer.toString(c) + " is now toggled " + state); //removed -1 to match the project description
 			break;
 
 		case "CONN":
@@ -340,10 +340,10 @@ public class ChronoTimer implements Runnable {
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
 			int chan = Integer.parseInt(arg1);
-			if (chan == 1 || chan == 2){
+			if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
 				try {
 					channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
-					Main.dbg.printDebug(1, "Channel " + (chan-1) + " tripped!");
+					Main.dbg.printDebug(1, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
 				} catch (Exception ex) {
 					Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
 				}
