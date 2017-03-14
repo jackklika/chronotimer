@@ -20,6 +20,7 @@ public class Race {
 		inRace = new LinkedList<Racer>();
 		finishRace = new ArrayList<Racer>();
 		raceNum = maxRaceNum++;
+		currentRaceType = raceType;
 	}
 	
 	

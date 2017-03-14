@@ -351,13 +351,21 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "START":
-			if (channels[0] != null && channels[0].getState()) channels[0].trigger();
-			if (channels[2] != null && channels[2].getState()) channels[2].trigger();
+			if (currentRace.currentRaceType == raceType.IND){
+				channels[0].trigger();
+			} else if (currentRace.currentRaceType == raceType.PARIND){
+				if (channels[0] != null && channels[0].getState()) channels[0].trigger();
+				if (channels[2] != null && channels[2].getState()) channels[2].trigger();
+			}
 			break;
 
 		case "FINISH":
-			if (channels[1] != null && channels[1].getState()) channels[1].trigger();
-			if (channels[3] != null && channels[3].getState()) channels[3].trigger();
+			if (currentRace.currentRaceType == raceType.IND){
+				channels[1].trigger();
+			} else if (currentRace.currentRaceType == raceType.PARIND){
+				if (channels[1] != null && channels[1].getState()) channels[1].trigger();
+				if (channels[3] != null && channels[3].getState()) channels[3].trigger();
+			}
 			break;
 		
 		case "DEBUG":
