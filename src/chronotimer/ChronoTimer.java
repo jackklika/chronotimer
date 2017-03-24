@@ -26,6 +26,7 @@ public class ChronoTimer implements Runnable {
 	}
 	// Provides an entry point for the ChronoTimer thread.
 	// Please read about "Java Threads"
+	@Override
 	public void run() {
 		
 		//channels[0] = new Channel(this);
@@ -40,9 +41,7 @@ public class ChronoTimer implements Runnable {
 		 * When the application starts, we start at Main which creates and runs a Simulator thread, which creates a Chronotimer thread.
 		 * The chronotimer thread will go execute this while loop every GRANULARITY miliseconds.
 		 */ while (true){
-			//else Main.dbg.printDebug(1, this + " switched off!");
-			while (powerOn){
-				//Main.dbg.printDebug(3, "[CLOCK EMOJI]" + new SimpleDateFormat("HH:mm:ss").format(Calendar.getInstance().getTime()));
+			 while (powerOn){
 
 				// Goes through all pending commands until the queue is empty.
 				while (cmdQueue.isEmpty() == false) {
@@ -123,9 +122,8 @@ public class ChronoTimer implements Runnable {
  * When a Command is constructed, the Command adds itself to the command queue.
  */ 
 	
-	public boolean toCommand(String cmd){
-		new Command(cmd);
-		return true;
+	public Command toCommand(String cmd){
+		return new Command(cmd);
 	}
 
  public class Command {
@@ -290,7 +288,7 @@ public class ChronoTimer implements Runnable {
 						Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
 					}
 					else {
-						Main.dbg.printDebug(0, "Racer " + r.bib + " " + ((double)r.t.runTime())/1000.0 + " seconds");
+						Main.dbg.printDebug(0, "Racer " + r.bib + " " + (r.t.runTime())/1000.0 + " seconds");
 					}
 				}
 			} catch (NullPointerException ex){
@@ -351,18 +349,18 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "START":
-			if (currentRace.currentRaceType == raceType.IND){
+			if (currentRace.currentRaceType == RaceType.IND){
 				channels[0].trigger();
-			} else if (currentRace.currentRaceType == raceType.PARIND){
+			} else if (currentRace.currentRaceType == RaceType.PARIND){
 				if (channels[0] != null && channels[0].getState()) channels[0].trigger();
 				if (channels[2] != null && channels[2].getState()) channels[2].trigger();
 			}
 			break;
 
 		case "FINISH":
-			if (currentRace.currentRaceType == raceType.IND){
+			if (currentRace.currentRaceType == RaceType.IND){
 				channels[1].trigger();
-			} else if (currentRace.currentRaceType == raceType.PARIND){
+			} else if (currentRace.currentRaceType == RaceType.PARIND){
 				if (channels[1] != null && channels[1].getState()) channels[1].trigger();
 				if (channels[3] != null && channels[3].getState()) channels[3].trigger();
 			}

@@ -2,13 +2,9 @@ package chronotimer;
 
 import java.io.*;
 import java.nio.file.*;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
+import chronotimer.ChronoTimer.Command;
 
 
 
@@ -19,6 +15,7 @@ public class Simulator implements Runnable {
 	
 	class Shell implements Runnable {
 		String input = "";
+		@Override
 		public void run() {
 			if (filename != null) {
 				try { Thread.sleep(2000); } // run commands every 2 seconds
@@ -65,6 +62,12 @@ public class Simulator implements Runnable {
 		this.timer = timer;
 	}
 
+	// Runs a command on this Simulator's chronotimer.
+	public Command runCmd(String cmd){
+		return timer.toCommand(cmd);
+	}
+	
+	@Override
 	public void run() { // move to CT?
 		Thread shell = new Thread(sh);
 		Thread time = new Thread(timer); 
