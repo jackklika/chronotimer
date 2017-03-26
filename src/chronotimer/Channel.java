@@ -6,7 +6,7 @@ public class Channel {
 	
 	private Sensor s;
 	private ChronoTimer ct;
-	private boolean state = false;
+	private boolean state = false; // state = is the channel on?
 	
 	public void toggle(){
 		state = state ? false: true;

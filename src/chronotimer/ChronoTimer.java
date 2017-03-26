@@ -83,6 +83,7 @@ public class ChronoTimer implements Runnable {
 	
 	// Could be put in Race class?
 	public void score(ActionEvent e){
+		
 		if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])){ // if start is tripped
 			try{
 				Racer popped = currentRace.toRace.pollFirst();
@@ -112,6 +113,9 @@ public class ChronoTimer implements Runnable {
 		}
 	}
 
+	public Command toCommand(String cmd){
+		return new Command(cmd);
+	}
 
 /*
  * A "command" object. args[0] is the command itself (PRINT, NEWRUN, etc) while
@@ -120,13 +124,7 @@ public class ChronoTimer implements Runnable {
  * 	- One takes a String array of arguments, like classic command parsers.
  * 	- The other takes a single string, which parses according to the format "COMMAND ARG1 ARG2"
  * When a Command is constructed, the Command adds itself to the command queue.
- */ 
-	
-	public Command toCommand(String cmd){
-		return new Command(cmd);
-	}
-
- public class Command {
+ */ public class Command {
 
 	String command = "", arg1 = "", arg2 = "";
 
@@ -345,6 +343,8 @@ public class ChronoTimer implements Runnable {
 				} catch (Exception ex) {
 					Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
 				}
+			} else {
+				System.out.printf("Channel %f out of scope\n", chan);
 			}
 			break;
 
