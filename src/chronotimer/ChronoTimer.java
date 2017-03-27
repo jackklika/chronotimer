@@ -3,6 +3,10 @@ package chronotimer;
 import java.awt.event.ActionEvent;
 import java.util.*;
 
+import com.google.gson.Gson;
+import java.io.File.*;
+import java.io.*;
+
 enum RaceType {
 	IND, PARIND, GRP, PARGRP
 }
@@ -276,6 +280,16 @@ public class ChronoTimer implements Runnable {
 				
 			currentRace.raceEnded = true;
 			Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
+			Gson gson = new Gson();
+			String json = gson.toJson(currentRace);
+			try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".txt"))) {
+			    out.print(json);
+			    out.flush();
+			    out.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 
 		case "PRINT":

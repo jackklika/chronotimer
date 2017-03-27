@@ -1,0 +1,1 @@
+{"startTime":0,"toRace":[],"inRace":[],"finishRace":[{"t":{"start":1490643543051,"stop":1490643551152},"bib":7,"startTime":0,"endTime":0,"runTime":0},{"t":{"start":1490643543051,"stop":1490643553252},"bib":8,"startTime":0,"endTime":0,"runTime":0}],"currentRaceType":"PARIND","raceEnded":true,"raceNum":1}
