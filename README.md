@@ -24,7 +24,12 @@ Check out all the commands by typing "HELP" into the shell. Some notable ones th
 - DEBUG <num>: Change the debug output level (aka the MAX_VERBOSITY variable) to a number between 0 and 3.
 
 ## This repository
-/docs: UML diagrams, documentation, or non-code documents that contribute value or structure to the project
+/src:	The code! This includes the chronotimer and the testing code.
+/docs:	UML diagrams, documentation, or non-code documents that contribute value or structure to the project
+/lib:	Project libraries, specifically jar files that we might need to use later. If you're having issues with dependancies, throw the jars in here and configure the build path to point to them in the /lib directory.
+/target:	Some junk maven needs to do its stuff.
+/bin:	Binaries.
+
 
 ------
 ## Basic Eclipse Git Usage
