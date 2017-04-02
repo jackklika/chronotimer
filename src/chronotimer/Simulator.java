@@ -1,10 +1,10 @@
-package chronotimer;
+package src.chronotimer;
 
 import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
 
-import chronotimer.ChronoTimer.Command;
+import src.chronotimer.ChronoTimer.Command;
 
 
 

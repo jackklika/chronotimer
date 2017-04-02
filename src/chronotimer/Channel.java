@@ -1,4 +1,4 @@
-package chronotimer;
+package src.chronotimer;
 
 import java.awt.event.ActionEvent;
 

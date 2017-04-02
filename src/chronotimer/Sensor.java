@@ -1,4 +1,4 @@
-package chronotimer;
+package src.chronotimer;
 
 public abstract class Sensor {
 	// Generates a single "trigger" event indicating a sensor has been activated

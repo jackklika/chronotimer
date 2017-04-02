@@ -1,4 +1,4 @@
-package test;
+package src.test;
 
 import static org.junit.Assert.*;
 
@@ -6,8 +6,9 @@ import java.io.ByteArrayInputStream;
 
 import org.junit.Test;
 
-import chronotimer.*;
-import chronotimer.ChronoTimer.Command;
+
+import src.chronotimer.*;
+import src.chronotimer.ChronoTimer.Command;
 
 
 
