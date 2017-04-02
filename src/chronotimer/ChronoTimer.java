@@ -233,26 +233,38 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "EVENT":
-			
-			if (arg1.equals("IND")){
-				raceType = RaceType.IND;
-				Main.dbg.printDebug(1, "Event set to IND");
-				channels[0] = new Channel(ChronoTimer.this);
-				channels[1] = new Channel(ChronoTimer.this);
-				if (currentRace != null){
-					currentRace.currentRaceType = (RaceType.IND);
-				}
-			}
-			else if (arg1.equals("PARIND")) {
-				raceType = RaceType.PARIND;
-				Main.dbg.printDebug(1, "Event set to PARIND");
-				channels[0] = new Channel(ChronoTimer.this);
-				channels[1] = new Channel(ChronoTimer.this);
-				channels[2] = new Channel(ChronoTimer.this);
-				channels[3] = new Channel(ChronoTimer.this);
-				if (currentRace != null){
-					currentRace.currentRaceType = (RaceType.PARIND);
-				}
+			switch (arg1.toUpperCase()){
+				case "IND":
+					raceType = RaceType.IND;
+					Main.dbg.printDebug(1, "Event set to IND");
+					channels[0] = new Channel(ChronoTimer.this);
+					channels[1] = new Channel(ChronoTimer.this);
+					if (currentRace != null){
+						currentRace.currentRaceType = (RaceType.IND);
+					}
+					break;
+					
+				case "PARIND":
+					raceType = RaceType.PARIND;
+					Main.dbg.printDebug(1, "Event set to PARIND");
+					channels[0] = new Channel(ChronoTimer.this);
+					channels[1] = new Channel(ChronoTimer.this);
+					channels[2] = new Channel(ChronoTimer.this);
+					channels[3] = new Channel(ChronoTimer.this);
+					if (currentRace != null){
+						currentRace.currentRaceType = (RaceType.PARIND);
+					}
+					break;
+					
+				case "GRP":
+					raceType = RaceType.GRP;
+					Main.dbg.printDebug(1, "Event set to GRP");
+					channels[0] = new Channel(ChronoTimer.this);
+					channels[1] = new Channel(ChronoTimer.this);
+					if (currentRace != null){
+						currentRace.currentRaceType = (RaceType.GRP);
+					}
+					break;
 			}
 			break;
 
