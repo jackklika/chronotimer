@@ -90,5 +90,3 @@ public class UIApp extends Application {
 	        launch(args);
 	    }
 	}
-
-/
