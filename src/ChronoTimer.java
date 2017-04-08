@@ -417,13 +417,12 @@ public class ChronoTimer implements Runnable {
 
 		case "DNF":
 			// TODO test/fix
-			currentRace.finishRace.add(currentRace.inRace.pollFirst());
-			
+			if (currentRace.currentRaceType != RaceType.GRP) currentRace.finishRace.add(currentRace.inRace.pollFirst());
 			break;
 			
 		case "CANCEL":
 			// TODO test/fix
-			currentRace.toRace.push(currentRace.inRace.pollLast());
+			if (currentRace.currentRaceType != RaceType.GRP) currentRace.toRace.push(currentRace.inRace.pollLast());
 			break;
 
 		case "TRIG":
