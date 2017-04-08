@@ -3,6 +3,7 @@ import java.util.*;
 
 import com.google.gson.Gson;
 import java.io.File.*;
+import java.time.Instant;
 import java.io.*;
 
 enum RaceType {
@@ -147,31 +148,20 @@ public class ChronoTimer implements Runnable {
 				break;
 			case GRP:
 				if (e.getSource().equals(channels[0])){ // if start is tripped
-//					try{
-//						Racer popped = currentRace.toRace.pollFirst();
-//						popped.t.startTime();
-//						currentRace.inRace.addLast(popped);
-//					}
-//					catch (NoSuchElementException err){
-//						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
-//					} catch (NullPointerException ex){
-//						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
-//					}
+					currentRace.startTime = Instant.now().toEpochMilli() + (3600000*18);
 					
-					
-				} else if (e.getSource().equals(channels[1])){ // if finish is tripped
+				}
 				
-					try {
-						Racer popped = currentRace.inRace.pollFirst();
-						popped.t.stopTime();
-						currentRace.finishRace.add(popped);
-					} catch (NoSuchElementException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+				else if (e.getSource().equals(channels[1])){ // if finish is tripped
+					int i = 1;
+					if (!(currentRace.finishRace.isEmpty())) {
+						int s = currentRace.finishRace.size();
+						i = currentRace.finishRace.get(s - 1).bib + 1;
 					}
-					catch (NullPointerException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
-					}
-					
+					Racer r = new Racer(i);
+					r.t.start = currentRace.startTime;
+					r.finish();
+					currentRace.finishRace.add(r);
 				}
 				break;
 			case PARGRP:
