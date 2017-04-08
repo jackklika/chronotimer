@@ -377,12 +377,21 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
-			int bib = Integer.parseInt(arg1);
-			try {
-				currentRace.toRace.add(new Racer(bib));
-				Main.dbg.printDebug(1, "Racer " + bib + " added");
-			} catch (Exception ex) {
-				Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
+			if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
+				int bib = Integer.parseInt(arg1);
+				try {
+					currentRace.toRace.add(new Racer(bib));
+					Main.dbg.printDebug(1, "Racer " + bib + " added");
+				} catch (Exception ex) {
+					Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
+				} 
+			}
+			else if (currentRace.currentRaceType == RaceType.GRP) {
+				for (Racer r : currentRace.finishRace) {
+					if (r.bib == currentRace.finishRace.indexOf(r) + 1) {
+						r.bib = Integer.parseInt(arg1);
+					}
+				}
 			}
 			break;
 
