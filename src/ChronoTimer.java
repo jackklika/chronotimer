@@ -31,10 +31,11 @@ public class ChronoTimer implements Runnable {
 	@Override
 	public void run() {
 		
-		//channels[0] = new Channel(this);
-		//channels[1] = new Channel(this);
-		//channels[2] = new Channel(this);
-		//channels[3] = new Channel(this);
+		channels[0] = new Channel(this);
+		channels[1] = new Channel(this);
+		channels[2] = new Channel(this);
+		channels[3] = new Channel(this);
+		
 		Main.dbg.printDebug(1, "ChronoTimer starting up, but idle.");
 		
 
@@ -281,9 +282,13 @@ public class ChronoTimer implements Runnable {
 			int c = Integer.parseInt(arg1);
 			
 			// Handles channels as starting at 1 vs. arrays starting at 0.
-			channels[c-1].toggle();
-			String state = channels[c-1].getState() ? "on" : "off";
-			Main.dbg.printDebug(1, "Channel " + Integer.toString(c) + " is now toggled " + state); //removed -1 to match the project description
+			if (channels[c-1] != null){
+				channels[c-1].toggle();
+				String state = channels[c-1].getState() ? "on" : "off";
+				Main.dbg.printDebug(1, "Channel " + Integer.toString(c) + " is now toggled " + state); //removed -1 to match the project description
+			} else {
+				Main.dbg.printDebug(0, "You need to initialize channnels");
+			}
 			break;
 
 		case "CONN":
@@ -425,12 +430,12 @@ public class ChronoTimer implements Runnable {
 			// Send a trigger command to it
 			int chan = Integer.parseInt(arg1);
 			if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
-				try {
+				//try {
 					channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
 					Main.dbg.printDebug(1, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
-				} catch (Exception ex) {
-					Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
-				}
+				//} catch (Exception ex) {
+					//Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
+				//}
 			} else {
 				System.out.printf("Channel %f out of scope\n", chan);
 			}
@@ -460,7 +465,11 @@ public class ChronoTimer implements Runnable {
 			break;
 			
 		case "LIST":
-			Main.dbg.printDebug(0, currentRace.toString());
+			if (currentRace != null){
+				Main.dbg.printDebug(0, currentRace.toString());
+			} else { // handles null pointer exception
+				Main.dbg.printDebug(0, "Race hasn't started yet.");
+			}
 			break;
 			
 			
