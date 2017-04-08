@@ -48,6 +48,7 @@ public class UIApp extends Application {
 	            
 	            loader.setLocation(UIApp.class.getResource("UserInterface.fxml"));
 	            AnchorPane UI = (AnchorPane) loader.load();
+	            rootLayout.setCenter(UI);
 	        } catch (IOException e) {
 	        	System.out.println("Problem in showUI");
 	            e.printStackTrace();
@@ -63,7 +64,7 @@ public class UIApp extends Application {
 	    }
 
 	    public static void main(String[] args) {
-	        UIApp.launch(args);
+	        launch(args);
 	    }
 	}
 
