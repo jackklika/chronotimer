@@ -32,21 +32,31 @@ Check out all the commands by typing "HELP" into the shell. Some notable ones th
 
 
 ------
+
+## Basic CLI Git Usage
+
+Setup the git client:
+- Windows: Install the [windows client](https://desktop.github.com/) which should install the "Git Shell." Use this to interface with Git.
+- Linux/Mac: It should be already installed. Open terminal and type "git --help" to make sure it's installed. Otherwise install it via your package manager.
+
+### Workflow
+
+- `git add .` adds all files in your current directory recursively to the staged files. Use `cd` to get around to different directories. Use `git rm filename` to remove files from the staged status.
+- `git commit -m "MESSAGE"` creates a commit from all the staged files.
+- `git push` pushes the commits.
+- `git pull` pulls commits and should get you up to date.
+- `git reset --hard HEAD` is the nuclear option. This resets your repo to whatever the current HEAD is and will delete your changes
+
+
+### Basic Commands:
+
+- `git status` will list what the status of your local repo is. Use this to see what items are staged or differ from 
+
 ## Basic Eclipse Git Usage
 
-### Eclipse Git - Getting the chronotimer program on Eclipse:
+Please don't use the Eclipse git client. It's pretty terrible and encourages bad habits. The industry standard is the terminal interface.
 
-- Copy this link to your clipboard -- [https://github.com/jackklika/chronotimer.git](https://github.com/jackklika/chronotimer.git)
-- File > Import > Git > Clone URI -- All the URL data should be pulled into the forms from your clipboard.
-- Enter your **github** username and password in Authentication
-
-### Eclipse Git - Syncing the repo, Saving your Changes, and Pushing
-
-- Pull the code to get the most recent version and make sure that you don't conflict with anyone when you push: Right click on project > Team > Pull
-- Create and push a commit -- This chooses which files should be pushed to the git repository and updated. Press Ctl+Shift+3, drag desired changes to the "Staged Changes". Press "Commit and Push".
-- Google any errors if something goes wrong.
-
-### Handy Links
+## Handy Links
 
 - [Commit history of this project](https://github.com/jackklika/cs361-chromotimer/commits/master)
 - [Try Git](https://try.github.io/levels/1/challenges/1)
