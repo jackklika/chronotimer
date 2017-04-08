@@ -1,4 +1,4 @@
-# chronotimer
+# chronotimer2 -- Electric Boogaloo
 
 ## How this all works:
 
