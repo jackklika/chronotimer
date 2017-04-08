@@ -85,33 +85,97 @@ public class ChronoTimer implements Runnable {
 	
 	// Could be put in Race class?
 	public void score(ActionEvent e){
-		
-		if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])){ // if start is tripped
-			try{
-				Racer popped = currentRace.toRace.pollFirst();
-				popped.t.startTime();
-				currentRace.inRace.addLast(popped);
-			}
-			catch (NoSuchElementException err){
-				Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
-			} catch (NullPointerException ex){
-				Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
-			}
-			
-			
-		} else if (e.getSource().equals(channels[1]) || e.getSource().equals(channels[3])){ // if finish is tripped
-		
-			try {
-				Racer popped = currentRace.inRace.pollFirst();
-				popped.t.stopTime();
-				currentRace.finishRace.add(popped);
-			} catch (NoSuchElementException err){
-				Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
-			}
-			catch (NullPointerException err){
-				Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
-			}
-			
+		// different actions based on race type
+		switch (currentRace.currentRaceType) {
+			case IND:
+				if (e.getSource().equals(channels[0])){ // if start is tripped
+					try{
+						Racer popped = currentRace.toRace.pollFirst();
+						popped.t.startTime();
+						currentRace.inRace.addLast(popped);
+					}
+					catch (NoSuchElementException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+					} catch (NullPointerException ex){
+						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
+					}
+					
+					
+				} else if (e.getSource().equals(channels[1])){ // if finish is tripped
+				
+					try {
+						Racer popped = currentRace.inRace.pollFirst();
+						popped.t.stopTime();
+						currentRace.finishRace.add(popped);
+					} catch (NoSuchElementException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					catch (NullPointerException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					
+				}
+				break;
+			case PARIND:
+				if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])){ // if start is tripped
+					try{
+						Racer popped = currentRace.toRace.pollFirst();
+						popped.t.startTime();
+						currentRace.inRace.addLast(popped);
+					}
+					catch (NoSuchElementException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+					} catch (NullPointerException ex){
+						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
+					}
+					
+					
+				} else if (e.getSource().equals(channels[1]) || e.getSource().equals(channels[3])){ // if finish is tripped
+				
+					try {
+						Racer popped = currentRace.inRace.pollFirst();
+						popped.t.stopTime();
+						currentRace.finishRace.add(popped);
+					} catch (NoSuchElementException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					catch (NullPointerException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					
+				}
+				break;
+			case GRP:
+				if (e.getSource().equals(channels[0])){ // if start is tripped
+//					try{
+//						Racer popped = currentRace.toRace.pollFirst();
+//						popped.t.startTime();
+//						currentRace.inRace.addLast(popped);
+//					}
+//					catch (NoSuchElementException err){
+//						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+//					} catch (NullPointerException ex){
+//						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
+//					}
+					
+					
+				} else if (e.getSource().equals(channels[1])){ // if finish is tripped
+				
+					try {
+						Racer popped = currentRace.inRace.pollFirst();
+						popped.t.stopTime();
+						currentRace.finishRace.add(popped);
+					} catch (NoSuchElementException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					catch (NullPointerException err){
+						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+					}
+					
+				}
+				break;
+			case PARGRP:
+				break;
 		}
 	}
 
