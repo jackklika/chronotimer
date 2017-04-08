@@ -1,3 +1,5 @@
+import javafx.application.Application;
+
 public class Main {
 
 	// The following are settings for the entire project.
@@ -41,6 +43,7 @@ public class Main {
 
 	// The program all runs here. This might be the "simulator"
 	public static void main(String[] args) {	
+		Application.launch(UIApp.class, args);
 		
 		//for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		dbg.printDebug(1, "Current time is: " + Time.printTime());
