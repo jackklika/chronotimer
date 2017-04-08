@@ -340,9 +340,12 @@ public class ChronoTimer implements Runnable {
 			}
 			else if (raceType == RaceType.PARIND){
 				currentRace = new Race(raceType);
-				Main.dbg.printDebug(1,  "New PARIND race created");
+				Main.dbg.printDebug(1, "New PARIND race created");
 			}
-
+			else if (raceType == RaceType.GRP) {
+				currentRace = new Race(raceType);
+				Main.dbg.printDebug(1, "New GRP race created");
+			}
 			break;
 
 		case "ENDRUN":
