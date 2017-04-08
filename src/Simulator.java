@@ -2,6 +2,8 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
 
+import javafx.application.Application;
+
 public class Simulator implements Runnable {
 	ChronoTimer timer;
 	Shell sh;
@@ -65,6 +67,7 @@ public class Simulator implements Runnable {
 		Thread time = new Thread(timer); 
 		shell.start();
 		time.start(); // starts the timer
+		Application.launch(UIApp.class);
 
 		while (true){
 			

@@ -1,10 +1,17 @@
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
+
+import java.awt.event.ActionEvent;
 import java.io.IOException;
+
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 
 public class UIApp extends Application {
 	 private Stage primaryStage;
@@ -14,6 +21,23 @@ public class UIApp extends Application {
 	public void start(Stage primaryStage) {
 		 this.primaryStage = primaryStage;
 	     this.primaryStage.setTitle("ChronoTimer");
+	     Button btn = new Button();
+	        btn.setText("Say 'Hello World'");
+	        btn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
+	            
+	        	public void handle(ActionEvent event) {
+	                System.out.println("Hello World!");
+	            }
+
+				@Override
+				public void handle(javafx.event.ActionEvent arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+	        });
+	        
+	        StackPane root = new StackPane();
+	        root.getChildren().add(btn);
 	     initRootLayout();
 	     showUI();
 	}
@@ -37,8 +61,7 @@ public class UIApp extends Application {
         }
     }
 
-	
-	    /**
+	    /*
 	     * Shows the person overview inside the root layout.
 	     */
 	    public void showUI() {
@@ -67,4 +90,3 @@ public class UIApp extends Application {
 	        launch(args);
 	    }
 	}
-
