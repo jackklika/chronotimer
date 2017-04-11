@@ -3,15 +3,19 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="25.0" layoutY="30.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Power" />
-      <Button layoutX="25.0" layoutY="196.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Function" />
-      <Button layoutX="25.0" layoutY="343.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Swap" />
-      <Button layoutX="450.0" layoutY="68.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
+      <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Power" />
+      <Button layoutX="45.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Function" />
+      <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Swap" />
+      <Button layoutX="450.0" layoutY="66.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
       <Button layoutX="482.0" layoutY="225.0" mnemonicParsing="false" text="1" />
       <Button layoutX="511.0" layoutY="225.0" mnemonicParsing="false" text="2" />
       <Button layoutX="540.0" layoutY="225.0" mnemonicParsing="false" text="3" />
@@ -29,8 +33,8 @@
       <Group layoutX="373.0" layoutY="83.0" />
       <Group layoutX="373.0" layoutY="82.0" />
       <Group layoutX="395.0" layoutY="84.0" />
-      <TextArea layoutX="244.0" layoutY="231.0" prefHeight="170.0" prefWidth="174.0" />
-      <TextArea layoutX="450.0" layoutY="114.0" prefHeight="97.0" prefWidth="146.0" />
+      <TextArea layoutX="210.0" layoutY="231.0" prefHeight="130.0" prefWidth="202.0" />
+      <TextArea layoutX="450.0" layoutY="106.0" prefHeight="97.0" prefWidth="146.0" />
       <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" />
       <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" />
       <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" />
@@ -47,5 +51,75 @@
       <Button layoutX="286.0" layoutY="154.0" mnemonicParsing="false" text="4" />
       <Button layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="6" />
       <Button layoutX="384.0" layoutY="154.0" mnemonicParsing="false" text="8" />
+      <Label layoutX="216.0" layoutY="22.0" text="ChronoTimer 1009">
+         <font>
+            <Font name="System Bold" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="182.0" layoutY="77.0" text="Start">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="182.0" layoutY="154.0" text="Finish">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="114.0" text="Enable/Disable">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="118.0" layoutY="191.0" text="Enable/Disable">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="164.0" layoutY="275.0" mnemonicParsing="false" text="^" />
+      <Button layoutX="80.0" layoutY="275.0" mnemonicParsing="false" text="&gt;" />
+      <Button layoutX="47.0" layoutY="275.0" mnemonicParsing="false" text="&lt;" />
+      <Button layoutX="131.0" layoutY="275.0" mnemonicParsing="false" rotate="-179.4" text="^" />
+      <Label layoutX="212.0" layoutY="357.0" text="Queue/Running/Final Time">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Pane layoutY="395.0" prefHeight="105.0" prefWidth="650.0" style="-fx-background-color: #dfdfdf;">
+         <children>
+            <Label layoutX="10.0" layoutY="5.0" text="Channels">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <RadioButton accessibleRole="BUTTON" layoutX="125.0" layoutY="32.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="32.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="32.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="32.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="124.0" layoutY="71.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="71.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="71.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="71.0" mnemonicParsing="false" />
+            <Label layoutX="127.0" layoutY="11.0" text="1" />
+            <Label layoutX="164.0" layoutY="12.0" text="3" />
+            <Label layoutX="201.0" layoutY="12.0" text="5" />
+            <Label layoutX="231.0" layoutY="13.0" text="7" />
+            <Label layoutX="127.0" layoutY="53.0" text="2" />
+            <Label layoutX="164.0" layoutY="53.0" text="4" />
+            <Label layoutX="198.0" layoutY="53.0" text="6" />
+            <Label layoutX="231.0" layoutY="53.0" text="8" />
+            <Pane layoutX="306.0" layoutY="41.0" prefHeight="17.0" prefWidth="57.0" style="-fx-background-color: #000000;" />
+            <Label layoutX="371.0" layoutY="39.0" text="USB Port">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="535.0" layoutY="3.0" text="Back View">
+               <font>
+                  <Font name="System Bold" size="21.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
