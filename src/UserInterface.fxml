@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIAppController">
    <children>
-      <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="106.0" text="Power" />
+      <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" onAction="#test" prefHeight="31.0" prefWidth="106.0" text="Power" />
       <Button layoutX="45.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Function" />
       <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Swap" />
       <Button layoutX="450.0" layoutY="66.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
@@ -85,7 +85,7 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Pane layoutY="395.0" prefHeight="105.0" prefWidth="650.0" style="-fx-background-color: #dfdfdf;">
+      <Pane layoutY="395.0" prefHeight="130.0" prefWidth="650.0" style="-fx-background-color: #dfdfdf;">
          <children>
             <Label layoutX="10.0" layoutY="5.0" text="Channels">
                <font>

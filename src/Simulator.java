@@ -1,13 +1,16 @@
 import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
-
+import javafx.fxml.FXML;
 import javafx.application.Application;
 
 public class Simulator implements Runnable {
 	ChronoTimer timer;
 	Shell sh;
 	String filename;
+	
+	
+	
 	
 	class Shell implements Runnable {
 		String input = "";

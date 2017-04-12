@@ -21,6 +21,8 @@ public class UIApp extends Application {
 	public void start(Stage primaryStage) {
 		 this.primaryStage = primaryStage;
 	     this.primaryStage.setTitle("ChronoTimer");
+	     
+	     //Stuff John Added
 	     Button btn = new Button();
 	        btn.setText("Say 'Hello World'");
 	        btn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
@@ -38,6 +40,9 @@ public class UIApp extends Application {
 	        
 	        StackPane root = new StackPane();
 	        root.getChildren().add(btn);
+	        
+	        //end stuff John Added
+	        
 	     initRootLayout();
 	     showUI();
 	}
