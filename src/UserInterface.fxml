@@ -3,6 +3,7 @@
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
@@ -12,22 +13,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIAppController">
    <children>
-      <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" onAction="#test" prefHeight="31.0" prefWidth="106.0" text="Power" />
-      <Button layoutX="45.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Function" />
-      <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Swap" />
-      <Button layoutX="450.0" layoutY="66.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
-      <Button layoutX="482.0" layoutY="225.0" mnemonicParsing="false" text="1" />
-      <Button layoutX="511.0" layoutY="225.0" mnemonicParsing="false" text="2" />
-      <Button layoutX="540.0" layoutY="225.0" mnemonicParsing="false" text="3" />
-      <Button layoutX="482.0" layoutY="256.0" mnemonicParsing="false" text="4" />
-      <Button layoutX="511.0" layoutY="256.0" mnemonicParsing="false" text="5" />
-      <Button layoutX="540.0" layoutY="256.0" mnemonicParsing="false" text="6" />
-      <Button layoutX="482.0" layoutY="287.0" mnemonicParsing="false" text="7" />
-      <Button layoutX="511.0" layoutY="287.0" mnemonicParsing="false" text="8" />
-      <Button layoutX="540.0" layoutY="287.0" mnemonicParsing="false" text="9" />
-      <Button layoutX="483.0" layoutY="318.0" mnemonicParsing="false" text="*" />
-      <Button layoutX="511.0" layoutY="318.0" mnemonicParsing="false" text="0" />
-      <Button layoutX="540.0" layoutY="318.0" mnemonicParsing="false" text="#" />
+      <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" onAction="#powerBtnPressed" prefHeight="31.0" prefWidth="106.0" text="Power" />
+      <Button layoutX="45.0" layoutY="235.0" mnemonicParsing="false" onAction="#functionButtonPressed" prefHeight="31.0" prefWidth="146.0" text="Function" />
+      <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" onAction="#swap" prefHeight="31.0" prefWidth="146.0" text="Swap" />
+      <Button layoutX="450.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
+      <Button layoutX="482.0" layoutY="225.0" mnemonicParsing="false" onAction="#key1" text="1" />
+      <Button layoutX="511.0" layoutY="225.0" mnemonicParsing="false" onAction="#key2" text="2" />
+      <Button layoutX="540.0" layoutY="225.0" mnemonicParsing="false" onAction="#key3" text="3" />
+      <Button layoutX="482.0" layoutY="256.0" mnemonicParsing="false" onAction="#key4" text="4" />
+      <Button layoutX="511.0" layoutY="256.0" mnemonicParsing="false" onAction="#key5" text="5" />
+      <Button layoutX="540.0" layoutY="256.0" mnemonicParsing="false" onAction="#key6" text="6" />
+      <Button layoutX="482.0" layoutY="287.0" mnemonicParsing="false" onAction="#key7" text="7" />
+      <Button layoutX="511.0" layoutY="287.0" mnemonicParsing="false" onAction="#key8" text="8" />
+      <Button layoutX="540.0" layoutY="287.0" mnemonicParsing="false" onAction="#key9" text="9" />
+      <Button layoutX="483.0" layoutY="318.0" mnemonicParsing="false" onAction="#keyStar" text="*" />
+      <Button layoutX="511.0" layoutY="318.0" mnemonicParsing="false" onAction="#key0" text="0" />
+      <Button layoutX="540.0" layoutY="318.0" mnemonicParsing="false" onAction="#keyPound" text="#" />
       <Group layoutX="373.0" layoutY="98.0" />
       <Group layoutX="372.0" layoutY="84.0" />
       <Group layoutX="373.0" layoutY="83.0" />
@@ -35,22 +36,22 @@
       <Group layoutX="395.0" layoutY="84.0" />
       <TextArea layoutX="210.0" layoutY="231.0" prefHeight="130.0" prefWidth="202.0" />
       <TextArea layoutX="450.0" layoutY="106.0" prefHeight="97.0" prefWidth="146.0" />
-      <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" />
-      <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" />
-      <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" />
-      <CheckBox layoutX="340.0" layoutY="118.0" mnemonicParsing="false" />
-      <CheckBox layoutX="286.0" layoutY="118.0" mnemonicParsing="false" />
-      <CheckBox layoutX="291.0" layoutY="192.0" mnemonicParsing="false" />
-      <CheckBox layoutX="340.0" layoutY="192.0" mnemonicParsing="false" />
-      <CheckBox layoutX="392.0" layoutY="192.0" mnemonicParsing="false" />
-      <Button layoutX="238.0" layoutY="77.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="23.0" text="1" />
-      <Button layoutX="282.0" layoutY="77.0" mnemonicParsing="false" text="3" />
-      <Button layoutX="332.0" layoutY="77.0" mnemonicParsing="false" text="5" />
-      <Button layoutX="384.0" layoutY="77.0" mnemonicParsing="false" text="7" />
-      <Button layoutX="238.0" layoutY="154.0" mnemonicParsing="false" text="2" />
-      <Button layoutX="286.0" layoutY="154.0" mnemonicParsing="false" text="4" />
-      <Button layoutX="335.0" layoutY="154.0" mnemonicParsing="false" text="6" />
-      <Button layoutX="384.0" layoutY="154.0" mnemonicParsing="false" text="8" />
+      <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
+      <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
+      <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
+      <CheckBox layoutX="340.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
+      <CheckBox layoutX="286.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan3Toggle" />
+      <CheckBox layoutX="291.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan4Toggle" />
+      <CheckBox layoutX="340.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
+      <CheckBox layoutX="392.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
+      <Button layoutX="238.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan1Trig" prefHeight="25.0" prefWidth="23.0" text="1" />
+      <Button layoutX="282.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan3Trig" text="3" />
+      <Button layoutX="332.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan5Trig" text="5" />
+      <Button layoutX="384.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan7Trig" text="7" />
+      <Button layoutX="238.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan2Trig" text="2" />
+      <Button layoutX="286.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan4Trig" text="4" />
+      <Button layoutX="335.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan6Trig" text="6" />
+      <Button layoutX="384.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan8Trig" text="8" />
       <Label layoutX="216.0" layoutY="22.0" text="ChronoTimer 1009">
          <font>
             <Font name="System Bold" size="21.0" />
@@ -76,10 +77,10 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <Button layoutX="164.0" layoutY="275.0" mnemonicParsing="false" text="^" />
-      <Button layoutX="80.0" layoutY="275.0" mnemonicParsing="false" text="&gt;" />
-      <Button layoutX="47.0" layoutY="275.0" mnemonicParsing="false" text="&lt;" />
-      <Button layoutX="131.0" layoutY="275.0" mnemonicParsing="false" rotate="-179.4" text="^" />
+      <Button layoutX="164.0" layoutY="275.0" mnemonicParsing="false" onAction="#upArrowPressed" text="^" />
+      <Button layoutX="80.0" layoutY="275.0" mnemonicParsing="false" onAction="#rightArrowPressed" text="&gt;" />
+      <Button layoutX="47.0" layoutY="275.0" mnemonicParsing="false" onAction="#leftArrowPressed" text="&lt;" />
+      <Button layoutX="131.0" layoutY="275.0" mnemonicParsing="false" onAction="#downArrowPressed" rotate="-179.4" text="^" />
       <Label layoutX="212.0" layoutY="357.0" text="Queue/Running/Final Time">
          <font>
             <Font size="16.0" />
@@ -92,14 +93,14 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <RadioButton accessibleRole="BUTTON" layoutX="125.0" layoutY="32.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="32.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="32.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="32.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="124.0" layoutY="71.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="71.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="71.0" mnemonicParsing="false" />
-            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="71.0" mnemonicParsing="false" />
+            <RadioButton accessibleRole="BUTTON" layoutX="125.0" layoutY="32.0" mnemonicParsing="false" onAction="#chan1Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="32.0" mnemonicParsing="false" onAction="#chan3Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="32.0" mnemonicParsing="false" onAction="#chan5Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="32.0" mnemonicParsing="false" onAction="#chan7Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="124.0" layoutY="71.0" mnemonicParsing="false" onAction="#chan2Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="160.0" layoutY="71.0" mnemonicParsing="false" onAction="#chan4Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="194.0" layoutY="71.0" mnemonicParsing="false" onAction="#chan6Conn" />
+            <RadioButton accessibleRole="BUTTON" layoutX="226.0" layoutY="71.0" mnemonicParsing="false" onAction="#chan8Conn" />
             <Label layoutX="127.0" layoutY="11.0" text="1" />
             <Label layoutX="164.0" layoutY="12.0" text="3" />
             <Label layoutX="201.0" layoutY="12.0" text="5" />
@@ -108,8 +109,8 @@
             <Label layoutX="164.0" layoutY="53.0" text="4" />
             <Label layoutX="198.0" layoutY="53.0" text="6" />
             <Label layoutX="231.0" layoutY="53.0" text="8" />
-            <Pane layoutX="306.0" layoutY="41.0" prefHeight="17.0" prefWidth="57.0" style="-fx-background-color: #000000;" />
-            <Label layoutX="371.0" layoutY="39.0" text="USB Port">
+            <Pane layoutX="430.0" layoutY="53.0" prefHeight="17.0" prefWidth="57.0" style="-fx-background-color: #000000;" />
+            <Label layoutX="495.0" layoutY="51.0" text="USB Port">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -119,6 +120,7 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
+            <ChoiceBox layoutX="256.0" layoutY="20.0" onContextMenuRequested="#sensorOptionChanged" prefHeight="25.0" prefWidth="124.0" />
          </children>
       </Pane>
    </children>
