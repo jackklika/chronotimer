@@ -6,10 +6,7 @@ import javafx.application.Application;
 public class Simulator implements Runnable {
 	public ChronoTimer timer;
 	Shell sh;
-	String filename;
-	
-	
-	
+	String filename;	
 	
 	class Shell implements Runnable {
 		String input = "";
@@ -55,14 +52,10 @@ public class Simulator implements Runnable {
 	}
 	
 	
-
 	public Simulator(ChronoTimer timer) {
 		this.sh = new Shell();
 		this.timer = timer;
 	}
-
-	// Runs a command on this Simulator's chronotimer.
-
 	
 	@Override
 	public void run() { // move to CT?

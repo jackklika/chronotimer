@@ -326,11 +326,12 @@ public class ChronoTimer implements Runnable {
 
 		case "NEWRUN":
 	
-			if (currentRace != null && currentRace.raceEnded == false){
+			if (currentRace == null){
+				Main.dbg.printDebug(0, "[ERR] No race type selected. Define events with 'EVENT' first, or see 'HELP'");
+			} else if (currentRace != null && currentRace.raceEnded == false){
 				Main.dbg.printDebug(0, "Race is not ended. Use ENDRUN to end the race.");
 				break;
-			}
-			if (currentRace != null) raceList.add(currentRace); // Saves the current race into an array.
+			} else if (currentRace != null) raceList.add(currentRace); // Saves the current race into an array.
 			// This can be simplified when we are using more race types.
 			if (raceType == RaceType.IND){
 				currentRace = new Race(raceType);
@@ -384,7 +385,10 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
-			if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
+		
+			if (currentRace.currentRaceType == null) {
+				Main.dbg.printDebug(0, "[ERR] No race type selected. Define events with 'EVENT' first, or see 'HELP'");
+			} else if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
 				int bib = Integer.parseInt(arg1);
 				try {
 					currentRace.toRace.add(new Racer(bib));
