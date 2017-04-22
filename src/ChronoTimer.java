@@ -247,20 +247,32 @@ public class ChronoTimer implements Runnable {
 			double sec;
 			String[] input = arg1.split(":");
 			
-			if (input.length == 2){
-				min		= Integer.valueOf(input[0]);
-				sec		= Double.valueOf(input[1]);
-				Time.setTime(0, min, sec);
-				Main.dbg.printDebug(3, "MIN: " + min + "  SEC: " + sec);
+			try {			
+		
+				if (input.length != 3){				
+					System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00.1");
+					break;
+				}
 				
-			}else if (input.length == 3){
-				hour	= Integer.valueOf(input[0]);
-				min		= Integer.valueOf(input[1]);
-				sec		= Double.valueOf(input[2]);
-				Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
-				Time.setTime(hour, min, sec);
-			} else {
+				if (input.length == 2){
+					min		= Integer.valueOf(input[0]);
+					sec		= Double.valueOf(input[1]);
+					Time.setTime(0, min, sec);
+					Main.dbg.printDebug(3, "MIN: " + min + "  SEC: " + sec);
+					
+				}else if (input.length == 3){
+					hour	= Integer.valueOf(input[0]);
+					min		= Integer.valueOf(input[1]);
+					sec		= Double.valueOf(input[2]);
+					Main.dbg.printDebug(3, "HOUR: " + hour + "  MIN: " + min + "  SEC: " + sec);
+					Time.setTime(hour, min, sec);
+					
+				} else {
+					System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00.1");
+				}
+			} catch (NumberFormatException e){
 				System.out.println("Inproper formatting! Proper Usage is HOUR:MIN:SEC, ie 3:00:00.1");
+				break;
 			}
 			
 			
@@ -368,7 +380,12 @@ public class ChronoTimer implements Runnable {
 			break;
 			
 		case "ENDRUN":
-				
+			
+			if (currentRace == null){
+				Main.dbg.printDebug(0, "[ERR] no race to end.");
+				break;
+			}
+			
 			currentRace.raceEnded = true;
 			Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 			Gson gson = new Gson();

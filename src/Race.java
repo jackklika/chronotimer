@@ -40,8 +40,6 @@ public class Race {
 		out += "\nFinished Racers: ";
 		
 		for (Racer r : finishRace) out += r.bib + " [" + r.t.runTime() + "], ";
-
-
 		
 		return out;
 	}
