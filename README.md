@@ -46,6 +46,7 @@ Setup the git client:
 - `git push` pushes the commits.
 - `git pull` pulls commits and should get you up to date.
 - `git reset --hard HEAD` is the nuclear option. This resets your repo to whatever the current HEAD is and will delete your changes
+- 
 
 
 ### Basic Commands:
