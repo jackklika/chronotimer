@@ -35,7 +35,7 @@
       <Group layoutX="373.0" layoutY="82.0" />
       <Group layoutX="395.0" layoutY="84.0" />
       <TextArea layoutX="210.0" layoutY="231.0" prefHeight="130.0" prefWidth="202.0" />
-      <TextArea layoutX="450.0" layoutY="106.0" prefHeight="97.0" prefWidth="146.0" />
+      <TextArea fx:id="console" layoutX="450.0" layoutY="106.0" prefHeight="97.0" prefWidth="146.0" />
       <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
       <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
       <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
@@ -120,7 +120,7 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <ComboBox layoutX="260.0" layoutY="27.0" prefWidth="150.0"/>
+            <ComboBox layoutX="260.0" layoutY="27.0" prefWidth="150.0" />
            
          </children>
       </Pane>

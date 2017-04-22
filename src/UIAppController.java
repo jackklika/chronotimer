@@ -1,6 +1,7 @@
 
 import java.io.PrintStream;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
@@ -17,10 +18,12 @@ public class UIAppController {
 	//TODO: displaying on the "printer"
 
 	
-	//staring to try textarea
+	//starting to try textarea
 	@FXML
 	private TextArea console;
 	private PrintStream ps;
+	
+
 	
 	
 	@FXML
