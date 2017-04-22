@@ -1,5 +1,8 @@
 
+import java.io.PrintStream;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
 
 public class UIAppController {
 	/*
@@ -13,6 +16,13 @@ public class UIAppController {
 	//TODO: Running display in the center
 	//TODO: displaying on the "printer"
 
+	
+	//staring to try textarea
+	@FXML
+	private TextArea console;
+	private PrintStream ps;
+	
+	
 	@FXML
 	private void powerBtnPressed() {
 		ct.toCommand("POWER");

@@ -120,7 +120,7 @@
                   <Font name="System Bold" size="21.0" />
                </font>
             </Label>
-            <ComboBox fx:id="myCombobox" id="comboId"layoutX="260.0" layoutY="27.0" prefWidth="150.0"/>
+            <ComboBox layoutX="260.0" layoutY="27.0" prefWidth="150.0"/>
            
          </children>
       </Pane>
