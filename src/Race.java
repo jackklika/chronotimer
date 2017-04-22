@@ -9,6 +9,9 @@ public class Race {
 	public RaceType currentRaceType;
 	public boolean raceEnded = false; // True if the race is ended.
 	
+	private Integer finishLength;
+	private int index;
+	
 	// Races are numbered.
 	public int raceNum;
 	public static int maxRaceNum = 1;
@@ -27,7 +30,7 @@ public class Race {
 		
 		String out = "";
 	
-		out += "** Race " + raceNum + " ***\n";
+		out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		out += "Race Ended? " + raceEnded + "\n\n";
 		out += "Pending Racers: ";
 		for (Racer r : toRace) out += r.bib + " [" + r.t.runTime() + "], ";
@@ -43,5 +46,25 @@ public class Race {
 		return out;
 	}
 	
+	/**
+	 * Assigns a bib number sequentially to the race's racers.
+	 * @return boolean saying if a bib was set.
+	 */
+	public boolean giveBib(int arg1){
+		if (finishLength == null){ // finishlength hasn't been set yet
+			finishLength = finishRace.size();
+			index = finishLength;
+		}
+		
+		if (index <= 0){
+			Main.dbg.printDebug(0, "Already assigned bibs to every finished racer.");
+			return false;
+		}
+		
+		finishRace.get(finishLength - (index--)).bib = arg1;
+		
+		return true;
+		
+	}
 	
 }
