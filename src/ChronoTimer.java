@@ -289,6 +289,10 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "EVENT":
+			if (arg1 == null || arg1 == ""){
+				Main.dbg.printDebug(0, "[ERR] Please specify a race type. See 'HELP'.");
+				break;
+			}
 			switch (arg1.toUpperCase()){
 				case "IND":
 					raceType = RaceType.IND;
@@ -321,30 +325,45 @@ public class ChronoTimer implements Runnable {
 						currentRace.currentRaceType = (RaceType.GRP);
 					}
 					break;
+				
+				default:
+					Main.dbg.printDebug(0, "[ERR] Unspported race type '" + arg1 + "'. Use the HELP command.");
+					break;
 			}
 			break;
 
 		case "NEWRUN":
 	
-			if (currentRace == null){
-				Main.dbg.printDebug(0, "[ERR] No race type selected. Define events with 'EVENT' first, or see 'HELP'");
+			if (raceType == null){
+				Main.dbg.printDebug(0, "[ERR] Chronotimer racetype is null.");
+				break;
+				
 			} else if (currentRace != null && currentRace.raceEnded == false){
 				Main.dbg.printDebug(0, "Race is not ended. Use ENDRUN to end the race.");
 				break;
-			} else if (currentRace != null) raceList.add(currentRace); // Saves the current race into an array.
+				
+			} else if (currentRace != null){
+				raceList.add(currentRace); // Saves the current race into an array.
+				
+			}
+			
 			// This can be simplified when we are using more race types.
 			if (raceType == RaceType.IND){
 				currentRace = new Race(raceType);
 				Main.dbg.printDebug(1, "New IND race created: " + currentRace.hashCode() + ", race #" + currentRace.raceNum);
 				
-			}
-			else if (raceType == RaceType.PARIND){
+			} else if (raceType == RaceType.PARIND){
 				currentRace = new Race(raceType);
 				Main.dbg.printDebug(1, "New PARIND race created");
-			}
-			else if (raceType == RaceType.GRP) {
+				
+			} else if (raceType == RaceType.GRP) {
 				currentRace = new Race(raceType);
 				Main.dbg.printDebug(1, "New GRP race created");
+				
+			} else if (raceType == RaceType.PARGRP) {
+				currentRace = new Race(raceType);
+				Main.dbg.printDebug(0, "[ERR] PARGRP not implimented yet!");
+				
 			}
 			break;
 			
@@ -398,11 +417,11 @@ public class ChronoTimer implements Runnable {
 				} 
 			}
 			else if (currentRace.currentRaceType == RaceType.GRP) {
-				for (Racer r : currentRace.finishRace) {
-					if (r.bib == currentRace.finishRace.indexOf(r) + 1) {
-						r.bib = Integer.parseInt(arg1);
-					}
-				}
+				if (currentRace.raceEnded == false) {
+					Main.dbg.printDebug(0, "[ERR] End run before numbering contestants. in GRP races.");
+				} else {
+					currentRace.giveBib(Integer.parseInt(arg1));
+				}				
 			}
 			break;
 
@@ -455,7 +474,7 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "FINISH":
-			if (currentRace.currentRaceType == RaceType.IND){
+			if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.GRP){
 				channels[1].trigger();
 			} else if (currentRace.currentRaceType == RaceType.PARIND){
 				if (channels[1] != null && channels[1].getState()) channels[1].trigger();
