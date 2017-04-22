@@ -31,7 +31,7 @@ public class Main {
 	static class Debugger{
 		
 		public TextArea output;
-		public String outputStream;
+		public String outputStream = "";
 		
 		public Debugger(){}
 		
