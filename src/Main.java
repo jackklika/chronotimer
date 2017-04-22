@@ -37,7 +37,7 @@ public class Main {
 		
 		public void setOutput(TextArea ts) {
 			output = ts;
-			output.setWrapText(true);
+			if (ts != null) output.setWrapText(true);
 		}
 		
 		public void printDebug(int messageVerbosity, String message){
