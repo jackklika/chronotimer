@@ -1,6 +1,8 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -58,6 +60,13 @@ public class UIApp extends Application {
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent t) {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            });
             primaryStage.show();
         } catch (IOException e) {
         	System.out.println("Problem in initRootLayout");
