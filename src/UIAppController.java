@@ -20,7 +20,7 @@ public class UIAppController {
 	
 	//starting to try textarea
 	@FXML
-	private TextArea console;
+	public TextArea console;
 	private PrintStream ps;
 	
 

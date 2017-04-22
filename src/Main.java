@@ -1,3 +1,5 @@
+import javafx.scene.control.TextArea;
+
 public class Main {
 
 	// The following are settings for the entire project.
@@ -25,12 +27,30 @@ public class Main {
 	 * 		thread state changes, and non-fatal errors.
 	 * 2 -- Commands good for troubleshooting, but not as important as 1.
 	 * 3 -- Really finite stuff.
-	 */ static class Debugger{
+	 */ 
+	static class Debugger{
+		
+		public TextArea output;
+		public String outputStream;
 		
 		public Debugger(){}
 		
+		public void setOutput(TextArea ts) {
+			output = ts;
+			output.setWrapText(true);
+		}
+		
 		public void printDebug(int messageVerbosity, String message){
-			if (messageVerbosity <= MAX_VERBOSITY) System.out.printf(/*"DEBUG [%d]\t */"%s\n", /*messageVerbosity,*/ message);
+			if (messageVerbosity <= MAX_VERBOSITY) {
+				String out = String.format(/*"DEBUG [%d]\t */"%s\n", /*messageVerbosity,*/ message);
+				//System.out.printf(/*"DEBUG [%d]\t */"%s\n", /*messageVerbosity,*/ message);
+				System.out.print(out);
+				if (output != null && out != null) {
+					outputStream += out;
+					output.setText(outputStream);
+					output.setScrollTop(Double.MAX_VALUE);
+				}
+			}
 		}
 		
 	}

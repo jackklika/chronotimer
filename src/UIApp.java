@@ -55,7 +55,6 @@ public class UIApp extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(UIApp.class.getResource("RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -76,6 +75,9 @@ public class UIApp extends Application {
 	            
 	            loader.setLocation(UIApp.class.getResource("UserInterface.fxml"));
 	            AnchorPane UI = (AnchorPane) loader.load();
+	            
+	            Main.dbg.setOutput(((UIAppController)loader.getController()).console);
+	            
 	            rootLayout.setCenter(UI);
 	        } catch (IOException e) {
 	        	System.out.println("Problem in showUI");
