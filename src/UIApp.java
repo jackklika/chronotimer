@@ -85,7 +85,7 @@ public class UIApp extends Application {
 	            loader.setLocation(UIApp.class.getResource("UserInterface.fxml"));
 	            AnchorPane UI = (AnchorPane) loader.load();
 	            
-	            Main.dbg.setOutput(((UIAppController)loader.getController()).console);
+	            //Main.dbg.setOutput(((UIAppController)loader.getController()).console);
 	            
 	            rootLayout.setCenter(UI);
 	        } catch (IOException e) {

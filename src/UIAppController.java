@@ -35,6 +35,14 @@ public class UIAppController {
 	private void printerBtnPressed() {
 		//TODO
 		System.out.println("Printer power button pressed");
+		if (Main.dbg.output == null) {
+			Main.dbg.setOutput(console);
+			Main.dbg.printDebug(1, Time.printTime() + "\tPrinter on");
+		}
+		else {
+			Main.dbg.printDebug(1, Time.printTime() + "\tPrinter off");
+			Main.dbg.setOutput(null);
+		}
 	}
 
 	@FXML
