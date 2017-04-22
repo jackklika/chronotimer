@@ -295,7 +295,7 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(1, "Event set to IND");
 					channels[0] = new Channel(ChronoTimer.this);
 					channels[1] = new Channel(ChronoTimer.this);
-					if (currentRace != null){
+					if (currentRace != null) {
 						currentRace.currentRaceType = (RaceType.IND);
 					}
 					break;
@@ -307,7 +307,7 @@ public class ChronoTimer implements Runnable {
 					channels[1] = new Channel(ChronoTimer.this);
 					channels[2] = new Channel(ChronoTimer.this);
 					channels[3] = new Channel(ChronoTimer.this);
-					if (currentRace != null){
+					if (currentRace != null) {
 						currentRace.currentRaceType = (RaceType.PARIND);
 					}
 					break;
@@ -317,7 +317,7 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(1, "Event set to GRP");
 					channels[0] = new Channel(ChronoTimer.this);
 					channels[1] = new Channel(ChronoTimer.this);
-					if (currentRace != null){
+					if (currentRace != null) {
 						currentRace.currentRaceType = (RaceType.GRP);
 					}
 					break;
@@ -346,7 +346,7 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(1, "New GRP race created");
 			}
 			break;
-
+			
 		case "ENDRUN":
 				
 			currentRace.raceEnded = true;

@@ -1,11 +1,10 @@
 import java.io.*;
 import java.nio.file.*;
 import java.util.Scanner;
-import javafx.fxml.FXML;
 import javafx.application.Application;
 
 public class Simulator implements Runnable {
-	ChronoTimer timer;
+	public ChronoTimer timer;
 	Shell sh;
 	String filename;
 	
@@ -33,6 +32,7 @@ public class Simulator implements Runnable {
 				}
 			}
 			else {
+				@SuppressWarnings("resource")
 				Scanner in = new Scanner(System.in);
 				while (true){
 					System.out.print(">");

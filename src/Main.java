@@ -1,5 +1,3 @@
-import javafx.application.Application;
-
 public class Main {
 
 	// The following are settings for the entire project.
