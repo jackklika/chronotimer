@@ -16,7 +16,7 @@
       <Button layoutX="34.0" layoutY="22.0" mnemonicParsing="false" onAction="#powerBtnPressed" prefHeight="31.0" prefWidth="106.0" text="Power" />
       <Button layoutX="45.0" layoutY="235.0" mnemonicParsing="false" onAction="#functionButtonPressed" prefHeight="31.0" prefWidth="146.0" text="Function" />
       <Button layoutX="45.0" layoutY="324.0" mnemonicParsing="false" onAction="#swap" prefHeight="31.0" prefWidth="146.0" text="Swap" />
-      <Button layoutX="450.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="146.0" text="Printer Power" />
+      <Button layoutX="436.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="191.0" text="Printer Power" />
       <Button layoutX="482.0" layoutY="225.0" mnemonicParsing="false" onAction="#key1" text="1" />
       <Button layoutX="511.0" layoutY="225.0" mnemonicParsing="false" onAction="#key2" text="2" />
       <Button layoutX="540.0" layoutY="225.0" mnemonicParsing="false" onAction="#key3" text="3" />
@@ -35,7 +35,7 @@
       <Group layoutX="373.0" layoutY="82.0" />
       <Group layoutX="395.0" layoutY="84.0" />
       <TextArea layoutX="210.0" layoutY="231.0" prefHeight="130.0" prefWidth="202.0" />
-      <TextArea fx:id="console" layoutX="450.0" layoutY="106.0" prefHeight="97.0" prefWidth="146.0" />
+      <TextArea fx:id="console" layoutX="436.0" layoutY="106.0" prefHeight="111.0" prefWidth="191.0" />
       <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
       <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
       <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />

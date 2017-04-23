@@ -23,7 +23,6 @@ public class UIAppController {
 	//starting to try textarea
 	@FXML
 	public TextArea console;
-	private PrintStream ps;
 	
 
 	
@@ -47,14 +46,6 @@ public class UIAppController {
 		}
 	}
 
-	@FXML
-	private void sensorOptionChanged() {
-		// activates when the dropdown indicating which type of sensor a channel
-		// should be connected to changes
-		// TODO: figure out how to set the options for a dropdown, make sure
-		// this is connected to the right actionevent
-		System.out.println("Sensor option changed!");
-	}
 
 	@FXML
 	private void swap() {
@@ -167,12 +158,10 @@ public class UIAppController {
 
 	@FXML
 	private void chan1Conn() {
-		System.out.println("TODO: connect channel 1");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
+
 		 ct.toCommand("CONN "+ toggleGroupValue + " 1" );
 		 //TODO disconnect logic
 	}
@@ -190,12 +179,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan2Conn() {
-		System.out.println("TODO: connect channel 2");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 2" );
 	}
 
@@ -211,12 +197,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan3Conn() {
-		System.out.println("TODO: connect channel 3");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 3" );
 	}
 
@@ -232,12 +215,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan4Conn() {
-		System.out.println("TODO: connect channel 4");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 4" );
 	}
 
@@ -253,12 +233,10 @@ public class UIAppController {
 
 	@FXML
 	private void chan5Conn() {
-		System.out.println("TODO: connect channel 5");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
+		 
 		 ct.toCommand("CONN "+ toggleGroupValue + " 5" );
 	}
 
@@ -274,12 +252,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan6Conn() {
-		System.out.println("TODO: connect channel 6");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 6" );
 	}
 
@@ -295,12 +270,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan7Conn() {
-		System.out.println("TODO: connect channel 7");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 7" );
 	}
 
@@ -316,12 +288,9 @@ public class UIAppController {
 
 	@FXML
 	private void chan8Conn() {
-		System.out.println("TODO: connect channel 8");
-		// : Get the sensor type selected from the dropdown menu
-		// ct.toCommand( "CONN " + <SensorType> +" 1");
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
-		 String toggleGroupValue = selectedRadioButton.getText();
+		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 8" );
 	}
 
