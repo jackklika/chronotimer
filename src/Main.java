@@ -2,7 +2,9 @@ import javafx.scene.control.TextArea;
 
 public class Main {
 
-	// The following are settings for the entire project.
+ // The following are settings for the entire project.
+	
+	static Simulator sim;
 	
 	public static int MAX_VERBOSITY = 1; /* 
 	 * Sets the verbosity of the debug message outputter.
@@ -65,7 +67,7 @@ public class Main {
 		//for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		dbg.printDebug(1, "Current time is: " + Time.printTime());
 		
-		Simulator sim = new Simulator(new ChronoTimer());
+		sim = new Simulator(new ChronoTimer());
 		if (!(args == null || args.length == 0)) sim.filename = args[0];
 		sim.run();
 		

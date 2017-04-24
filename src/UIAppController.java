@@ -13,7 +13,7 @@ public class UIAppController {
 	 * all the buttons are connected so there should not be a need to worry about that
 	 */
 	
-	ChronoTimer ct = new ChronoTimer();
+	ChronoTimer ct = Main.sim.timer;//new ChronoTimer();
 	String numEntered = "";
 	boolean active1 = false;
 	boolean active2 = false;
