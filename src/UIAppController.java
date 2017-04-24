@@ -14,6 +14,7 @@ public class UIAppController {
 	 */
 	
 	ChronoTimer ct = Main.sim.timer;//new ChronoTimer();
+	
 	String numEntered = "";
 	boolean active1 = false;
 	boolean active2 = false;
