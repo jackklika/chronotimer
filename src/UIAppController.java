@@ -12,19 +12,27 @@ public class UIAppController {
 	 * I feel like making a new chronotimer is wrong, but just trying to get something started...
 	 * all the buttons are connected so there should not be a need to worry about that
 	 */
+	
 	ChronoTimer ct = new ChronoTimer();
 	String numEntered = "";
+	boolean active1 = false;
+	boolean active2 = false;
+	boolean active3 = false;
+	boolean active4 = false;
+	boolean active5 = false;
+	boolean active6 = false;
+	boolean active7 = false;
+	boolean active8 = false;
 	
-	//Todo's that don't have an associated method below... not sure if they are done here or in ct
-	//TODO: Running display in the center
-	//TODO: displaying on the "printer"
 	  @FXML ToggleGroup group; 
-	
-	//starting to try textarea
+	  @FXML ToggleGroup race;
+	  
 	@FXML
 	public TextArea console;
 	
-
+	//TODO: show queue/running/final time on this display
+	@FXML
+	public TextArea raceDisplay;
 	
 	
 	@FXML
@@ -49,40 +57,49 @@ public class UIAppController {
 
 	@FXML
 	private void swap() {
-		// if racetype = ind
-		ct.toCommand("SWAP");
+		RadioButton selectedRadioButton = (RadioButton) race.getSelectedToggle();
+		  //this is the name of the selected radio button
+		 String toggleGroupValue = selectedRadioButton.getText();
+		 if(toggleGroupValue.equals("IND")){
+				ct.toCommand("SWAP");
+		 }
+		 else{
+			 Main.dbg.printDebug(1, Time.printTime() + "\tCannot swap unless racetype is IND");
+		 }
+	
 	}
 
 	@FXML
-	private void functionButtonPressed() {
-		// TODO: a) figure out how this works b) do it
-		System.out.println("function button pressed");
+	private void newRun() {
+		RadioButton selectedRadioButton = (RadioButton) race.getSelectedToggle();
+		  //this is the name of the selected radio button
+		 String toggleGroupValue = selectedRadioButton.getText();
+		ct.toCommand("EVENT "+ toggleGroupValue);
+		ct.toCommand("NEWRUN");
+		
+	}
+	
+	@FXML
+	private void endRun() {
+		ct.toCommand("ENDRUN");
+	}
+	
+	@FXML
+	private void DNF() {
+		ct.toCommand("DNF");
+	}
+	
+	@FXML
+	private void reset() {
+		ct.toCommand("RESET");
+	}
+	
+	@FXML
+	private void cancel() {
+		ct.toCommand("CANCEL");
 	}
 
-	// arrow buttons
-	@FXML
-	private void leftArrowPressed() {
-		// TODO:
-		System.out.println("left arrow button pressed");
-	}
 
-	@FXML
-	private void rightArrowPressed() {
-		// TODO:
-		System.out.println("right arrow button pressed");
-	}
-
-	@FXML
-	private void upArrowPressed() {
-		// TODO:
-		System.out.println("up arrow button pressed");
-	}
-
-	@FXML
-	private void downArrowPressed() {
-		// TODO:
-		System.out.println("down arrow button pressed");
-	}
 
 	// keypad buttons
 	@FXML
@@ -158,12 +175,17 @@ public class UIAppController {
 
 	@FXML
 	private void chan1Conn() {
+		if (active1){
+			ct.toCommand("DISC 1");
+			active1 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
 		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
-
 		 ct.toCommand("CONN "+ toggleGroupValue + " 1" );
-		 //TODO disconnect logic
+		 active1 = true;
+		}
 	}
 
 	@FXML
@@ -179,10 +201,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan2Conn() {
+		if (active2){
+			ct.toCommand("DISC 2");
+			active2 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 2" );
+		 active2 = true;
+		}
 	}
 
 	@FXML
@@ -197,10 +225,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan3Conn() {
+		if (active3){
+			ct.toCommand("DISC 3");
+			active3 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 3" );
+		 active3 = true;
+		}
 	}
 
 	@FXML
@@ -215,10 +249,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan4Conn() {
+		if (active4){
+			ct.toCommand("DISC 3");
+			active4 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 4" );
+		 active4 = true;
+		}
 	}
 
 	@FXML
@@ -233,11 +273,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan5Conn() {
+		if (active5){
+			ct.toCommand("DISC 5");
+			active3 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
-		 
 		 ct.toCommand("CONN "+ toggleGroupValue + " 5" );
+		 active5 = true;
+		}
 	}
 
 	@FXML
@@ -252,10 +297,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan6Conn() {
+		if (active6){
+			ct.toCommand("DISC 6");
+			active6 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 6" );
+		 active6 = true;
+		}
 	}
 
 	@FXML
@@ -270,10 +321,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan7Conn() {
+		if (active7){
+			ct.toCommand("DISC 7");
+			active7 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 7" );
+		 active7 = true;
+		}
 	}
 
 	@FXML
@@ -288,10 +345,16 @@ public class UIAppController {
 
 	@FXML
 	private void chan8Conn() {
+		if (active8){
+			ct.toCommand("DISC 8");
+			active8 = false;
+		}
+		else{
 		RadioButton selectedRadioButton = (RadioButton) group.getSelectedToggle();
-		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText().replace(" ","");
 		 ct.toCommand("CONN "+ toggleGroupValue + " 8" );
+		 active8 = true;
+		}
 	}
 
 }
