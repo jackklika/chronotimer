@@ -29,7 +29,7 @@ public class Race {
 	public String toString(){
 		
 		String out = "";
-	
+	if(currentRaceType == currentRaceType.IND){
 		out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		out += "Race Ended? " + raceEnded + "\n\n";
 		out += "Pending Racers: ";
@@ -40,6 +40,26 @@ public class Race {
 		out += "\nFinished Racers: ";
 		
 		for (Racer r : finishRace) out += r.bib + " [" + r.t.runTime() + "], ";
+		
+	}else if(currentRaceType == currentRaceType.PARIND){
+		
+	}else if(currentRaceType == currentRaceType.GRP){
+		for (Racer r : inRace) out += r.bib + " [" + r.t.runTime() + "], ";
+		out += "\nFinished Racers: ";
+		for (Racer r : finishRace) out += r.bib + " [" + r.t.runTime() + "], ";
+	}else if(currentRaceType == currentRaceType.PARGRP){
+		
+	}
+//		out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
+//		out += "Race Ended? " + raceEnded + "\n\n";
+//		out += "Pending Racers: ";
+//		for (Racer r : toRace) out += r.bib + " [" + r.t.runTime() + "], ";
+//		out += "\nCurrently Racing: ";
+//		
+//		for (Racer r : inRace) out += r.bib + " [" + r.t.runTime() + "], ";
+//		out += "\nFinished Racers: ";
+//		
+//		for (Racer r : finishRace) out += r.bib + " [" + r.t.runTime() + "], ";
 		
 		return out;
 	}
