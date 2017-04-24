@@ -2,6 +2,9 @@ import java.awt.event.ActionEvent;
 import java.util.*;
 
 import com.google.gson.Gson;
+
+import javafx.scene.control.TextArea;
+
 import java.time.Instant;
 import java.io.*;
 
@@ -18,6 +21,8 @@ public class ChronoTimer implements Runnable {
 	ArrayList<Race> raceList = new ArrayList<Race>();
 	Race currentRace;
 	RaceType raceType;
+	
+	TextArea raceDisplay;
 	
 	public Queue<Command> cmdQueue;
 
@@ -45,7 +50,9 @@ public class ChronoTimer implements Runnable {
 		 * The chronotimer thread will go execute this while loop every GRANULARITY miliseconds.
 		 */ while (true){
 			 while (powerOn){
-
+				
+				if (raceDisplay != null && currentRace != null) raceDisplay.setText(currentRace.toString());
+				 
 				// Goes through all pending commands until the queue is empty.
 				while (cmdQueue.isEmpty() == false) {
 
@@ -507,6 +514,7 @@ public class ChronoTimer implements Runnable {
 		case "LIST":
 			if (currentRace != null){
 				Main.dbg.printDebug(0, currentRace.toString());
+				//raceDisplay.setText(currentRace.toString());
 			} else { // handles null pointer exception
 				Main.dbg.printDebug(0, "Race hasn't started yet.");
 			}

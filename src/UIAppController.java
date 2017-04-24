@@ -38,6 +38,8 @@ public class UIAppController {
 	@FXML
 	private void powerBtnPressed() {
 		ct.toCommand("POWER");
+		if (ct.raceDisplay == null) ct.raceDisplay = raceDisplay;
+		else ct.raceDisplay = null;
 	}
 	
 	@FXML
