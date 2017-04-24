@@ -15,34 +15,40 @@
    <children>
       <Button layoutX="15.0" layoutY="22.0" mnemonicParsing="false" onAction="#powerBtnPressed" prefHeight="31.0" prefWidth="157.0" text="Power" />
       <Button layoutX="14.0" layoutY="318.0" mnemonicParsing="false" onAction="#swap" prefHeight="31.0" prefWidth="157.0" text="Swap" />
-      <Button layoutX="436.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="191.0" text="Printer Power" />
-      <Button layoutX="472.0" layoutY="225.0" mnemonicParsing="false" onAction="#key1" prefHeight="41.0" prefWidth="41.0" text="1" />
-      <Button layoutX="513.0" layoutY="225.0" mnemonicParsing="false" onAction="#key2" prefHeight="41.0" prefWidth="41.0" text="2" />
-      <Button layoutX="554.0" layoutY="225.0" mnemonicParsing="false" onAction="#key3" prefHeight="41.0" prefWidth="41.0" text="3" />
-      <Button layoutX="472.0" layoutY="266.0" mnemonicParsing="false" onAction="#key4" prefHeight="41.0" prefWidth="41.0" text="4" />
-      <Button layoutX="513.0" layoutY="266.0" mnemonicParsing="false" onAction="#key5" prefHeight="41.0" prefWidth="41.0" text="5" />
-      <Button layoutX="554.0" layoutY="266.0" mnemonicParsing="false" onAction="#key6" prefHeight="41.0" prefWidth="41.0" text="6" />
-      <Button layoutX="472.0" layoutY="306.0" mnemonicParsing="false" onAction="#key7" prefHeight="41.0" prefWidth="41.0" text="7" />
-      <Button layoutX="513.0" layoutY="306.0" mnemonicParsing="false" onAction="#key8" prefHeight="41.0" prefWidth="41.0" text="8" />
-      <Button layoutX="554.0" layoutY="306.0" mnemonicParsing="false" onAction="#key9" prefHeight="41.0" prefWidth="41.0" text="9" />
-      <Button layoutX="473.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyStar" prefHeight="41.0" prefWidth="41.0" text="*" />
-      <Button layoutX="514.0" layoutY="347.0" mnemonicParsing="false" onAction="#key0" prefHeight="41.0" prefWidth="41.0" text="0" />
-      <Button layoutX="555.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyPound" prefHeight="41.0" prefWidth="41.0" text="#" />
+      <Button layoutX="436.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="202.0" text="Printer Power" />
+      <Button layoutX="486.0" layoutY="225.0" mnemonicParsing="false" onAction="#key1" prefHeight="41.0" prefWidth="41.0" text="1" />
+      <Button layoutX="527.0" layoutY="225.0" mnemonicParsing="false" onAction="#key2" prefHeight="41.0" prefWidth="41.0" text="2" />
+      <Button layoutX="568.0" layoutY="225.0" mnemonicParsing="false" onAction="#key3" prefHeight="41.0" prefWidth="41.0" text="3" />
+      <Button layoutX="486.0" layoutY="266.0" mnemonicParsing="false" onAction="#key4" prefHeight="41.0" prefWidth="41.0" text="4" />
+      <Button layoutX="527.0" layoutY="266.0" mnemonicParsing="false" onAction="#key5" prefHeight="41.0" prefWidth="41.0" text="5" />
+      <Button layoutX="568.0" layoutY="266.0" mnemonicParsing="false" onAction="#key6" prefHeight="41.0" prefWidth="41.0" text="6" />
+      <Button layoutX="486.0" layoutY="306.0" mnemonicParsing="false" onAction="#key7" prefHeight="41.0" prefWidth="41.0" text="7" />
+      <Button layoutX="527.0" layoutY="306.0" mnemonicParsing="false" onAction="#key8" prefHeight="41.0" prefWidth="41.0" text="8" />
+      <Button layoutX="568.0" layoutY="306.0" mnemonicParsing="false" onAction="#key9" prefHeight="41.0" prefWidth="41.0" text="9" />
+      <Button layoutX="487.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyStar" prefHeight="41.0" prefWidth="41.0" text="*" />
+      <Button layoutX="528.0" layoutY="347.0" mnemonicParsing="false" onAction="#key0" prefHeight="41.0" prefWidth="41.0" text="0" />
+      <Button layoutX="569.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyPound" prefHeight="41.0" prefWidth="41.0" text="#" />
       <Group layoutX="373.0" layoutY="98.0" />
       <Group layoutX="372.0" layoutY="84.0" />
       <Group layoutX="373.0" layoutY="83.0" />
       <Group layoutX="373.0" layoutY="82.0" />
       <Group layoutX="395.0" layoutY="84.0" />
-      <TextArea fx:id="raceDisplay" layoutX="186.0" layoutY="219.0" prefHeight="156.0" prefWidth="270.0" />
-      <TextArea fx:id="console" layoutX="436.0" layoutY="106.0" prefHeight="111.0" prefWidth="191.0" />
+      <TextArea fx:id="raceDisplay" layoutX="199.0" layoutY="219.0" prefHeight="156.0" prefWidth="238.0">
+         <font>
+            <Font size="12.0" />
+         </font></TextArea>
+      <TextArea fx:id="console" layoutX="436.0" layoutY="106.0" prefHeight="111.0" prefWidth="202.0">
+         <font>
+            <Font size="12.0" />
+         </font></TextArea>
       <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
       <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
-      <CheckBox layoutX="392.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
+      <CheckBox layoutX="388.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
       <CheckBox layoutX="340.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
       <CheckBox layoutX="286.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan3Toggle" />
       <CheckBox layoutX="291.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan4Toggle" />
       <CheckBox layoutX="340.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
-      <CheckBox layoutX="392.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
+      <CheckBox layoutX="389.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
       <Button layoutX="238.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan1Trig" prefHeight="25.0" prefWidth="23.0" text="1" />
       <Button layoutX="282.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan3Trig" text="3" />
       <Button layoutX="332.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan5Trig" text="5" />
