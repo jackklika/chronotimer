@@ -160,6 +160,7 @@ public class UIAppController {
 	@FXML
 	private void keyPound() {
 		ct.toCommand("NUM " + numEntered);
+		numEntered = "";
 	}
 
 	// all events channel related
