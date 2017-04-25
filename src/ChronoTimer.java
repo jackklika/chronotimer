@@ -50,7 +50,7 @@ public class ChronoTimer implements Runnable {
 		 */ while (true){
 			 while (powerOn){
 				
-				if (raceDisplay != null && currentRace != null) raceDisplay.setText(currentRace.toString());
+				if (raceDisplay != null && currentRace != null) raceDisplay.setText(currentRace.toString()); // current race output
 				 
 				// Goes through all pending commands until the queue is empty.
 				while (cmdQueue.isEmpty() == false) {

@@ -81,6 +81,7 @@ public class UIAppController {
 		 String toggleGroupValue = selectedRadioButton.getText();
 		ct.toCommand("EVENT "+ toggleGroupValue);
 		ct.toCommand("NEWRUN");
+		raceDisplay.clear();
 		
 	}
 	
