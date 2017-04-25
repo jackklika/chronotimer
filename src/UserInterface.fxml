@@ -25,9 +25,9 @@
       <Button layoutX="486.0" layoutY="306.0" mnemonicParsing="false" onAction="#key7" prefHeight="41.0" prefWidth="41.0" text="7" />
       <Button layoutX="527.0" layoutY="306.0" mnemonicParsing="false" onAction="#key8" prefHeight="41.0" prefWidth="41.0" text="8" />
       <Button layoutX="568.0" layoutY="306.0" mnemonicParsing="false" onAction="#key9" prefHeight="41.0" prefWidth="41.0" text="9" />
-      <Button layoutX="487.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyStar" prefHeight="41.0" prefWidth="41.0" text="*" />
-      <Button layoutX="528.0" layoutY="347.0" mnemonicParsing="false" onAction="#key0" prefHeight="41.0" prefWidth="41.0" text="0" />
-      <Button layoutX="569.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyPound" prefHeight="41.0" prefWidth="41.0" text="#" />
+      <Button layoutX="486.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyStar" prefHeight="41.0" prefWidth="41.0" text="*" />
+      <Button layoutX="527.0" layoutY="347.0" mnemonicParsing="false" onAction="#key0" prefHeight="41.0" prefWidth="41.0" text="0" />
+      <Button layoutX="568.0" layoutY="347.0" mnemonicParsing="false" onAction="#keyPound" prefHeight="41.0" prefWidth="41.0" text="#" />
       <Group layoutX="373.0" layoutY="98.0" />
       <Group layoutX="372.0" layoutY="84.0" />
       <Group layoutX="373.0" layoutY="83.0" />
