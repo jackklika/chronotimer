@@ -15,7 +15,7 @@ public class Main {
 	 */ 
 	 
 	 
-	public static int GRANULAITY = 100; /*
+	public static int GRANULAITY = 50; /*
 	 * Simply how often the event loop runs, in milliseconds. 1000ms = 1s
 	 * Default should be 100 (Maybe?)
 	 */ 

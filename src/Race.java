@@ -27,29 +27,38 @@ public class Race {
 	@Override
 	public String toString() {
 
-		String out = "";
+		String out = "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		if (currentRaceType == currentRaceType.IND) {
-			out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
+			//out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 			//out += "Race Ended? " + raceEnded + "\n\n";
 			//out += "Pending Racers: ";
 			for (Racer r : toRace)
-				out += r.bib + " [" + r.t.runTime() + ((toRace.getFirst() == r) ? "] <\n" : "]\n");
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
 			out += "\n";
 			for (Racer r : inRace)
-				out += r.bib + " [" + r.t.runTime() + "]\n";
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
 			out += "\n";
-
 			for (Racer r : finishRace)
-				out += r.bib + " [" + r.t.runTime() + "]\n";
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 
 		} else if (currentRaceType == currentRaceType.PARIND) {
+			//out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
+			for (Racer r : toRace)
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
+			out += "\n";
+			for (Racer r : inRace)
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
+			out += "\n";
+			for (Racer r : finishRace)
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 
 		} else if (currentRaceType == currentRaceType.GRP) {
-			for (Racer r : inRace)
-				out += r.bib + " [" + r.t.runTime() + "], ";
-			out += "\nFinished Racers: ";
+			//for (Racer r : inRace)
+			//	out += r.bib + " [" + r.t.runTime() + "], ";
+			out += "Race start\t" + ((startTime == 0) ? Time.convert((long) 0) : Time.convert(startTime));
+			out += "\n";
 			for (Racer r : finishRace)
-				out += r.bib + " [" + r.t.runTime() + "], ";
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 		} else if (currentRaceType == currentRaceType.PARGRP) {
 
 		}
@@ -89,7 +98,7 @@ public class Race {
 		return true;
 
 	}
-	
+
 	/**
 	 * Removes racer with specified bib number.
 	 * 

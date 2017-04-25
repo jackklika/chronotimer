@@ -47,6 +47,17 @@ public class Time {
 		return String.format("%02d:%02d:%02d", hour, minute, second);
 	}
 
+public static String convert(Long mili){
+		
+		//long mili = System.currentTimeMillis() + currentMs;
+		long hundrs = (mili / 10) % 100;
+		long second = (mili / 1000) % 60;
+		long minute = (mili / (1000 * 60)) % 60;
+		long hour = (mili / (1000 * 60 * 60)) % 24; 
+
+		return String.format("%02d:%02d:%02d", minute, second, hundrs);
+	}
+	
 	// Start the timer for the object!
 	public void startTime() {
 		start = Instant.now().toEpochMilli()+currentMs;
@@ -69,7 +80,7 @@ public class Time {
 					"[ERR]: Time.runTime() called before both Time.startTime() and Time.stopTime() were called.");
 			return 0;
 		} else if (start != 0 && stop == 0) {
-			return Long.MAX_VALUE;
+			return Instant.now().toEpochMilli();
 		} else {
 			return (stop - start);
 		}
