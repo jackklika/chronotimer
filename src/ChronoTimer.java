@@ -40,7 +40,7 @@ public class ChronoTimer implements Runnable {
 			channels[i] = new Channel(this);
 		}
 				
-		Main.dbg.printDebug(1, "ChronoTimer starting up, but idle.");
+		Main.dbg.printDebug(1, "Welcome to Chronotimer. Use the GUI or type 'HELP' in the console.");
 		
 
 		
@@ -108,9 +108,9 @@ public class ChronoTimer implements Runnable {
 						currentRace.inRace.addLast(popped);
 					}
 					catch (NoSuchElementException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+						Main.dbg.printDebug(0, "[WARN] No racers are ready to start!");
 					} catch (NullPointerException ex){
-						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
+						Main.dbg.printDebug(0, "[WARN] Noone to start! Add more racers or start finishing.");
 					}
 					
 					
@@ -121,10 +121,10 @@ public class ChronoTimer implements Runnable {
 						popped.t.stopTime();
 						currentRace.finishRace.add(popped);
 					} catch (NoSuchElementException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+						Main.dbg.printDebug(0, "[WARN] No racers are ready to finish!");
 					}
 					catch (NullPointerException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to finish!");
+						Main.dbg.printDebug(0, "[WARN] No racers are ready to finish!");
 					}
 					
 				}
@@ -137,9 +137,9 @@ public class ChronoTimer implements Runnable {
 						currentRace.inRace.addLast(popped);
 					}
 					catch (NoSuchElementException err){
-						Main.dbg.printDebug(0, "[ERR] No racers are ready to start!");
+						Main.dbg.printDebug(0, "[WARN] No racers are ready to start!");
 					} catch (NullPointerException ex){
-						Main.dbg.printDebug(0, "[ERR] Noone to start! Add more racers or start finishing.");
+						Main.dbg.printDebug(0, "[WARN] Noone to start! Add more racers or start finishing.");
 					}
 					
 					
@@ -388,7 +388,7 @@ public class ChronoTimer implements Runnable {
 		case "NEWRUN":
 	
 			if (raceType == null){
-				Main.dbg.printDebug(0, "[ERR] Chronotimer racetype is null.");
+				Main.dbg.printDebug(0, "[WARN] No racetype selected. Use EVENT or HELP for more info.");
 				break;
 				
 			} else if (currentRace != null && currentRace.raceEnded == false){
@@ -443,17 +443,21 @@ public class ChronoTimer implements Runnable {
 
 		case "PRINT":
 			try {
-				for (Racer r : currentRace.finishRace){
-					long time = r.t.runTime();
-					if (time == Long.MAX_VALUE){
-						Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
-					}
-					else {
-						Main.dbg.printDebug(0, "Racer " + r.bib + " " + (r.t.runTime())/1000.0 + " seconds");
-					}
+				if (currentRace.finishRace.isEmpty()){
+					Main.dbg.printDebug(0, "[WARN] No racers found in finishing queue.");
+				} else {
+					for (Racer r : currentRace.finishRace){
+						long time = r.t.runTime();
+						if (time == Long.MAX_VALUE){
+							Main.dbg.printDebug(0, "Racer " + r.bib + " DNF");
+						}
+						else {
+							Main.dbg.printDebug(0, "Racer " + r.bib + " " + (r.t.runTime())/1000.0 + " seconds");
+						}
+				}				
 				}
 			} catch (NullPointerException ex){
-				Main.dbg.printDebug(0, "[ERR] NPE at Print function. Did you initialize the racers?");
+				Main.dbg.printDebug(0, "[WARN] Could not print. Did you initialize the race or racers?");
 			}
 			break;
 
@@ -462,34 +466,57 @@ public class ChronoTimer implements Runnable {
 			break;
 
 		case "NUM":
-		
-			if (currentRace.currentRaceType == null) {
-				Main.dbg.printDebug(0, "[ERR] No race type selected. Define events with 'EVENT' first, or see 'HELP'");
-			} else if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
-				int bib = Integer.parseInt(arg1);
-				try {
-					currentRace.toRace.add(new Racer(bib));
-					Main.dbg.printDebug(1, "Racer " + bib + " added");
-				} catch (Exception ex) {
-					Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
-				} 
+			
+			try {
+				if (arg1 == null || arg1.equals("")){
+					Main.dbg.printDebug(0, "[ERR] Please enter a bib number.");
+					break;
+				}
+			
+				if (currentRace == null || currentRace.currentRaceType == null) {
+					Main.dbg.printDebug(0, "[ERR] No race type selected. Define events with 'EVENT' first, or see 'HELP'");
+				} else if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
+					int bib = Integer.parseInt(arg1);
+					try {
+						currentRace.toRace.add(new Racer(bib));
+						Main.dbg.printDebug(1, "Racer " + bib + " added");
+					} catch (Exception ex) {
+						Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
+					} 
+				}
+				else if (currentRace.currentRaceType == RaceType.GRP) {
+					if (currentRace.raceEnded == false) {
+						Main.dbg.printDebug(0, "[ERR] End run before numbering contestants. in GRP races.");
+					} else {
+						currentRace.giveBib(Integer.parseInt(arg1));
+					}				
+				}
+			} catch (NumberFormatException e){
+				Main.dbg.printDebug(0, "[ERR] Please enter a valid bib number.");
 			}
-			else if (currentRace.currentRaceType == RaceType.GRP) {
-				if (currentRace.raceEnded == false) {
-					Main.dbg.printDebug(0, "[ERR] End run before numbering contestants. in GRP races.");
-				} else {
-					currentRace.giveBib(Integer.parseInt(arg1));
-				}				
-			}
+			
 			break;
 
 		case "CLR":
+			
+			
+			try {
+				if (currentRace != null){
+					if (currentRace.removeBib(Integer.parseInt(arg1))){
+						Main.dbg.printDebug(3, "Racer removed.");
+					} else {
+						Main.dbg.printDebug(0, "[WARN] No racer removed. Could not find racer.");
+					}
+				}
+			} catch (NumberFormatException e){
+				Main.dbg.printDebug(0, "[ERR] Please enter a valid bib number.");
+			}
 
 			break;
 			
 		
 		case "SWAP":
-			// Only functions during IND races
+			// Only functions during IND races (according to spec)
 			if (currentRace.currentRaceType == RaceType.IND
 			|| currentRace.currentRaceType == RaceType.PARIND){
 				ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
@@ -521,7 +548,7 @@ public class ChronoTimer implements Runnable {
 			if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
 				//try {
 					channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
-					Main.dbg.printDebug(1, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
+					Main.dbg.printDebug(2, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
 				//} catch (Exception ex) {
 					//Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
 				//}
@@ -587,7 +614,7 @@ public class ChronoTimer implements Runnable {
 				"DISC	Disconnects sensor <num> connected with CONN.		FORMAT: <num>\n" + 
 				"START	Start trigger channel 1 -- macro for TRIG 1\n" +
 				"FINISH	Finish trigger channel 2 -- macro for TRIG 2\n" + 
-				"DEBUG	Change the debug output's verbosity.				FORMAT: <1...3>\n" +
+				"DEBUG	Change the debug output's verbosity.				FORMAT: <0...3>\n" +
 				"LIST	Show the current race, their queues, and racers.\n"
 			);
 			break;

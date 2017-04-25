@@ -17,7 +17,7 @@ public class Main {
 	 
 	public static int GRANULAITY = 100; /*
 	 * Simply how often the event loop runs, in milliseconds. 1000ms = 1s
-	 * Default should be 1000 (Maybe?)
+	 * Default should be 100 (Maybe?)
 	 */ 
 	 
 	/*
@@ -61,10 +61,9 @@ public class Main {
 	public static Debugger dbg = new Debugger();
 
 
-	// The program all runs here. This might be the "simulator"
+	// The program all runs here.
 	public static void main(String[] args) {	
 		
-		//for (int i = 0; i <= 3; i++) dbg.printDebug(i, "Debug level ["+ i + "] messages active");
 		dbg.printDebug(1, "Current time is: " + Time.printTime());
 		
 		sim = new Simulator(new ChronoTimer());
