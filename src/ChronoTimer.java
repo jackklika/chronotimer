@@ -517,6 +517,10 @@ public class ChronoTimer implements Runnable {
 		
 		case "SWAP":
 			// Only functions during IND races (according to spec)
+			if (currentRace == null){
+				Main.dbg.printDebug(0, "[ERR] Cannot SWAP when there's no race!");
+			}
+			
 			if (currentRace.currentRaceType == RaceType.IND
 			|| currentRace.currentRaceType == RaceType.PARIND){
 				ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
@@ -532,11 +536,18 @@ public class ChronoTimer implements Runnable {
 
 		case "DNF":
 			// TODO test/fix
+			if (currentRace == null){
+				Main.dbg.printDebug(0, "[ERR] Cannot DNF when there's no race!");
+			}
 			if (currentRace.currentRaceType != RaceType.GRP) currentRace.finishRace.add(currentRace.inRace.pollFirst());
 			break;
 			
 		case "CANCEL":
 			// TODO test/fix
+			if (currentRace == null){
+				Main.dbg.printDebug(0, "[ERR] Cannot CANCEL when there's no race!");
+			}
+			
 			if (currentRace.currentRaceType != RaceType.GRP) currentRace.toRace.push(currentRace.inRace.pollLast());
 			break;
 
