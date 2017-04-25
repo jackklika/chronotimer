@@ -93,6 +93,12 @@ public class ChronoTimer implements Runnable {
 	// Could be put in Race class?
 	public void score(ActionEvent e){
 		// different actions based on race type
+		
+		if (currentRace == null || currentRace.currentRaceType == null){
+			Main.dbg.printDebug(0, "[ERR] score was called while currentRace or its racetype is null.");
+			return;
+		}
+		
 		switch (currentRace.currentRaceType) {
 			case IND:
 				if (e.getSource().equals(channels[0])){ // if start is tripped
@@ -171,6 +177,10 @@ public class ChronoTimer implements Runnable {
 				}
 				break;
 			case PARGRP:
+				break;
+				
+			default:
+				Main.dbg.printDebug(0, "[ERR] score called while racetype is invalid.");
 				break;
 		}
 	}
@@ -316,13 +326,18 @@ public class ChronoTimer implements Runnable {
 				break;
 			}
 			channels[sensorNum-1].setSensor(s);
-			
+			Main.dbg.printDebug(3, arg1 + " " + sensorNum + " connected.");
 			
 			break;
 
 			
 		//arg1 is sensor number
 		case "DISC":
+			int sensorNumm = Integer.parseInt(arg1);
+			
+			channels[sensorNumm-1].s.disconnect();
+			
+			Main.dbg.printDebug(3, "Sensor " + sensorNumm + " disconnected.");
 
 			break;
 
