@@ -40,7 +40,7 @@ public class UIAppController {
 		ct.toCommand("POWER");
 		if (ct.raceDisplay == null){
 			ct.raceDisplay = raceDisplay;
-			raceDisplay.setText("ChonoTimer powered on\nSelect a race type and hit New Run");
+			raceDisplay.setText("ChronoTimer powered on\nSelect a race type and hit New Run");
 		}
 		else ct.raceDisplay = null;
 	}
