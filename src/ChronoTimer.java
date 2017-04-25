@@ -164,7 +164,7 @@ public class ChronoTimer implements Runnable {
 				break;
 			case GRP:
 				if (e.getSource().equals(channels[0])){ // if start is tripped
-					currentRace.startTime = Instant.now().toEpochMilli() + (3600000*18);
+					currentRace.startTime = Instant.now().toEpochMilli() + Time.currentMs;
 					
 				}
 				
@@ -181,6 +181,59 @@ public class ChronoTimer implements Runnable {
 				}
 				break;
 			case PARGRP:
+				if (currentRace.startTime == 0 && e.getSource().equals(channels[0])){
+					currentRace.startTime = Instant.now().toEpochMilli() + Time.currentMs;
+				}
+				else {
+					if (e.getSource().equals(channels[0])){
+						Racer r = currentRace.removeBib(1);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[1])){
+						Racer r = currentRace.removeBib(2);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[2])){
+						Racer r = currentRace.removeBib(3);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[3])){
+						Racer r = currentRace.removeBib(4);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[4])){
+						Racer r = currentRace.removeBib(5);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[5])){
+						Racer r = currentRace.removeBib(6);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[6])){
+						Racer r = currentRace.removeBib(7);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+					else if (e.getSource().equals(channels[7])){
+						Racer r = currentRace.removeBib(8);
+						r.t.start = currentRace.startTime;
+						r.finish();
+						currentRace.finishRace.add(r);
+					}
+				}
 				break;
 				
 			default:
@@ -523,7 +576,7 @@ public class ChronoTimer implements Runnable {
 			
 			try {
 				if (currentRace != null){
-					if (currentRace.removeBib(Integer.parseInt(arg1))){
+					if (currentRace.removeBib(Integer.parseInt(arg1)) != null){
 						Main.dbg.printDebug(3, "Racer removed.");
 					} else {
 						Main.dbg.printDebug(0, "[WARN] No racer removed. Could not find racer.");

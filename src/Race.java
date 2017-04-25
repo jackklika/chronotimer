@@ -107,13 +107,13 @@ public class Race {
 	 * @param bib The bib corresponding with racer to remove
 	 * @return boolean if someone was removed.
 	 */
-	public boolean removeBib(int bib){
+	public Racer removeBib(int bib){
 		
 		for (Racer r : toRace){
 			if (r.bib == bib){
 				toRace.remove(r);
 				Main.dbg.printDebug(3, "Racer " + r + " with bib " + bib + " removed from toRace.");
-				return true;
+				return r;
 			}
 		}
 		
@@ -121,7 +121,7 @@ public class Race {
 			if (r.bib == bib){
 				inRace.remove(r);
 				Main.dbg.printDebug(3, "Racer " + r + " with bib " + bib + " removed from inRace.");
-				return true;
+				return r;
 			}
 		}
 		
@@ -129,13 +129,13 @@ public class Race {
 			if (r.bib == bib){
 				finishRace.remove(r);
 				Main.dbg.printDebug(3, "Racer " + r + " with bib " + bib + " removed from finishRace.");
-				return true;
+				return r;
 			}
 		}
 		
 	
 		Main.dbg.printDebug(0, "[ERR] Racer with bib " + bib + " not found!");
-		return false;
+		return null;
 		
 		
 	}
