@@ -80,7 +80,7 @@ public static String convert(Long mili){
 					"[ERR]: Time.runTime() called before both Time.startTime() and Time.stopTime() were called.");
 			return 0;
 		} else if (start != 0 && stop == 0) {
-			return Instant.now().toEpochMilli();
+			return Instant.now().toEpochMilli()+currentMs - start;
 		} else {
 			return (stop - start);
 		}
