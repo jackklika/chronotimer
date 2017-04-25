@@ -25,13 +25,12 @@ public class UIAppController {
 	boolean active7 = false;
 	boolean active8 = false;
 	
-	  @FXML ToggleGroup group; 
-	  @FXML ToggleGroup race;
+	@FXML ToggleGroup group; 
+	@FXML ToggleGroup race;
 	  
 	@FXML
 	public TextArea console;
 	
-	//TODO: show queue/running/final time on this display
 	@FXML
 	public TextArea raceDisplay;
 	
@@ -39,7 +38,10 @@ public class UIAppController {
 	@FXML
 	private void powerBtnPressed() {
 		ct.toCommand("POWER");
-		if (ct.raceDisplay == null) ct.raceDisplay = raceDisplay;
+		if (ct.raceDisplay == null){
+			ct.raceDisplay = raceDisplay;
+			raceDisplay.setText("ChonoTimer powered on\nSelect a race type and hit New Run");
+		}
 		else ct.raceDisplay = null;
 	}
 	

@@ -30,18 +30,17 @@ public class Race {
 		String out = "";
 		if (currentRaceType == currentRaceType.IND) {
 			out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
-			out += "Race Ended? " + raceEnded + "\n\n";
-			out += "Pending Racers: ";
+			//out += "Race Ended? " + raceEnded + "\n\n";
+			//out += "Pending Racers: ";
 			for (Racer r : toRace)
-				out += r.bib + " [" + r.t.runTime() + "], ";
-			out += "\nCurrently Racing: ";
-
+				out += r.bib + " [" + r.t.runTime() + ((toRace.getFirst() == r) ? "] <\n" : "]\n");
+			out += "\n";
 			for (Racer r : inRace)
-				out += r.bib + " [" + r.t.runTime() + "], ";
-			out += "\nFinished Racers: ";
+				out += r.bib + " [" + r.t.runTime() + "]\n";
+			out += "\n";
 
 			for (Racer r : finishRace)
-				out += r.bib + " [" + r.t.runTime() + "], ";
+				out += r.bib + " [" + r.t.runTime() + "]\n";
 
 		} else if (currentRaceType == currentRaceType.PARIND) {
 

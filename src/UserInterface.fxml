@@ -132,8 +132,8 @@
          </children>
       </Pane>
       <Button layoutX="15.0" layoutY="62.0" mnemonicParsing="false" onAction="#reset" prefHeight="31.0" prefWidth="157.0" text="Reset" />
-      <Button layoutX="15.0" layoutY="138.0" mnemonicParsing="false" onAction="#newRun" text="New Run" />
-      <Button layoutX="15.0" layoutY="176.0" mnemonicParsing="false" onAction="#endRun" prefHeight="31.0" prefWidth="82.0" text="End Run" />
+      <Button layoutX="15.0" layoutY="138.0" mnemonicParsing="false" onAction="#newRun" prefHeight="31.0" prefWidth="82.0" text="New Run" style="-fx-background-color: #32CD32;" />
+      <Button layoutX="15.0" layoutY="176.0" mnemonicParsing="false" onAction="#endRun" prefHeight="31.0" prefWidth="82.0" text="End Run" style="-fx-background-color: #FF0000;" />
       <Button layoutX="15.0" layoutY="354.0" mnemonicParsing="false" onAction="#DNF" prefHeight="31.0" prefWidth="76.0" text="DNF" />
       <RadioButton layoutX="29.0" layoutY="230.0" mnemonicParsing="false" selected="true" text="IND">
          <toggleGroup>
