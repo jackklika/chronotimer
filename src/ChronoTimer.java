@@ -520,6 +520,7 @@ public class ChronoTimer implements Runnable {
 			// Only functions during IND races (according to spec)
 			if (currentRace == null){
 				Main.dbg.printDebug(0, "[ERR] Cannot SWAP when there's no race!");
+				break;
 			}
 			
 			if (currentRace.currentRaceType == RaceType.IND
@@ -537,8 +538,9 @@ public class ChronoTimer implements Runnable {
 
 		case "DNF":
 			// TODO test/fix
-			if (currentRace == null){
-				Main.dbg.printDebug(0, "[ERR] Cannot DNF when there's no race!");
+			if (currentRace == null || currentRace.currentRaceType == null){
+				Main.dbg.printDebug(0, "[ERR] Cannot DNF when there's no race or race type!!");
+				break;
 			}
 			if (currentRace.currentRaceType != RaceType.GRP) currentRace.finishRace.add(currentRace.inRace.pollFirst());
 			break;
@@ -547,6 +549,7 @@ public class ChronoTimer implements Runnable {
 			// TODO test/fix
 			if (currentRace == null){
 				Main.dbg.printDebug(0, "[ERR] Cannot CANCEL when there's no race!");
+				break;
 			}
 			
 			if (currentRace.currentRaceType != RaceType.GRP) currentRace.toRace.push(currentRace.inRace.pollLast());
@@ -556,17 +559,24 @@ public class ChronoTimer implements Runnable {
 			// TODO test/fix
 			// Find the sensor object associated with arg1
 			// Send a trigger command to it
-			int chan = Integer.parseInt(arg1);
-			if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
-				//try {
-					channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
-					Main.dbg.printDebug(2, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
-				//} catch (Exception ex) {
-					//Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
-				//}
-			} else {
-				System.out.printf("Channel %f out of scope\n", chan);
+			
+			
+			try {
+				int chan = Integer.parseInt(arg1);
+				if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
+					//try {
+						channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
+						Main.dbg.printDebug(2, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
+					//} catch (Exception ex) {
+						//Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
+					//}
+				} else {
+					Main.dbg.printDebug(0, "[ERR] Channel " + chan + " out of scope.");
+				}
+			} catch (NumberFormatException e){
+				Main.dbg.printDebug(0, "[ERR] Please enter a valid number.");
 			}
+			
 			break;
 
 		case "START":
