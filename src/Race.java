@@ -1,8 +1,10 @@
+import java.time.Instant;
 import java.util.*;
 
 public class Race {
 
 	public long startTime;
+	public long finishTime;
 	public Deque<Racer> toRace; // Haven't started yet, in line
 	public Deque<Racer> inRace; // In the race
 	public ArrayList<Racer> finishRace; // Finished the race.
@@ -55,7 +57,7 @@ public class Race {
 		} else if (currentRaceType == currentRaceType.GRP) {
 			//for (Racer r : inRace)
 			//	out += r.bib + " [" + r.t.runTime() + "], ";
-			out += "Race start\t" + ((startTime == 0) ? Time.convert((long) 0) : Time.convert(startTime));
+			out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
 			out += "\n";
 			for (Racer r : finishRace)
 				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
