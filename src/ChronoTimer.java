@@ -379,8 +379,13 @@ public class ChronoTimer implements Runnable {
 					}
 					break;
 				
+				case "PARGRP":
+					Main.dbg.printDebug(1, "[ERR] PARGRP not yet implimented!");
+					//raceType = RaceType.PARGRP;
+					//Main.dbg.printDebug(1, "Event set to PARGRP");
+					
 				default:
-					Main.dbg.printDebug(0, "[ERR] Unspported race type '" + arg1 + "'. Use the HELP command.");
+					Main.dbg.printDebug(0, "[ERR] Unsupported race type '" + arg1 + "'. Use the HELP command.");
 					break;
 			}
 			break;
@@ -479,6 +484,13 @@ public class ChronoTimer implements Runnable {
 				} else if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
 					int bib = Integer.parseInt(arg1);
 					try {
+						for (Racer r : currentRace.toRace){
+							if (r.bib == bib){
+								Main.dbg.printDebug(0, "[ERR] A racer already has bib " + bib + ".");
+								break;
+							}
+						}
+						
 						currentRace.toRace.add(new Racer(bib));
 						Main.dbg.printDebug(1, "Racer " + bib + " added");
 					} catch (Exception ex) {
