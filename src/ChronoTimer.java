@@ -477,6 +477,8 @@ public class ChronoTimer implements Runnable {
 
 		case "NUM":
 			
+			boolean duplicate = false;
+			
 			try {
 				if (arg1 == null || arg1.equals("")){
 					Main.dbg.printDebug(0, "[ERR] Please enter a bib number.");
@@ -488,12 +490,14 @@ public class ChronoTimer implements Runnable {
 				} else if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
 					int bib = Integer.parseInt(arg1);
 					try {
-						for (Racer r : currentRace.toRace){
+						for (Racer r : currentRace.toRace) {
 							if (r.bib == bib){
 								Main.dbg.printDebug(0, "[ERR] A racer already has bib " + bib + ".");
+								duplicate = true;
 								break;
 							}
 						}
+						if (duplicate) break;
 						
 						currentRace.toRace.add(new Racer(bib));
 						Main.dbg.printDebug(1, "Racer " + bib + " added");
