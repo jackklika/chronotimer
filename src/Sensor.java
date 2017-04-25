@@ -4,6 +4,9 @@ public abstract class Sensor {
 	// Input from a sensor can be blocked in the timing system, regardless of
 	// its armed state.
 	// Odd number channels are start and even numbered are finish
+	
+	
+	
 	private boolean isArmed;
 	private boolean isBlocked = false;
 	private Channel myChannel;
@@ -13,6 +16,8 @@ public abstract class Sensor {
 		isBlocked = false;
 		myChannel = c;
 	}
+	
+	
 	public void trigger() {
 		if (isArmed && !isBlocked && myChannel != null) {
 			// trigger channel associated with this sensor

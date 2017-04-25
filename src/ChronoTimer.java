@@ -36,11 +36,10 @@ public class ChronoTimer implements Runnable {
 	@Override
 	public void run() {
 		
-		channels[0] = new Channel(this);
-		channels[1] = new Channel(this);
-		channels[2] = new Channel(this);
-		channels[3] = new Channel(this);
-		
+		for (int i = 0; i <= 7; i++){
+			channels[i] = new Channel(this);
+		}
+				
 		Main.dbg.printDebug(1, "ChronoTimer starting up, but idle.");
 		
 
@@ -299,10 +298,30 @@ public class ChronoTimer implements Runnable {
 			}
 			break;
 
+		//arg1 is sensortype, arg2 is number of sensor
 		case "CONN":
-
+			int sensorNum = Integer.parseInt(arg2);
+			Sensor s;
+			if (arg1.equals("GateSensor")){
+				s = new PadSensor(channels[sensorNum-1]);
+	
+			} else if (arg1.equalsIgnoreCase("EyeSensor")) {
+				s = new EyeSensor(channels[sensorNum-1]);
+				
+			} else if (arg1.equalsIgnoreCase("PadSensor")){
+				s = new PadSensor(channels[sensorNum-1]);
+				
+			} else {
+				Main.dbg.printDebug(0, "[ERR] Invalid sensor type.");
+				break;
+			}
+			channels[sensorNum-1].setSensor(s);
+			
+			
 			break;
 
+			
+		//arg1 is sensor number
 		case "DISC":
 
 			break;
@@ -453,12 +472,20 @@ public class ChronoTimer implements Runnable {
 
 			break;
 			
-		case "SWAP": // Not required for sprint 1
-			ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
-			Collections.swap(list, 0, 1);
-			Deque<Racer> newQ = new ArrayDeque<Racer>();
-			for (Racer r : list) newQ.push(r);
-			currentRace.inRace = newQ;
+		
+		case "SWAP":
+			// Only functions during IND races
+			if (currentRace.currentRaceType == RaceType.IND
+			|| currentRace.currentRaceType == RaceType.PARIND){
+				ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
+				Collections.swap(list, 0, 1);
+				Deque<Racer> newQ = new ArrayDeque<Racer>();
+				for (Racer r : list) newQ.push(r);
+				currentRace.inRace = newQ;
+			} else {
+				Main.dbg.printDebug(0, "[ERR] Only works during IND races.");
+			}
+			
 			break;
 
 		case "DNF":
@@ -541,6 +568,8 @@ public class ChronoTimer implements Runnable {
 				"SWAP	Exchange next to compentitors to finish in IND\n" +
 				"DNF 	Next competitor to finish will not finish\n" +
 				"TRIG	Trigger channel <num>						FORMAT: <num>\n" +
+				"CONN	Attaches channel <num> to a style of sensor <sensortype>		FORMAT: <sensortype> <num>\n" +
+				"DISC	Disconnects sensor <num> connected with CONN.		FORMAT: <num>\n" + 
 				"START	Start trigger channel 1 -- macro for TRIG 1\n" +
 				"FINISH	Finish trigger channel 2 -- macro for TRIG 2\n" + 
 				"DEBUG	Change the debug output's verbosity.				FORMAT: <1...3>\n" +

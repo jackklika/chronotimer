@@ -3,7 +3,7 @@ import java.awt.event.ActionEvent;
 
 public class Channel {
 	
-	private Sensor s;
+	public Sensor s;
 	private ChronoTimer ct;
 	private boolean state = false; // state = is the channel on?
 	
