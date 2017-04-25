@@ -428,6 +428,7 @@ public class ChronoTimer implements Runnable {
 			}
 			
 			currentRace.raceEnded = true;
+			if (raceType == RaceType.GRP) currentRace.finishTime = Instant.now().toEpochMilli()+Time.currentMs;
 			Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 			Gson gson = new Gson();
 			String json = gson.toJson(currentRace);
