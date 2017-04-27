@@ -507,7 +507,7 @@ public class ChronoTimer implements Runnable {
 			}
 			
 			currentRace.raceEnded = true;
-			if (raceType == RaceType.GRP) currentRace.finishTime = Instant.now().toEpochMilli()+Time.currentMs;
+			if (raceType == RaceType.GRP || raceType == RaceType.PARGRP) currentRace.finishTime = Instant.now().toEpochMilli()+Time.currentMs;
 			Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 			Gson gson = new Gson();
 			String json = gson.toJson(currentRace);
@@ -653,16 +653,16 @@ public class ChronoTimer implements Runnable {
 			
 			try {
 				int chan = Integer.parseInt(arg1);
-				if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
+				//if (chan == 1 || chan == 2 || chan == 3 || chan == 4){
 					//try {
 						channels[(chan-1)].trigger(); // Converting between array (0..) to natural integers (1..)
 						Main.dbg.printDebug(2, "Channel " + (chan) + " tripped!"); //Changed this so that channel names match the project description
 					//} catch (Exception ex) {
 						//Main.dbg.printDebug(0, "[ERR] in TRIG function -- " + ex.getMessage());
 					//}
-				} else {
-					Main.dbg.printDebug(0, "[ERR] Channel " + chan + " out of scope.");
-				}
+				//} else {
+				//	Main.dbg.printDebug(0, "[ERR] Channel " + chan + " out of scope.");
+				//}
 			} catch (NumberFormatException e){
 				Main.dbg.printDebug(0, "[ERR] Please enter a valid number.");
 			}

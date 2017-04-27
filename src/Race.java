@@ -96,8 +96,15 @@ public class Race {
 			return false;
 		}
 
-		finishRace.get(finishLength - (index--)).bib = arg1;
-
+		if (currentRaceType == RaceType.GRP) {
+			finishRace.get(finishLength - (index--)).bib = arg1;
+		}
+		else if (currentRaceType == RaceType.PARGRP) {
+			Racer r = finishRace.get(finishLength - (index--)); // change this to get specific racer by bib num (1-8)
+			r.bib = arg1;
+			finishRace.add(finishLength - index, r);
+		}
+		
 		return true;
 
 	}
