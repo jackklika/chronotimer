@@ -24,6 +24,7 @@ public class Racer {
 	
 //Sort racers by race result order (shortest to longest with all DNFs at the end)
 /*Commenting out until time format matches
+ * 
 	public int compareTo(Object o) {
 		if (o instanceof Racer) {
 			Racer other = (Racer) o;
