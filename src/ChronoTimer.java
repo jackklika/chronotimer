@@ -274,7 +274,10 @@ public class ChronoTimer implements Runnable {
 	// Takes string of format "COMMAND ARG1 ARG2"
 	public Command(String cmd){
 		
-		// TODO: Sanitize / check input here
+		// If the power is off, don't process anything besides POWER commands.
+		if (powerOn == false && cmd.equalsIgnoreCase("POWER") == false){
+			return;
+		}
 
 		Main.dbg.printDebug(3, "Command Constructor in: " + cmd);
 		String[] args = cmd.split(" ");
@@ -511,6 +514,7 @@ public class ChronoTimer implements Runnable {
 			
 			// This is what will be displayed in the webserver as the time.
 			for (Racer r : currentRace.finishRace){
+				
 				r.prettyTime = Time.convert(r.t.runTime());
 			}
 			if (raceType == RaceType.GRP) currentRace.finishTime = Instant.now().toEpochMilli()+Time.currentMs;
