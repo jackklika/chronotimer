@@ -410,7 +410,7 @@ public class ChronoTimer implements Runnable {
 					channels[0] = new Channel(ChronoTimer.this);
 					channels[1] = new Channel(ChronoTimer.this);
 					if (currentRace != null) {
-						currentRace.currentRaceType = (RaceType.IND);
+						currentRace.currentRaceType = RaceType.IND;
 					}
 					break;
 					
@@ -422,7 +422,7 @@ public class ChronoTimer implements Runnable {
 					channels[2] = new Channel(ChronoTimer.this);
 					channels[3] = new Channel(ChronoTimer.this);
 					if (currentRace != null) {
-						currentRace.currentRaceType = (RaceType.PARIND);
+						currentRace.currentRaceType = RaceType.PARIND;
 					}
 					break;
 					
@@ -432,14 +432,26 @@ public class ChronoTimer implements Runnable {
 					channels[0] = new Channel(ChronoTimer.this);
 					channels[1] = new Channel(ChronoTimer.this);
 					if (currentRace != null) {
-						currentRace.currentRaceType = (RaceType.GRP);
+						currentRace.currentRaceType = RaceType.GRP;
 					}
 					break;
 				
 				case "PARGRP":
 					Main.dbg.printDebug(1, "[ERR] PARGRP not yet implimented!");
-					//raceType = RaceType.PARGRP;
-					//Main.dbg.printDebug(1, "Event set to PARGRP");
+					raceType = RaceType.PARGRP;
+					Main.dbg.printDebug(1, "Event set to PARGRP");
+					channels[0] = new Channel(ChronoTimer.this);
+					channels[1] = new Channel(ChronoTimer.this);
+					channels[2] = new Channel(ChronoTimer.this);
+					channels[3] = new Channel(ChronoTimer.this);
+					channels[4] = new Channel(ChronoTimer.this);
+					channels[5] = new Channel(ChronoTimer.this);
+					channels[6] = new Channel(ChronoTimer.this);
+					channels[7] = new Channel(ChronoTimer.this);
+					if (currentRace != null) {
+						currentRace.currentRaceType = RaceType.PARGRP;
+					}
+					break;
 					
 				default:
 					Main.dbg.printDebug(0, "[ERR] Unsupported race type '" + arg1 + "'. Use the HELP command.");
