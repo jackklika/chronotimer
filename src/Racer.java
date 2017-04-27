@@ -9,6 +9,8 @@ public class Racer {
 	public long runTime;
 	
 
+	public String prettyTime;
+
 	public Racer(int bib) {
 		this.bib = bib;
 		Main.dbg.printDebug(3, this + "Created at " + Time.printTime());
