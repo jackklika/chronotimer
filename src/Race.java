@@ -26,6 +26,7 @@ public class Race {
 		currentRaceType = raceType;
 	}
 
+	@SuppressWarnings("static-access")
 	@Override
 	public String toString() {
 
@@ -54,16 +55,16 @@ public class Race {
 			for (Racer r : finishRace)
 				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 
-		} else if (currentRaceType == currentRaceType.GRP) {
+		} else if (currentRaceType == currentRaceType.GRP || currentRaceType == currentRaceType.PARGRP) {
 			//for (Racer r : inRace)
 			//	out += r.bib + " [" + r.t.runTime() + "], ";
 			out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
 			out += "\n";
 			for (Racer r : finishRace)
 				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
-		} else if (currentRaceType == currentRaceType.PARGRP) {
-
-		}
+		} // else if (currentRaceType == currentRaceType.PARGRP) {
+//
+//		}
 		// out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		// out += "Race Ended? " + raceEnded + "\n\n";
 		// out += "Pending Racers: ";

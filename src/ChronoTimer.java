@@ -183,6 +183,8 @@ public class ChronoTimer implements Runnable {
 			case PARGRP:
 				if (currentRace.startTime == 0 && e.getSource().equals(channels[0])){
 					currentRace.startTime = Instant.now().toEpochMilli() + Time.currentMs;
+					currentRace.inRace.addAll(currentRace.toRace);
+					currentRace.toRace.removeAll(currentRace.inRace);
 				}
 				else {
 					if (e.getSource().equals(channels[0])){
@@ -359,6 +361,9 @@ public class ChronoTimer implements Runnable {
 			if (channels[c-1] != null){
 				channels[c-1].toggle();
 				String state = channels[c-1].getState() ? "on" : "off";
+				if (currentRace.currentRaceType == RaceType.PARGRP && channels[c-1].getState()) {
+					currentRace.toRace.add(new Racer(c));
+				}
 				Main.dbg.printDebug(1, "Channel " + Integer.toString(c) + " is now toggled " + state); //removed -1 to match the project description
 			} else {
 				Main.dbg.printDebug(0, "You need to initialize channnels");
@@ -489,7 +494,7 @@ public class ChronoTimer implements Runnable {
 				
 			} else if (raceType == RaceType.PARGRP) {
 				currentRace = new Race(raceType);
-				Main.dbg.printDebug(0, "[ERR] PARGRP not implimented yet!");
+				Main.dbg.printDebug(1, "NEW PARGRP race created");
 				
 			}
 			break;
@@ -570,7 +575,7 @@ public class ChronoTimer implements Runnable {
 						Main.dbg.printDebug(0, "[ERR] Not a valid number, or race was incorrectly created.");
 					} 
 				}
-				else if (currentRace.currentRaceType == RaceType.GRP) {
+				else if (currentRace.currentRaceType == RaceType.GRP || currentRace.currentRaceType == RaceType.PARGRP) {
 					if (currentRace.raceEnded == false) {
 						Main.dbg.printDebug(0, "[ERR] End run before numbering contestants. in GRP races.");
 					} else {
