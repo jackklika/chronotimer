@@ -42,7 +42,10 @@ public class UIAppController {
 			ct.raceDisplay = raceDisplay;
 			raceDisplay.setText("ChronoTimer powered on\nSelect a race type and hit New Run");
 		}
-		else ct.raceDisplay = null;
+		else {
+			ct.raceDisplay.clear();
+			ct.raceDisplay = null;
+		}
 	}
 	
 	@FXML
