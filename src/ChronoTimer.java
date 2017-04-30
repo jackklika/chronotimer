@@ -425,10 +425,7 @@ public class ChronoTimer implements Runnable {
 				case "PARIND":
 					raceType = RaceType.PARIND;
 					Main.dbg.printDebug(1, "Event set to PARIND");
-					channels[0] = new Channel(ChronoTimer.this);
-					channels[1] = new Channel(ChronoTimer.this);
-					channels[2] = new Channel(ChronoTimer.this);
-					channels[3] = new Channel(ChronoTimer.this);
+					for (int i = 0; i < 4; i++) channels[i] = new Channel(ChronoTimer.this);
 					if (currentRace != null) {
 						currentRace.currentRaceType = RaceType.PARIND;
 					}
@@ -445,17 +442,9 @@ public class ChronoTimer implements Runnable {
 					break;
 				
 				case "PARGRP":
-					Main.dbg.printDebug(1, "[ERR] PARGRP not yet implimented!");
 					raceType = RaceType.PARGRP;
 					Main.dbg.printDebug(1, "Event set to PARGRP");
-					channels[0] = new Channel(ChronoTimer.this);
-					channels[1] = new Channel(ChronoTimer.this);
-					channels[2] = new Channel(ChronoTimer.this);
-					channels[3] = new Channel(ChronoTimer.this);
-					channels[4] = new Channel(ChronoTimer.this);
-					channels[5] = new Channel(ChronoTimer.this);
-					channels[6] = new Channel(ChronoTimer.this);
-					channels[7] = new Channel(ChronoTimer.this);
+					for (int i = 0; i < 8; i++) channels[i] = new Channel(ChronoTimer.this);
 					if (currentRace != null) {
 						currentRace.currentRaceType = RaceType.PARGRP;
 					}

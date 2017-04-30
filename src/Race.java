@@ -28,66 +28,56 @@ public class Race {
 
 	@SuppressWarnings("static-access")
 	@Override
+	/**
+	 * Assembles a string containing the current race and its participants (with their times)
+	 * Used in UIAppController.raceDisplay, called from the ChronoTimer command loop
+	 * 
+	 * @return string representation of race
+	 */
 	public String toString() {
 		if (!(finishRace.isEmpty())) Collections.sort(finishRace);
-		String out = "** Race " + currentRaceType + " #" + raceNum + " ***\n";
-		if (currentRaceType == currentRaceType.IND) {
-			//out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
-			//out += "Race Ended? " + raceEnded + "\n\n";
-			//out += "Pending Racers: ";
-			for (Racer r : toRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
-			out += "\n";
-			for (Racer r : inRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
-			out += "\n";
-			for (Racer r : finishRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
-
-		} else if (currentRaceType == currentRaceType.PARIND) {
-			//out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
-			for (Racer r : toRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
-			out += "\n";
-			for (Racer r : inRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
-			out += "\n";
-			for (Racer r : finishRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
-
-		} else if (currentRaceType == currentRaceType.GRP) {
-			//for (Racer r : inRace)
-			//	out += r.bib + " [" + r.t.runTime() + "], ";
-			out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
-			out += "\n";
-			for (Racer r : finishRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
-		}  else if (currentRaceType == currentRaceType.PARGRP) {
-			//out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
-			out += "\n";
-			if (!(toRace.isEmpty())) {
-				for (Racer r : toRace) out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
+		String out = "** Race #" + raceNum + " " + currentRaceType + " ***\n";
+		switch (currentRaceType){
+			case IND:
+				for (Racer r : toRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
 				out += "\n";
-			}
-			if (!(inRace.isEmpty())){
-				for (Racer r : inRace) out += r.bib + "\t[" + Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
+				for (Racer r : inRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
 				out += "\n";
-			}
-			for (Racer r : finishRace)
-				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+				for (Racer r : finishRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+				break;
+			case PARIND:
+				for (Racer r : toRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
+				out += "\n";
+				for (Racer r : inRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
+				out += "\n";
+				for (Racer r : finishRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+				break;
+			case GRP:
+				out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
+				out += "\n";
+				for (Racer r : finishRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+				break;
+			case PARGRP:
+				out += "\n";
+				if (!(toRace.isEmpty())) {
+					for (Racer r : toRace) out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
+					out += "\n";
+				}
+				if (!(inRace.isEmpty())){
+					for (Racer r : inRace) out += r.bib + "\t[" + Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
+					out += "\n";
+				}
+				for (Racer r : finishRace)
+					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+				break;
 		}
-		// out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
-		// out += "Race Ended? " + raceEnded + "\n\n";
-		// out += "Pending Racers: ";
-		// for (Racer r : toRace) out += r.bib + " [" + r.t.runTime() + "], ";
-		// out += "\nCurrently Racing: ";
-		//
-		// for (Racer r : inRace) out += r.bib + " [" + r.t.runTime() + "], ";
-		// out += "\nFinished Racers: ";
-		//
-		// for (Racer r : finishRace) out += r.bib + " [" + r.t.runTime() + "],
-		// ";
-
 		return out;
 	}
 
