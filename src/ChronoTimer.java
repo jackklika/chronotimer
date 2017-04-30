@@ -187,49 +187,49 @@ public class ChronoTimer implements Runnable {
 					currentRace.toRace.removeAll(currentRace.inRace);
 				}
 				else {
-					if (e.getSource().equals(channels[0])){
+					if (e.getSource().equals(channels[0]) && channels[0].getState()){
 						Racer r = currentRace.removeBib(1);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[1])){
+					else if (e.getSource().equals(channels[1]) && channels[1].getState()){
 						Racer r = currentRace.removeBib(2);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[2])){
+					else if (e.getSource().equals(channels[2]) && channels[2].getState()){
 						Racer r = currentRace.removeBib(3);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[3])){
+					else if (e.getSource().equals(channels[3]) && channels[3].getState()){
 						Racer r = currentRace.removeBib(4);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[4])){
+					else if (e.getSource().equals(channels[4]) && channels[4].getState()){
 						Racer r = currentRace.removeBib(5);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[5])){
+					else if (e.getSource().equals(channels[5]) && channels[5].getState()){
 						Racer r = currentRace.removeBib(6);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[6])){
+					else if (e.getSource().equals(channels[6]) && channels[6].getState()){
 						Racer r = currentRace.removeBib(7);
 						r.t.start = currentRace.startTime;
 						r.finish();
 						currentRace.finishRace.add(r);
 					}
-					else if (e.getSource().equals(channels[7])){
+					else if (e.getSource().equals(channels[7]) && channels[7].getState()){
 						Racer r = currentRace.removeBib(8);
 						r.t.start = currentRace.startTime;
 						r.finish();

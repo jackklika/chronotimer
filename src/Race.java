@@ -29,7 +29,7 @@ public class Race {
 	@SuppressWarnings("static-access")
 	@Override
 	public String toString() {
-
+		if (!(finishRace.isEmpty())) Collections.sort(finishRace);
 		String out = "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		if (currentRaceType == currentRaceType.IND) {
 			//out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
@@ -55,16 +55,27 @@ public class Race {
 			for (Racer r : finishRace)
 				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 
-		} else if (currentRaceType == currentRaceType.GRP || currentRaceType == currentRaceType.PARGRP) {
+		} else if (currentRaceType == currentRaceType.GRP) {
 			//for (Racer r : inRace)
 			//	out += r.bib + " [" + r.t.runTime() + "], ";
 			out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
 			out += "\n";
 			for (Racer r : finishRace)
 				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
-		} // else if (currentRaceType == currentRaceType.PARGRP) {
-//
-//		}
+		}  else if (currentRaceType == currentRaceType.PARGRP) {
+			//out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
+			out += "\n";
+			if (!(toRace.isEmpty())) {
+				for (Racer r : toRace) out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((toRace.getLast() == r) ? "] >\n" : "]\n");
+				out += "\n";
+			}
+			if (!(inRace.isEmpty())){
+				for (Racer r : inRace) out += r.bib + "\t[" + Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
+				out += "\n";
+			}
+			for (Racer r : finishRace)
+				out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+		}
 		// out += "** Race " + currentRaceType + " #" + raceNum + " ***\n";
 		// out += "Race Ended? " + raceEnded + "\n\n";
 		// out += "Pending Racers: ";
