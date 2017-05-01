@@ -13,7 +13,7 @@ public class Racer implements Comparable<Racer>{
 	}
 
 	public void getRunTime() {
-		runTime = t.runTime();
+		if (runTime != Long.MAX_VALUE) runTime = t.runTime();
 	}
 	
 	public long finish(){

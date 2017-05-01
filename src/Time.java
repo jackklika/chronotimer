@@ -48,6 +48,8 @@ public class Time {
 	}
 
 public static String convert(Long mili){
+	
+		if (mili == Long.MAX_VALUE) return "DNF";
 		
 		//long mili = System.currentTimeMillis() + currentMs;
 		long hundrs = (mili / 10) % 100;

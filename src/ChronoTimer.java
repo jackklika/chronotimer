@@ -631,7 +631,11 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(0, "[ERR] Cannot DNF when there's no race or race type!!");
 				break;
 			}
-			if (currentRace.currentRaceType != RaceType.GRP) currentRace.finishRace.add(currentRace.inRace.pollFirst());
+			if (currentRace.currentRaceType != RaceType.GRP) {
+				Racer r = currentRace.inRace.pollFirst();
+				r.runTime = Long.MAX_VALUE;
+				currentRace.finishRace.add(r);
+			}
 			break;
 			
 		case "CANCEL":

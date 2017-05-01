@@ -46,7 +46,7 @@ public class Race {
 					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
 				out += "\n";
 				for (Racer r : finishRace)
-					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+					out += r.bib + "\t[" + Time.convert((r.runTime == Long.MAX_VALUE) ? r.runTime : r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 				break;
 			case PARIND:
 				for (Racer r : toRace)
@@ -56,7 +56,7 @@ public class Race {
 					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((inRace.getLast() == r) ? "] R\n" : "]\n");
 				out += "\n";
 				for (Racer r : finishRace)
-					out += r.bib + "\t[" + Time.convert(r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
+					out += r.bib + "\t[" + Time.convert((r.runTime == Long.MAX_VALUE) ? r.runTime : r.t.runTime()) + ((finishRace.get(finishRace.size()-1) == r) ? "] F\n" : "]\n");
 				break;
 			case GRP:
 				out += "R\t[" + ((startTime == 0) ? Time.convert((long) 0) : (raceEnded ? Time.convert(finishTime-startTime) : Time.convert(Instant.now().toEpochMilli()+Time.currentMs - startTime))) +"]\n";
