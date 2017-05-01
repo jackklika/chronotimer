@@ -43,20 +43,20 @@
          </font></TextArea>
       <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
       <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
-      <CheckBox layoutX="388.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
-      <CheckBox layoutX="339.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
+      <CheckBox layoutX="386.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
+      <CheckBox layoutX="338.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
       <CheckBox layoutX="290.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan3Toggle" />
       <CheckBox layoutX="290.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan4Toggle" />
-      <CheckBox layoutX="339.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
-      <CheckBox layoutX="388.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
+      <CheckBox layoutX="338.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
+      <CheckBox layoutX="386.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
       <Button layoutX="238.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan1Trig" text="1" />
       <Button layoutX="286.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan3Trig" text="3" />
-      <Button layoutX="335.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan5Trig" text="5" />
-      <Button layoutX="384.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan7Trig" text="7" />
+      <Button layoutX="334.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan5Trig" text="5" />
+      <Button layoutX="382.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan7Trig" text="7" />
       <Button layoutX="238.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan2Trig" text="2" />
       <Button layoutX="286.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan4Trig" text="4" />
-      <Button layoutX="335.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan6Trig" text="6" />
-      <Button layoutX="384.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan8Trig" text="8" />
+      <Button layoutX="334.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan6Trig" text="6" />
+      <Button layoutX="382.0" layoutY="154.0" mnemonicParsing="false" onAction="#chan8Trig" text="8" />
       <Label layoutX="216.0" layoutY="22.0" text="ChronoTimer 1009">
          <font>
             <Font name="System Bold" size="21.0" />
