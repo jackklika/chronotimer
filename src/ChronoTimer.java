@@ -32,7 +32,6 @@ public class ChronoTimer implements Runnable {
 	public Queue<Command> cmdQueue;
 
 	public ChronoTimer() {
-		// powerOn = true;
 		channels = new Channel[8];
 		cmdQueue = new LinkedList<Command>();
 	}
@@ -115,7 +114,6 @@ public class ChronoTimer implements Runnable {
 	 * Handles scoring by race type.
 	 */
 	public void score(ActionEvent e) {
-		// different actions based on race type
 
 		if (currentRace == null || currentRace.currentRaceType == null) {
 			Main.dbg.printDebug(0, "[ERR] score was called while currentRace or its racetype is null.");
@@ -124,7 +122,8 @@ public class ChronoTimer implements Runnable {
 
 		switch (currentRace.currentRaceType) {
 		case IND:
-			if (e.getSource().equals(channels[0])) { // if start is tripped
+			// if start is tripped
+			if (e.getSource().equals(channels[0])) {
 				try {
 					Racer popped = currentRace.toRace.pollFirst();
 					popped.t.startTime();
@@ -135,8 +134,8 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(0, "[WARN] Noone to start! Add more racers or start finishing.");
 				}
 
-			} else if (e.getSource().equals(channels[1])) { // if finish is
-															// tripped
+				// if finish is tripped
+			} else if (e.getSource().equals(channels[1])) { 
 
 				try {
 					Racer popped = currentRace.inRace.pollFirst();
@@ -151,10 +150,8 @@ public class ChronoTimer implements Runnable {
 			}
 			break;
 		case PARIND:
-			if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])) { // if
-																							// start
-																							// is
-																							// tripped
+			// if start is tripped
+			if (e.getSource().equals(channels[0]) || e.getSource().equals(channels[2])) {
 				try {
 					Racer popped = currentRace.toRace.pollFirst();
 					popped.t.startTime();
@@ -165,10 +162,8 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(0, "[WARN] Noone to start! Add more racers or start finishing.");
 				}
 
-			} else if (e.getSource().equals(channels[1]) || e.getSource().equals(channels[3])) { // if
-																									// finish
-																									// is
-																									// tripped
+				// if finish is tripped
+			} else if (e.getSource().equals(channels[1]) || e.getSource().equals(channels[3])) { 
 
 				try {
 					Racer popped = currentRace.inRace.pollFirst();
@@ -188,8 +183,7 @@ public class ChronoTimer implements Runnable {
 
 			}
 
-			else if (e.getSource().equals(channels[1])) { // if finish is
-															// tripped
+			else if (e.getSource().equals(channels[1])) { // if finish is tripped
 				int i = 1;
 				if (!(currentRace.finishRace.isEmpty())) {
 					int s = currentRace.finishRace.size();
@@ -275,7 +269,6 @@ public class ChronoTimer implements Runnable {
 	public class Command {
 
 		String command = "", arg1 = "", arg2 = "";
-
 
 		// Takes string of format "COMMAND ARG1 ARG2"
 		public Command(String cmd) {
