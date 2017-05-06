@@ -3,6 +3,7 @@ import java.io.PrintStream;
   
 import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleGroup;
@@ -33,6 +34,17 @@ public class UIAppController {
 	
 	@FXML
 	public TextArea raceDisplay;
+	
+	@FXML
+	public CheckBox tog1;
+	public CheckBox tog2;
+	public CheckBox tog3;
+	public CheckBox tog4;
+	public CheckBox tog5;
+	public CheckBox tog6;
+	public CheckBox tog7;
+	public CheckBox tog8;
+	
 	
 	
 	@FXML
@@ -86,6 +98,25 @@ public class UIAppController {
 		ct.toCommand("NEWRUN");
 		raceDisplay.clear();
 		
+		//reset checkboxes
+		if (ct.currentRace.raceEnded) {
+			tog1.setIndeterminate(false);
+			tog1.setSelected(false);
+			tog2.setIndeterminate(false);
+			tog2.setSelected(false);
+			tog3.setIndeterminate(false);
+			tog3.setSelected(false);
+			tog4.setIndeterminate(false);
+			tog4.setSelected(false);
+			tog5.setIndeterminate(false);
+			tog5.setSelected(false);
+			tog6.setIndeterminate(false);
+			tog6.setSelected(false);
+			tog7.setIndeterminate(false);
+			tog7.setSelected(false);
+			tog8.setIndeterminate(false);
+			tog8.setSelected(false);
+		}
 	}
 	
 	@FXML
@@ -101,6 +132,22 @@ public class UIAppController {
 	@FXML
 	private void reset() {
 		ct.toCommand("RESET");
+		tog1.setIndeterminate(false);
+		tog1.setSelected(false);
+		tog2.setIndeterminate(false);
+		tog2.setSelected(false);
+		tog3.setIndeterminate(false);
+		tog3.setSelected(false);
+		tog4.setIndeterminate(false);
+		tog4.setSelected(false);
+		tog5.setIndeterminate(false);
+		tog5.setSelected(false);
+		tog6.setIndeterminate(false);
+		tog6.setSelected(false);
+		tog7.setIndeterminate(false);
+		tog7.setSelected(false);
+		tog8.setIndeterminate(false);
+		tog8.setSelected(false);
 	}
 	
 	@FXML

@@ -41,14 +41,14 @@
          <font>
             <Font size="12.0" />
          </font></TextArea>
-      <CheckBox layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
-      <CheckBox layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
-      <CheckBox layoutX="386.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
-      <CheckBox layoutX="338.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
-      <CheckBox layoutX="290.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan3Toggle" />
-      <CheckBox layoutX="290.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan4Toggle" />
-      <CheckBox layoutX="338.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
-      <CheckBox layoutX="386.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
+      <CheckBox fx:id="tog1" layoutX="242.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan1Toggle" />
+      <CheckBox fx:id="tog2" layoutX="242.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan2Toggle" />
+      <CheckBox fx:id="tog3" layoutX="386.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan7Toggle" />
+      <CheckBox fx:id="tog4" layoutX="338.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan5Toggle" />
+      <CheckBox fx:id="tog5" layoutX="290.0" layoutY="118.0" mnemonicParsing="false" onAction="#chan3Toggle" />
+      <CheckBox fx:id="tog6" layoutX="290.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan4Toggle" />
+      <CheckBox fx:id="tog7" layoutX="338.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan6Toggle" />
+      <CheckBox fx:id="tog8" layoutX="386.0" layoutY="192.0" mnemonicParsing="false" onAction="#chan8Toggle" />
       <Button layoutX="238.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan1Trig" text="1" />
       <Button layoutX="286.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan3Trig" text="3" />
       <Button layoutX="334.0" layoutY="77.0" mnemonicParsing="false" onAction="#chan5Trig" text="5" />
