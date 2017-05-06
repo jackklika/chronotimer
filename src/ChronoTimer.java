@@ -663,7 +663,7 @@ public class ChronoTimer implements Runnable {
 					break;
 				}
 
-				if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) {
+				if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND || currentRace.inRace.size() ==1) {
 					ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
 					Collections.swap(list, 0, 1);
 					Deque<Racer> newQ = new ArrayDeque<Racer>();
@@ -681,10 +681,12 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(0, "[ERR] Cannot DNF when there's no race or race type!!");
 					break;
 				}
-				if (currentRace.currentRaceType != RaceType.GRP) {
+				if (currentRace.currentRaceType != RaceType.GRP || currentRace.currentRaceType != RaceType.PARGRP) {
+					if(!(currentRace.inRace.isEmpty() ||currentRace.inRace == null)){
 					Racer r = currentRace.inRace.pollFirst();
 					r.runTime = Long.MAX_VALUE;
 					currentRace.finishRace.add(r);
+					}
 				}
 				break;
 
