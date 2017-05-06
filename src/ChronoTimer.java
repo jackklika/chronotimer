@@ -7,6 +7,9 @@ import javafx.scene.control.TextArea;
 
 import java.time.Instant;
 import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 enum RaceType {
 	IND, PARIND, GRP, PARGRP
@@ -522,14 +525,50 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 				Gson gson = new Gson();
 				String json = gson.toJson(currentRace);
-				try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".json"))) {
-					out.print(json);
+				
+//				try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".json"))) {
+//					out.print(json);
+//					out.flush();
+//					out.close();
+//				} catch (FileNotFoundException e) {
+//					// TODO Auto-generated catch block
+//					e.printStackTrace();
+//				}
+				
+				// Client will connect to this location
+				URL site;
+				try {
+					site = new URL("http://localhost:8000/sendresults");
+					HttpURLConnection conn = (HttpURLConnection) site.openConnection();
+
+					// now create a POST request
+					conn.setRequestMethod("POST");
+					conn.setDoOutput(true);
+					conn.setDoInput(true);
+					DataOutputStream out = new DataOutputStream(conn.getOutputStream());
+					out.writeBytes(json);
 					out.flush();
 					out.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					
+					InputStreamReader inputStr = new InputStreamReader(conn.getInputStream());
+
+					// string to hold the result of reading in the response
+					StringBuilder sb = new StringBuilder();
+
+					// read the characters from the request byte by byte and build up
+					// the Response
+					int nextChar;
+					while ((nextChar = inputStr.read()) > -1) {
+						sb = sb.append((char) nextChar);
+					}
+					System.out.println("Return String: " + sb);
+					
+				} catch (Exception ex){
+					Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems.");
+					ex.printStackTrace();
 				}
+				
+				
 				break;
 
 			case "PRINT":
