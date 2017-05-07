@@ -1,4 +1,3 @@
-package chronotimer;
 public class PadSensor extends Sensor {
 
 	public PadSensor(Channel c) {

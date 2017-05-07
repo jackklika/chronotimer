@@ -1,4 +1,3 @@
-package chronotimer;
 import javafx.scene.control.TextArea;
 
 public class Main {

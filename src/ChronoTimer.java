@@ -1,4 +1,3 @@
-package chronotimer;
 import java.awt.event.ActionEvent;
 import java.util.*;
 
@@ -518,7 +517,6 @@ public class ChronoTimer implements Runnable {
 
 				// This is what will be displayed in the webserver as the time.
 				for (Racer r : currentRace.finishRace) {
-
 					r.prettyTime = Time.convert(r.t.runTime());
 				}
 				if (raceType == RaceType.GRP)
@@ -526,7 +524,6 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 				Gson gson = new Gson();
 				String json = gson.toJson(currentRace.finishRace);
-				System.out.println(json);
 				
 //				try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".json"))) {
 //					out.print(json);

@@ -1,4 +1,3 @@
-package chronotimer;
 public class EyeSensor extends Sensor {
 
 	public EyeSensor(Channel c) {
