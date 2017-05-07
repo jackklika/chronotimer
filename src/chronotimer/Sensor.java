@@ -1,3 +1,4 @@
+package chronotimer;
 public abstract class Sensor {
 	// Generates a single "trigger" event indicating a sensor has been activated
 	// Sensors can be armed or disarmed

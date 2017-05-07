@@ -1,3 +1,4 @@
+package chronotimer;
 
 public class Racer implements Comparable<Racer>{
 	public Time t = new Time();
