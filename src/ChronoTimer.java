@@ -4,6 +4,8 @@ import java.util.*;
 import com.google.gson.Gson;
 
 import javafx.scene.control.TextArea;
+import llm.lab7.client.DirectoryProxy;
+import llm.lab7.server.DirectoryServer;
 
 import java.time.Instant;
 import java.io.*;
@@ -748,6 +750,13 @@ public class ChronoTimer implements Runnable {
 				} else { // handles null pointer exception
 					Main.dbg.printDebug(0, "Race hasn't started yet.");
 				}
+				break;
+				
+			case "SERVER":
+				Main.dbg.printDebug(0, "Server now on!");
+				
+				DirectoryServer ds = new DirectoryServer();
+				
 				break;
 
 			case "HELP":
