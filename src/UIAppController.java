@@ -48,6 +48,7 @@ public class UIAppController {
 	@FXML
 	private void serverBtnPressed(){
 		//TODO
+		ct.toCommand("SERVER");
 	}
 	
 	@FXML
