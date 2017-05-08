@@ -157,10 +157,8 @@ public class DirectoryServer implements Runnable {
         }
 
         private File getFile(String fileId) {
-            // TODO retrieve the file associated with the id
-        	String r = "src/main/java/llm/lab7/server";
+        	String r = "src";
         	r += fileId;
-        	//System.out.println(r);
         	File f = new File(r);
             return f;
         }
