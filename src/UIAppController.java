@@ -45,7 +45,10 @@ public class UIAppController {
 	public CheckBox tog7;
 	public CheckBox tog8;
 	
-	
+	@FXML
+	private void serverBtnPressed(){
+		//TODO
+	}
 	
 	@FXML
 	private void powerBtnPressed() {

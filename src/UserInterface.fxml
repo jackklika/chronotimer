@@ -15,7 +15,7 @@
    <children>
       <Button layoutX="15.0" layoutY="22.0" mnemonicParsing="false" onAction="#powerBtnPressed" prefHeight="31.0" prefWidth="157.0" text="Power" />
       <Button layoutX="14.0" layoutY="318.0" mnemonicParsing="false" onAction="#swap" prefHeight="31.0" prefWidth="157.0" text="Swap" />
-      <Button layoutX="436.0" layoutY="66.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="202.0" text="Printer Power" />
+      <Button layoutX="436.0" layoutY="62.0" mnemonicParsing="false" onAction="#printerBtnPressed" prefHeight="31.0" prefWidth="202.0" text="Printer Power" />
       <Button layoutX="486.0" layoutY="225.0" mnemonicParsing="false" onAction="#key1" prefHeight="41.0" prefWidth="41.0" text="1" />
       <Button layoutX="527.0" layoutY="225.0" mnemonicParsing="false" onAction="#key2" prefHeight="41.0" prefWidth="41.0" text="2" />
       <Button layoutX="568.0" layoutY="225.0" mnemonicParsing="false" onAction="#key3" prefHeight="41.0" prefWidth="41.0" text="3" />
@@ -132,8 +132,8 @@
          </children>
       </Pane>
       <Button layoutX="15.0" layoutY="62.0" mnemonicParsing="false" onAction="#reset" prefHeight="31.0" prefWidth="157.0" text="Reset" />
-      <Button layoutX="15.0" layoutY="138.0" mnemonicParsing="false" onAction="#newRun" prefHeight="31.0" prefWidth="82.0" text="New Run" style="-fx-background-color: #32CD32;" />
-      <Button layoutX="15.0" layoutY="176.0" mnemonicParsing="false" onAction="#endRun" prefHeight="31.0" prefWidth="82.0" text="End Run" style="-fx-background-color: #FF0000;" />
+      <Button layoutX="15.0" layoutY="138.0" mnemonicParsing="false" onAction="#newRun" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #32CD32;" text="New Run" />
+      <Button layoutX="15.0" layoutY="176.0" mnemonicParsing="false" onAction="#endRun" prefHeight="31.0" prefWidth="82.0" style="-fx-background-color: #FF0000;" text="End Run" />
       <Button layoutX="15.0" layoutY="354.0" mnemonicParsing="false" onAction="#DNF" prefHeight="31.0" prefWidth="76.0" text="DNF" />
       <RadioButton layoutX="29.0" layoutY="230.0" mnemonicParsing="false" selected="true" text="IND">
          <toggleGroup>
@@ -144,5 +144,6 @@
       <RadioButton layoutX="28.0" layoutY="277.0" mnemonicParsing="false" text="GRP" toggleGroup="$race" />
       <RadioButton layoutX="99.0" layoutY="277.0" mnemonicParsing="false" text="PARGRP" toggleGroup="$race" />
       <Button layoutX="94.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancel" prefHeight="31.0" prefWidth="76.0" text="Cancel" />
+      <Button layoutX="437.0" layoutY="21.0" mnemonicParsing="false" onAction="#serverBtnPressed" prefHeight="31.0" prefWidth="202.0" text="Server" />
    </children>
 </AnchorPane>
