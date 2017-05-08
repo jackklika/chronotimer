@@ -701,8 +701,11 @@ public class ChronoTimer implements Runnable {
 					break;
 				}
 
-				if (currentRace.currentRaceType != RaceType.GRP)
-					currentRace.toRace.push(currentRace.inRace.pollLast());
+				if (currentRace.currentRaceType != RaceType.GRP && currentRace.currentRaceType != RaceType.PARGRP){
+					Racer r = currentRace.inRace.pollLast();
+					r.t.start = 0;
+					currentRace.toRace.push(r);
+				}	
 				break;
 
 			case "TRIG":
@@ -785,7 +788,8 @@ public class ChronoTimer implements Runnable {
 						+ "START	Start trigger channel 1 -- macro for TRIG 1\n"
 						+ "FINISH	Finish trigger channel 2 -- macro for TRIG 2\n"
 						+ "DEBUG	Change the debug output's verbosity.				FORMAT: <0...3>\n"
-						+ "LIST	Show the current race, their queues, and racers.\n");
+						+ "LIST	Show the current race, their queues, and racers.\n"
+						+ "CANCEL	A competitor started but their start is invalid. Send them back to start queue");
 				break;
 
 			default:
