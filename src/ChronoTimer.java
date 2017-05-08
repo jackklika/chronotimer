@@ -321,6 +321,12 @@ public class ChronoTimer implements Runnable {
 				break;
 
 			case "RESET":
+				currentRace = null;
+				Race.maxRaceNum = 1;
+				raceList.clear();
+				raceDisplay.clear();
+				raceDisplay.setText("ChronoTimer powered on\nSelect a race type and hit New Run");
+				Main.dbg.printDebug(1, "ChronoTimer reset!");
 				powerOn = false;
 				try {
 					Thread.sleep(1100);

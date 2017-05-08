@@ -99,7 +99,7 @@ public class UIAppController {
 		raceDisplay.clear();
 		
 		//reset checkboxes
-		if (ct.currentRace.raceEnded) {
+		if (ct.currentRace != null && ct.currentRace.raceEnded) {
 			tog1.setIndeterminate(false);
 			tog1.setSelected(false);
 			tog2.setIndeterminate(false);
