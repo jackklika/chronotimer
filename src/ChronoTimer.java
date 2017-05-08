@@ -4,8 +4,6 @@ import java.util.*;
 import com.google.gson.Gson;
 
 import javafx.scene.control.TextArea;
-import llm.lab7.client.DirectoryProxy;
-import llm.lab7.server.DirectoryServer;
 
 import java.time.Instant;
 import java.io.*;
@@ -562,10 +560,10 @@ public class ChronoTimer implements Runnable {
 					while ((nextChar = inputStr.read()) > -1) {
 						sb = sb.append((char) nextChar);
 					}
-					System.out.println("Return String: " + sb);
+					Main.dbg.printDebug(3, "JSON Return String: " + sb);
 					
 				} catch (Exception ex){
-					Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems.");
+					Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems. Is the server connected?");
 					ex.printStackTrace();
 				}
 				
@@ -753,9 +751,9 @@ public class ChronoTimer implements Runnable {
 				break;
 				
 			case "SERVER":
-				Main.dbg.printDebug(0, "Server now on!");
-				
+				Main.dbg.printDebug(0, "Server now on!");				
 				DirectoryServer ds = new DirectoryServer();
+				ds.run();
 				
 				break;
 

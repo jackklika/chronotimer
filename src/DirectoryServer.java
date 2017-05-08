@@ -70,10 +70,10 @@ public class DirectoryServer implements Runnable {
             response += "</tr>\n";
 			//Gson g = new Gson();
 			// set up the header	
-            System.out.println(response);
+            //System.out.println(response);
             response += md.toTableRow();
             response += "</table>\n</body>\n</html>\n";
-            System.out.println(response);
+            //System.out.println(response);
             // write out the response
             t.sendResponseHeaders(200, response.length());
             Writer os = new OutputStreamWriter(t.getResponseBody(), encoding);
@@ -85,7 +85,7 @@ public class DirectoryServer implements Runnable {
     static class PostHandler implements HttpHandler {
         public void handle(HttpExchange transmission) throws IOException {
 
-        	System.out.println(transmission);
+        	//System.out.println(transmission);
         	
             //  shared data that is used with other handlers
             sharedResponse = "";
@@ -114,7 +114,7 @@ public class DirectoryServer implements Runnable {
             // respond to the POST with ROGER
             String postResponse = "RECIEVED JSON " + sharedResponse;
 
-            System.out.println("response: " + sharedResponse);
+            //System.out.println("response: " + sharedResponse);
 
             //Desktop dt = Desktop.getDesktop();
             //dt.open(new File("raceresults.html"));
@@ -160,7 +160,7 @@ public class DirectoryServer implements Runnable {
             // TODO retrieve the file associated with the id
         	String r = "src/main/java/llm/lab7/server";
         	r += fileId;
-        	System.out.println(r);
+        	//System.out.println(r);
         	File f = new File(r);
             return f;
         }
