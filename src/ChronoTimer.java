@@ -562,9 +562,10 @@ public class ChronoTimer implements Runnable {
 						sb = sb.append((char) nextChar);
 					}
 					Main.dbg.printDebug(3, "JSON Return String: " + sb);
+					Main.dbg.printDebug(0, "Results Sent to Server");
 					
 				} catch (Exception ex){
-					Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems. Is the server connected?");
+					//Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems. Is the server connected?");
 					//ex.printStackTrace();
 				}
 				
