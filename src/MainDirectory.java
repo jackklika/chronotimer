@@ -45,15 +45,7 @@ public class MainDirectory {
 		}.getType();
 		this.add((Collection<Racer>) gson.fromJson(json, collectionType));
 
-		// Not sure if this (and the sort method in general goes here or
-		// if the list is sorted before it is given to us.
-		sort();
-	}
-
-	// See employee class for comparator
-	public void sort() {
-		Collections.sort(list);
-
+		Collections.sort(list); // See Racer class for comparator
 	}
 	
 	// Returns a string if the bib is found, else empty string.
