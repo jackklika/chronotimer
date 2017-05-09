@@ -26,6 +26,7 @@ public class MainDirectory {
 		Collections.sort(list);
 		int place = 1;
 		for (Racer e : list) {
+			
 			try {
 				out += "<tr><td>"+ place++ + "</td><td>"+ e.bib + "</td><td>" + nameByBib(e.bib) + "</td><td>" + e.prettyTime + "</td></tr>" ;
 			} catch (IOException e1) {
