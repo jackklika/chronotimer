@@ -8,7 +8,6 @@ import javafx.scene.control.TextArea;
 import java.time.Instant;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 enum RaceType {
@@ -531,15 +530,7 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 				Gson gson = new Gson();
 				String json = gson.toJson(currentRace.finishRace);
-				
-//				try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".json"))) {
-//					out.print(json);
-//					out.flush();
-//					out.close();
-//				} catch (FileNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
+
 				
 				// Client will connect to this location
 				URL site;
@@ -595,11 +586,7 @@ public class ChronoTimer implements Runnable {
 					Main.dbg.printDebug(0, "[WARN] Could not print. Did you initialize the race or racers?");
 				}
 				break;
-
-			case "EXPORT":
-
-				break;
-
+				
 			case "NUM":
 
 				boolean duplicate = false;
@@ -779,7 +766,6 @@ public class ChronoTimer implements Runnable {
 						+ "EVENT	type of event (IND, PARIND, GRP, PARGRP)			FORMAT: <eventcode>\n"
 						+ "NEWRUN	creates a new run\n" + "ENDRUN	done with a run\n"
 						+ "PRINT	Prints the run on stdout\n"
-						+ "EXPORT	Exports the run in XML to file RUN<RUN>				FORMAT: <run>\n"
 						+ "NUM	Set <num> as the next competitor to start			FORMAT: <num>\n"
 						+ "LR	Clear competitor number <num>					FORMAT: <num>\n"
 						+ "SWAP	Exchange next to compentitors to finish in IND\n"

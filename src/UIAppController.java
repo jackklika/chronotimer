@@ -1,7 +1,4 @@
 
-import java.io.PrintStream;
-  
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.RadioButton;
