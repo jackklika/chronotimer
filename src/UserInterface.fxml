@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIAppController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="UIAppController">
    <children>
       <Button layoutX="15.0" layoutY="22.0" mnemonicParsing="false" onAction="#powerBtnPressed" prefHeight="31.0" prefWidth="157.0" text="Power" />
       <Button layoutX="14.0" layoutY="318.0" mnemonicParsing="false" onAction="#swap" prefHeight="31.0" prefWidth="157.0" text="Swap" />
