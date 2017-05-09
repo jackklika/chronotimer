@@ -478,7 +478,9 @@ public class ChronoTimer implements Runnable {
 				break;
 
 			case "NEWRUN":
-
+				
+				DirectoryServer.md.clear();
+				
 				if (raceType == null) {
 					Main.dbg.printDebug(0, "[WARN] No racetype selected. Use EVENT or HELP for more info.");
 					break;
@@ -512,6 +514,8 @@ public class ChronoTimer implements Runnable {
 				break;
 
 			case "ENDRUN":
+				
+				DirectoryServer.md.clear();
 
 				if (currentRace == null) {
 					Main.dbg.printDebug(0, "[ERR] no race to end.");
@@ -531,15 +535,6 @@ public class ChronoTimer implements Runnable {
 				Main.dbg.printDebug(1, String.format("Race %d was set to finished.", currentRace.raceNum));
 				Gson gson = new Gson();
 				String json = gson.toJson(currentRace.finishRace);
-				
-//				try (PrintStream out = new PrintStream(new FileOutputStream("RUN" + currentRace.raceNum + ".json"))) {
-//					out.print(json);
-//					out.flush();
-//					out.close();
-//				} catch (FileNotFoundException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
 				
 				// Client will connect to this location
 				URL site;
@@ -663,21 +658,22 @@ public class ChronoTimer implements Runnable {
 				break;
 
 			case "SWAP":
-				// Only functions during IND races (according to spec)
+				// Only functions during IND & PARIND races (according to spec)
 				if (currentRace == null) {
 					Main.dbg.printDebug(0, "[ERR] Cannot SWAP when there's no race!");
 					break;
 				}
 
-				if (currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND || currentRace.inRace.size() ==1) {
+				if ((currentRace.currentRaceType == RaceType.IND || currentRace.currentRaceType == RaceType.PARIND) && currentRace.inRace.size() >=1) {
 					ArrayList<Racer> list = new ArrayList<Racer>(currentRace.inRace);
 					Collections.swap(list, 0, 1);
 					Deque<Racer> newQ = new ArrayDeque<Racer>();
-					for (Racer r : list)
-						newQ.push(r);
+					for (Racer r : list) {
+						newQ.addLast(r);
+					}
 					currentRace.inRace = newQ;
 				} else {
-					Main.dbg.printDebug(0, "[ERR] Only works during IND races.");
+					Main.dbg.printDebug(0, "[ERR] Only works during IND or PARIND races.");
 				}
 
 				break;

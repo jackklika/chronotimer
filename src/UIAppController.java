@@ -84,11 +84,11 @@ public class UIAppController {
 		RadioButton selectedRadioButton = (RadioButton) race.getSelectedToggle();
 		  //this is the name of the selected radio button
 		 String toggleGroupValue = selectedRadioButton.getText();
-		 if(toggleGroupValue.equals("IND")){
+		 if(toggleGroupValue.equals("IND") || toggleGroupValue.equals("PARIND")){
 				ct.toCommand("SWAP");
 		 }
 		 else{
-			 Main.dbg.printDebug(1, Time.printTime() + "\tCannot swap unless racetype is IND");
+			 Main.dbg.printDebug(1, Time.printTime() + "\tCannot swap unless racetype is IND or PARIND");
 		 }
 	
 	}
