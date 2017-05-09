@@ -298,6 +298,7 @@ public class ChronoTimer implements Runnable {
 
 		/**
 		 * Calling execute on a command will run the function associated with it.
+		 * For a description of the function, see the "HELP" function's output.
 		 * @return true if the command is a valid command, false otherwise.
 		 */
 		public boolean execute() {
@@ -570,7 +571,7 @@ public class ChronoTimer implements Runnable {
 					
 				} catch (Exception ex){
 					Main.dbg.printDebug(0, "[ERR] HTTP/JSON Problems. Is the server connected?");
-					ex.printStackTrace();
+					//ex.printStackTrace();
 				}
 				
 				
@@ -687,10 +688,10 @@ public class ChronoTimer implements Runnable {
 					break;
 				}
 				if (currentRace.currentRaceType != RaceType.GRP || currentRace.currentRaceType != RaceType.PARGRP) {
-					if(!(currentRace.inRace.isEmpty() ||currentRace.inRace == null)){
-					Racer r = currentRace.inRace.pollFirst();
-					r.runTime = Long.MAX_VALUE;
-					currentRace.finishRace.add(r);
+					if (!(currentRace.inRace.isEmpty() || currentRace.inRace == null)) {
+						Racer r = currentRace.inRace.pollFirst();
+						r.runTime = Long.MAX_VALUE;
+						currentRace.finishRace.add(r);
 					}
 				}
 				break;
@@ -789,6 +790,7 @@ public class ChronoTimer implements Runnable {
 						+ "FINISH	Finish trigger channel 2 -- macro for TRIG 2\n"
 						+ "DEBUG	Change the debug output's verbosity.				FORMAT: <0...3>\n"
 						+ "LIST	Show the current race, their queues, and racers.\n"
+						+ "SERVER	Start the server.\n"
 						+ "CANCEL	A competitor started but their start is invalid. Send them back to start queue");
 				break;
 
