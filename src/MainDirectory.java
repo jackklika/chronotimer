@@ -1,18 +1,14 @@
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.google.gson.internal.$Gson$Types;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class MainDirectory {
 	private ArrayList<Racer> list = new ArrayList<Racer>();
@@ -49,15 +45,7 @@ public class MainDirectory {
 		}.getType();
 		this.add((Collection<Racer>) gson.fromJson(json, collectionType));
 
-		// Not sure if this (and the sort method in general goes here or
-		// if the list is sorted before it is given to us.
-		sort();
-	}
-
-	// See employee class for comparator
-	public void sort() {
-		Collections.sort(list);
-
+		Collections.sort(list); // See Racer class for comparator
 	}
 	
 	// Returns a string if the bib is found, else empty string.

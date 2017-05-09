@@ -26,7 +26,6 @@ public class Race {
 		currentRaceType = raceType;
 	}
 
-	@SuppressWarnings("static-access")
 	@Override
 	/**
 	 * Assembles a string containing the current race and its participants (with their times)

@@ -56,7 +56,6 @@ public class Time {
 		long hundrs = (mili / 10) % 100;
 		long second = (mili / 1000) % 60;
 		long minute = (mili / (1000 * 60)) % 60;
-		long hour = (mili / (1000 * 60 * 60)) % 24;
 
 		return String.format("%02d:%02d:%02d", minute, second, hundrs);
 	}

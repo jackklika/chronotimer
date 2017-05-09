@@ -1,19 +1,16 @@
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
-
-import java.awt.event.ActionEvent;
-import java.io.IOException;
-
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class UIApp extends Application {
 	 private Stage primaryStage;
@@ -29,11 +26,6 @@ public class UIApp extends Application {
 	        btn.setText("Say 'Hello World'");
 	        btn.setOnAction(new EventHandler<javafx.event.ActionEvent>() {
 	            
-	        	public void handle(ActionEvent event) {
-	                System.out.println("Hello World!");
-	            }
-
-				@Override
 				public void handle(javafx.event.ActionEvent arg0) {
 					// TODO Auto-generated method stub
 					
