@@ -6,9 +6,11 @@ public class Racer implements Comparable<Racer>{
 	public long endTime;
 	public long runTime;
 	public String prettyTime;
+	public boolean dnf;
 
 	public Racer(int bib) {
 		this.bib = bib;
+		dnf = false;
 		Main.dbg.printDebug(3, this + "Created at " + Time.printTime());
 	}
 

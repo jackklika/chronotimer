@@ -691,6 +691,7 @@ public class ChronoTimer implements Runnable {
 					if (!(currentRace.inRace.isEmpty() || currentRace.inRace == null)) {
 						Racer r = currentRace.inRace.pollFirst();
 						r.runTime = Long.MAX_VALUE;
+						r.dnf = true;
 						currentRace.finishRace.add(r);
 					}
 				}
